@@ -37,7 +37,7 @@ client.on('message', message => {
   });
   const embed = new Discord.MessageEmbed()
   .setTitle("Access Denied")
-  .setDescription("Please contact <@564177349990416484> in order to gain access to this command.")
+  .setDescription("Please contact <@564177349990416484> in order to gain access to this bot.")
   if(!hasPerms) return message.channel.send(embed)
 
   message.delete()
