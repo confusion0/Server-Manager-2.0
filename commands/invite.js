@@ -1,6 +1,6 @@
 module.exports = {
   name: 'invite',
-  aliases: ['clear'],
+  aliases: [],
   run: async(Discord, client, message, args) => {
     
   }
