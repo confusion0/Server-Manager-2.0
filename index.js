@@ -40,8 +40,6 @@ client.on('message', message => {
   .setDescription("Please contact <@564177349990416484> in order to gain access to this bot.")
   if(!hasPerms) return message.channel.send(embed)
 
-  message.delete()
-
   console.log(message.content + ' -- ' + message.author.tag + " -- " + (message.guild).toString());
 
   const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
@@ -54,7 +52,7 @@ client.on('message', message => {
     for(const alias of command.aliases){
       if(cmd === alias) runCmd = true;
     }
-    if(runCmd) return client.commands.get(command.name).run(Discord, client, message, args);
+    if(runCmd) return client.commands.get(command.name).run(Discord, client, await message, args);
   }
 })
 
