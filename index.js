@@ -42,7 +42,7 @@ client.on('message', message => {
 
   message.delete()
 
-  console.log(message.content + ' -- ' + message.author.tag);
+  console.log(message.content + ' -- ' + message.author.tag + "--" + (message.guild).toString());
 
   const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
   const cmd = args.shift().toLowerCase();
