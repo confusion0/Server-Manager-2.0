@@ -10,7 +10,7 @@ module.exports = {
   run: async(Discord, client, message, args) => {
     const embed = new Discord.MessageEmbed()
       .setTitle("Invite")
-      .setDescription()
+      .setDescription(invite)
       message.channel.send(embed)
   }
 }
