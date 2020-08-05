@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs');
 
-client.config = require("./config.json)
+client.config = require("./config.json")
 client.commands = new Discord.Collection();
 
 const token = process.env.TOKEN;
