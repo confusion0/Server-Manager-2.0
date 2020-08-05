@@ -87,6 +87,7 @@ module.exports = {
     });
 
     collector.on('end', async collected => {
+      message.delete({timeout : timeout})
       setTimeout(function () {
         messages.forEach((msg) => {
           msg.delete()
