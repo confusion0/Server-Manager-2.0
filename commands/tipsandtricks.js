@@ -23,5 +23,10 @@ module.exports = {
       .setDescription(customembed)
       message.channel.send(embed)
     }
+    //if(args[0] === ""){
+      //const embed = new Discord.MessageEmbed()
+      //.setDescription(customembed)
+      //message.channel.send(embed)
+    //}
   }
 }
