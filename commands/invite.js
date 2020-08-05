@@ -1,5 +1,5 @@
 module.exports = {
-  name: 'purge',
+  name: 'invite',
   aliases: ['clear'],
   run: async(Discord, client, message, args) => {
     
