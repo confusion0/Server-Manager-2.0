@@ -26,6 +26,8 @@ module.exports = {
       { name: 'Description', value: description},
       { name: 'Channel', value: channel},
 	  )
+    
+    embed.setFooter(`Step ${step+1} of ${steps} | Type cancel to exit`)
     const message2 = await message.channel.send(embed)
 
     collector.on('collect', async m => {
