@@ -12,16 +12,22 @@ module.exports = {
     
     if(amount > limit) return message.channel.send(`Please enter a amount less than or equal to ${limit}`)
 
-    let counter = amount
-    while(counter > 0){
-      if(counter >= 100){ 
-        message.channel.bulkDelete(100)
-        counter = counter - 100
+    try{
+      let counter = amount
+      while(counter > 0){
+        if(counter >= 100){ 
+          message.channel.bulkDelete(100)
+          counter = counter - 100
+        }
+        else{
+          message.channel.bulkDelete(counter)
+          counter = 0
+        }
       }
-      else{
-        message.channel.bulkDelete(counter)
-        counter = 0
-      }
+    } catch (error) {
+       if (!(error instanceof DiscordAPIError: Unknown Message)) {
+         throw error
+       }
     }
     message.channel.send('I have deleted `' + amount + '` messages!')
   }
