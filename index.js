@@ -31,7 +31,7 @@ client.on('message', message => {
   if (message.author.bot) return;
   if (!message.content.startsWith(client.config.prefix)) return;
   
-  if(getUserIdFromMention(message) === client.user.id) message.channel.send("The bot prefix is `" + client.config.prefix + "`")
+  if(getUserIdFromMention(message.content) === client.user.id) message.channel.send("The bot prefix is `" + client.config.prefix + "`")
 
   var hasPerms = false
   client.config.allowedCustomEmbed.forEach((id) => {
