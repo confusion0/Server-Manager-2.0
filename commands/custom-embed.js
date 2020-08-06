@@ -92,7 +92,7 @@ module.exports = {
       message.delete({timeout : timeout})
       setTimeout(function () {
         messages.forEach((msg) => {
-          msg.delete()
+          msg.delete().catch(() => {})
         });
       }, timeout); 
 
