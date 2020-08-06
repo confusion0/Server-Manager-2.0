@@ -13,7 +13,7 @@ module.exports = {
     while(counter > 0){
       if(counter >= 100){ 
         message.channel.bulkDelete(100)
-        counter-=100
+        counter = counter - 100
       }
       else{
         message.channel.bulkDelete(counter)
