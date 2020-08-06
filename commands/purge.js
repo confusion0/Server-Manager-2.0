@@ -5,6 +5,8 @@ module.exports = {
   aliases: ['clear'],
   run: async(Discord, client, message, args) => {
     let amount = args[0]
+    
+    message.delete()
 
     if (!amount) return (await message.reply('You haven\'t given an amount of messages which should be deleted!')).delete({timeout: timeout}); // Checks if the `amount` parameter is given
     if (isNaN(amount)) return (await message.reply('The amount parameter isn`t a number!')).delete({timeout: timeout}); // Checks if the `amount` parameter is a number. If not, the command throws an error
