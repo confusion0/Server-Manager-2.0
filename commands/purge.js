@@ -24,6 +24,7 @@ module.exports = {
       }
     }
 
-    message.channel.send('I have deleted `' + amount + '` messages!')
+    let message2 = await message.channel.send('I have deleted `' + amount + '` messages!')
+    message2.delete({timeout : timeout})
   }
 }
