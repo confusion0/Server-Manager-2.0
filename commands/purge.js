@@ -17,6 +17,7 @@ module.exports = {
       }
       else{
         message.channel.bulkDelete(counter)
+        counter = 0
       }
     }
     message.channel.send('I have deleted `' + amount + '` messages!')
