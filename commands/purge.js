@@ -1,5 +1,5 @@
 const timeout = 5000
-const limit = 10000
+const limit = 1000
 
 module.exports = {
   name: 'purge',
