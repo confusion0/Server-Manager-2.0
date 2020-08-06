@@ -7,7 +7,7 @@ module.exports = {
     const filter = m => m.content.includes("");
     const collector = message.channel.createMessageCollector(filter);
 
-    const steps = 4
+    const steps = 5
     const text = ["Enter a **title** for your embed. Type **empty** for no title.", "Enter a **description** for your embed.", "Enter a **Hex color** for your embed. If you want random then just type **RANDOM**. Example: **#E32636** https://image-color.com/", "Mention the channel you would like to have your embed sent in. Type **current** if you want to use the current channel.", "Embed Creation Complete!"]
 
     let step = 0
@@ -79,7 +79,7 @@ module.exports = {
       step += 1
 
       embed.setDescription(text[step])
-      embed.setFooter(`Step ${step} of ${steps} | Type cancel to exit`)
+      embed.setFooter(`Step ${step+1} of ${steps} | Type cancel to exit`)
 
       message2.edit(embed)
 
