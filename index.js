@@ -52,7 +52,7 @@ client.on('message', message => {
     for(const alias of command.aliases){
       if(cmd === alias) runCmd = true;
     }
-    if(runCmd) return client.commands.get(command.name).run(Discord, client, await message, args);
+    if(runCmd) return client.commands.get(command.name).run(Discord, client, (await message), args);
   }
 })
 
