@@ -1,4 +1,4 @@
-const timeout = 10000
+const timeout = 5000
 
 module.exports = {
   name: 'custom-embed',
@@ -95,11 +95,11 @@ module.exports = {
       }, timeout); 
 
       if(cancelled){
-        const message3 = await message.channel.send("Custom Embed Creation Cancelled. All messages with self destruct in 10 secs")
+        const message3 = await message.channel.send(`Custom Embed Creation Cancelled. All messages with self destruct in ${timeout/1000} secs`)
         return message3.delete({timeout: timeout}).then(message2.delete({timeout: timeout}))
       } 
 
-      const message4 = await message.channel.send("Thank you for using my custom embed creator. All messages will now self destruct in 10 secs.")
+      const message4 = await message.channel.send(`Thank you for using my custom embed creator. All messages will now self destruct in ${timeout/1000} secs.`)
 
       message4.delete({timeout: timeout}).then(message2.delete({timeout: timeout}))
 
