@@ -6,8 +6,6 @@ module.exports = {
   run: async(Discord, client, message, args) => {
     const filter = m => m.content.includes("");
     const collector = message.channel.createMessageCollector(filter);
-	  
-    let guild = message.guild
 
     const steps = 4
     const text = ["Enter a **title** for your embed. Type **empty** for no title.", "Enter a **description** for your embed.", "Enter a **Hex color** for your embed. If you want random then just type **RANDOM**. Example: **#E32636** https://image-color.com/", "Mention the channel you would like to have your embed sent in. Type **current** if you want to use the current channel.", "Embed Creation Complete!"]
@@ -32,7 +30,7 @@ module.exports = {
 
     collector.on('collect', async m => {
       if(m.author.bot) return
-      if(m.author != message.author || m.guild != guild) return 
+      if(m.author != message.author) return 
 
       messages.push(m)
 
