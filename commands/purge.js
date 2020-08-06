@@ -25,7 +25,7 @@ module.exports = {
         }
       }
     } catch (error) {
-       if (error.name === 'UnhandledPromiseRejectionWarning: DiscordAPIError: Unknown Message') {
+       if (error.name === 'DiscordAPIError: Unknown Message') {
          console.log("Caught: DiscordAPIError: Unknown Message")
        }
        else throw error
