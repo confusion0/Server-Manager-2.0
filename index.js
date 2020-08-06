@@ -30,6 +30,8 @@ client.on('message', message => {
   if (!message.guild) return;
   if (message.author.bot) return;
   if (!message.content.startsWith(client.config.prefix)) return;
+  
+  if(getUserIdFromMention(message) === client.user.id) message.channel.send("The bot prefix is `" + client.config.prefix" + "`")
 
   var hasPerms = false
   client.config.allowedCustomEmbed.forEach((id) => {
@@ -55,5 +57,19 @@ client.on('message', message => {
     if(runCmd) return client.commands.get(command.name).run(Discord, client, message, args);
   }
 })
+
+function getUserIdFromMention(mention) {
+	if (!mention) return;
+
+	if (mention.startsWith('<@') && mention.endsWith('>')) {
+		mention = mention.slice(2, -1);
+
+		if (mention.startsWith('!')) {
+			mention = mention.slice(1);
+		}
+
+		return mention
+	}
+}
 
 client.login(token);
