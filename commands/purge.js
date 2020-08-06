@@ -1,4 +1,5 @@
 const timeout = 5000
+const limit = 10000
 
 module.exports = {
   name: 'purge',
@@ -8,6 +9,8 @@ module.exports = {
     
     const amount = args[0]
     if(isNaN(amount)) return message.channel.send('Please enter the amount of messages you want deleted')
+    
+    if(amount > limit) return message.channel.send(`Please enter a amount less than or equal to ${limit}`)
 
     let counter = amount
     while(counter > 0){
