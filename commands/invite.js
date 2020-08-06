@@ -6,7 +6,7 @@ const Rmessage = `
 
 module.exports = {
   name: 'help',
-  aliases: [invite],
+  aliases: ['invite'],
   run: async(Discord, client, message, args) => {
     const embed = new Discord.MessageEmbed()
       .setTitle("Additional Resources")
