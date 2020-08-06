@@ -9,7 +9,7 @@ module.exports = {
     const amount = args[0]
     if(isNaN(amount)) return message.channel.send('Please enter the amount of messages you want deleted')
     
-    const fetched = await message.channel.fetchMessages( { limit : amount } )
+    const fetched = await message.channel.fetch( { limit : amount } )
     
     message.channel.bulkDelete(fetched)
       .catch(error => message.channel.send(`Error: ${error}`))
