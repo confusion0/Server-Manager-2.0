@@ -25,9 +25,10 @@ module.exports = {
         }
       }
     } catch (error) {
-       if (error.name != 'UnhandledPromiseRejectionWarning: DiscordAPIError: Unknown Message') {
-         throw error
+       if (error.name === 'UnhandledPromiseRejectionWarning: DiscordAPIError: Unknown Message') {
+         console.log("Caught: DiscordAPIError: Unknown Message")
        }
+       else throw error
     }
     message.channel.send('I have deleted `' + amount + '` messages!')
   }
