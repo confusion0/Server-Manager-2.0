@@ -12,7 +12,7 @@ module.exports = {
     const fetched = await message.channel.fetchMessages( { limit : amount } )
     
     message.channel.bulkDelete(fetched)
-      .catch(error => message.channel.send(`Error: ${error}))
+      .catch(error => message.channel.send(`Error: ${error}`))
     
   }
 }
