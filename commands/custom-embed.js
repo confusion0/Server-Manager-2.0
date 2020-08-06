@@ -3,6 +3,8 @@ const timeout = 10000
 module.exports = {
   name: 'custom-embed',
   aliases: ['custom-embeds', 'ce'],
+  usage: '<no args>',
+  desc: 'A cutom embed creator',
   run: async(Discord, client, message, args) => {
     const filter = m => m.content.includes("");
     const collector = message.channel.createMessageCollector(filter);
