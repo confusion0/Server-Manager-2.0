@@ -1,7 +1,5 @@
 {
   "prefix" : "?",
-  "allowedCustomEmbed" : ["564177349990416484", "449799698455461888", "504367594795565086", "657010046277910581", "677128590533459970", "721787016114864229", "695818865002807349"],
-  "allowedCustomEmbedOrder" : ["!!NoobMan13!!", "Sopia", "lolel", "flames", "kenziethebestgir", "AIMWAA", "CYBERBLITZ"],
   "whitelist": [
     { "name":"!!NoobMan13!!", "id": "564177349990416484"},
     { "name":"Sopia", "id": "449799698455461888"},
