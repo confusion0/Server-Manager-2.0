@@ -8,8 +8,8 @@ module.exports = {
     if(!user) return message.channel.send("Please enter the user as a mention. Ex: @Example")
     let guild = message.guild
 
-    let createdAt = (user.createdAt).toString().slice(0, 14)
-    let joinedAt = (rMember.joinedAt).toString().slice(0, 14)
+    let createdAt = (user.createdAt).toString().slice(0, 15)
+    let joinedAt = (rMember.joinedAt).toString().slice(0, 15)
     let roleAmount = rMember.roles.cache.size - 1
     let id = user.id
 
