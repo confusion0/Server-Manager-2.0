@@ -32,8 +32,10 @@ client.on('message', message => {
   if (!message.content.startsWith(client.config.prefix)) return;
 
   var hasPerms = false
-  client.config.allowedCustomEmbed.forEach((id) => {
-    if(id === message.author.id) hasPerms = true
+  client.config.whitelist.forEach((user) => {
+    if(user.id === message.author.id){
+      hasPerms = true
+    }
   });
   const embed = new Discord.MessageEmbed()
   .setTitle("Access Denied")
