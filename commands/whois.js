@@ -11,6 +11,7 @@ module.exports = {
     let createdAt = (user.createdAt).toString().slice(0, 15)
     let joinedAt = (rMember.joinedAt).toString().slice(0, 15)
     let roleAmount = rMember.roles.cache.size - 1
+    let userStatus = user.presence.status
     let id = user.id
 
     let roles = ""
@@ -25,6 +26,7 @@ module.exports = {
     .setThumbnail(user.displayAvatarURL())
     .addField(`Registered: `, createdAt, true)
     .addField(`Joined: `, joinedAt, true)
+    .addField(`Status: `, userStatus)
     .addField(`Roles[${roleAmount}]: `, roles)
     .setFooter(`ID: ${id}`)
     .setTimestamp()
