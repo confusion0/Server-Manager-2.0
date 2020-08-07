@@ -2,7 +2,8 @@ module.exports = {
   name: 'whois',
   aliases: [],
   run: async(Discord, client, message, args) => {
-    if(!args[0]) return message.channel.send("Please mention a user to use this command on")
+    if(!args[0]) return message.channel.send("Please mention a user to use this command on. @Example")
+    let mention = args[0]
     let user = getUserFromMention(mention, client)
     if(!user) return message.channel.send("Please enter the user as a mention. Ex: @Example")
     let guild = message.guild
