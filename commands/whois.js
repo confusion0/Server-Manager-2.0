@@ -11,7 +11,6 @@ module.exports = {
     let createdAt = (user.createdAt).toString().slice(0, 15)
     let joinedAt = (rMember.joinedAt).toString().slice(0, 15)
     let roleAmount = rMember.roles.cache.size - 1
-    let userStatus = user.presence.status
     let id = user.id
 
     let roles = ""
@@ -19,6 +18,11 @@ module.exports = {
       if(role.toString() != "@everyone") roles += role.toString() + " "
     })
     if(!roles) roles = "No roles"
+
+    let userStatus = user.presence.status
+    if(userStatus === "offline") userStatus = "⚫ Offline"
+    if(userStatus === "dnd") userStatus = "⛔ Do Not Disturb"
+    if(userStatus === "online") userStatus = ":green_circle: Online"
 
     const embed = new Discord.MessageEmbed()
     .setColor("RANDOM")
