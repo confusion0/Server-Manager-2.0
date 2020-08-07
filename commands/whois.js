@@ -17,6 +17,7 @@ module.exports = {
     rMember.roles.cache.forEach(role => {
       if(role.toString() != "@everyone") roles += role.toString() + " "
     })
+    if(!roles) roles = "No roles"
 
     const embed = new Discord.MessageEmbed()
     .setColor("RANDOM")
