@@ -31,16 +31,16 @@ client.on('message', message => {
   if (message.author.bot) return;
   if (!message.content.startsWith(client.config.prefix)) return;
 
-  var hasPerms = false
-  client.config.whitelist.forEach((user) => {
-    if(user.id === message.author.id){
-      hasPerms = true
-    }
-  });
-  const embed = new Discord.MessageEmbed()
-  .setTitle("Access Denied")
-  .setDescription("Please contact <@564177349990416484> in order to gain access to this bot.")
-  if(!hasPerms) return message.channel.send(embed)
+//   var hasPerms = false
+//   client.config.whitelist.forEach((user) => {
+//     if(user.id === message.author.id){
+//       hasPerms = true
+//     }
+//   });
+//   const embed = new Discord.MessageEmbed()
+//   .setTitle("Access Denied")
+//   .setDescription("Please contact <@564177349990416484> in order to gain access to this bot.")
+//   if(!hasPerms) return message.channel.send(embed)
 
   console.log(message.content + ' -- ' + message.author.tag + " -- " + (message.guild).toString());
 
