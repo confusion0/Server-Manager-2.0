@@ -25,7 +25,7 @@ module.exports = {
 
       message.channel.send(embed)
     }
-    catch(error e){
+    catch(error){
       message.channel.send("Please contact the server owner and make sure that this bot has every permission in this server")
     }
   }
