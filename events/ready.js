@@ -17,7 +17,7 @@ module.exports = {
 
     wait(1000);
 
-    client.guilds.forEach(g => {
+    client.guilds.cache.forEach(g => {
       g.fetchInvites().then(guildInvites => {
         client.invites[g.id] = guildInvites;
       });
