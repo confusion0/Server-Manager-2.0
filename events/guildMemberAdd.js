@@ -9,7 +9,7 @@ module.exports = {
       // Look through the invites, find the one for which the uses went up.
       const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses);
       // This is just to simplify the message being sent below (inviter doesn't have a tag property)
-      const inviter = client.users.get(invite.inviter.id);
+      const inviter = client.users.cache.get(invite.inviter.id);
       // Get the log channel (change to your liking)
       const logChannel = member.guild.channels.find(channel => channel.name === "invite-logs");
       if(!logChannel) return
