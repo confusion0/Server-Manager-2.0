@@ -12,6 +12,7 @@ module.exports = {
       const inviter = client.users.get(invite.inviter.id);
       // Get the log channel (change to your liking)
       const logChannel = member.guild.channels.find(channel => channel.name === "invite-logs");
+      if(!logChannel) return
       // A real basic message with the information we need. 
       logChannel.send(`${member.user.tag} joined using invite code ${invite.code} from ${inviter.tag}. Invite was used ${invite.uses} times since its creation.`);
     });
