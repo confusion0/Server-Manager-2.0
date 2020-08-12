@@ -1,3 +1,5 @@
+const wait = require('util').promisify(setTimeout);
+
 module.exports = {
   name: 'ready',
   run: async(Discord, client) => {
