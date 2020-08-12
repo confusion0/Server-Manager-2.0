@@ -5,7 +5,7 @@ const fs = require('fs')
 client.config = require("./config.json")
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
-client.invites = []
+client.invites = {}
 
 const token = process.env.TOKEN;
 
