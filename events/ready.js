@@ -1,5 +1,3 @@
-const fs = require("fs")
-
 module.exports = {
   name: 'ready',
   run: async(Discord, client) => {
