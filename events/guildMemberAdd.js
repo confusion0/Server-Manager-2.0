@@ -15,8 +15,8 @@ module.exports = {
       if(!invite) return logChannel.send("I was unable to locate which invite this user joined using: " + member.user)
       // This is just to simplify the message being sent below (inviter doesn't have a tag property)
       const inviter = client.users.cache.get(invite.inviter.id);
-      if(invite.maxAge != 0) logChannel.send(`\`${invite.inviter.tag}\` please remake your invite as a invite that doesn't expire.`)
-      if(invite.maxUses != 0) logChannel.send(`\`${invite.inviter.tag}\` please remake your invite as a invite that has infinite uses.`)
+      if(invite.maxAge != 0) logChannel.send(`\`${invite.inviter.tag}\` please remake your invite as a invite that doesn't expire`)
+      if(invite.maxUses != 0) logChannel.send(`\`${invite.inviter.tag}\` please remake your invite as a invite that has infinite uses`)
       // Get the log channel (change to your liking)
       const logChannel = member.guild.channels.cache.find(channel => channel.name === "invite-logs");
       if(!logChannel) return
