@@ -14,7 +14,7 @@ module.exports = {
 
         let iUser = message.mentions.users.first()
 
-        if(!iUser) iUser = message.author
+        if(!iUser) return message.channel.send('Please mention the user you would like to check')_
 
         for(invite of invites){
           invite = invite[1]
