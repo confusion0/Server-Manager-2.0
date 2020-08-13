@@ -48,6 +48,7 @@ client.on('inviteCreate', invite => {
 })
 
 client.on('message', message => {
+  client.events.get("counting").run(Discord, client, message);
   return client.events.get("message").run(Discord, client, message);
 })
 
