@@ -36,7 +36,7 @@ module.exports = {
 
       messages.push(m)
 
-      if((m.content).trim() == "cancel"){ 
+      if((m.content).trim().toLowerCase() == "cancel"){ 
         cancelled = true
         return collector.stop()
       }
