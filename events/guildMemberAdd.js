@@ -7,7 +7,11 @@ module.exports = {
       // Update the cached invites for the guild.
       client.invites[member.guild.id] = guildInvites;
       // Look through the invites, find the one for which the uses went up.
-      const invite = guildInvites.find(i => ei.get(i.code).uses < i.uses).catch(() => {})
+      const invite = guildInvites.find(i => {
+        const oldInvite = ei.get(i.code)
+        if(!oldInvite) return false
+        return oldInvite.uses < i.uses
+      })
       // This is just to simplify the message being sent below (inviter doesn't have a tag property)
       const inviter = client.users.cache.get(invite.inviter.id);
       // Get the log channel (change to your liking)
