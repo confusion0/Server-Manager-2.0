@@ -8,7 +8,7 @@ module.exports = {
     let i = 0
 
     setInterval(function(){
-      let activities = [`over ${client.guilds.cache.size} servers!`, `over ${client.channels.cache.size} channels!`, `over ${client.users.cache.size} users!`]
+      let activities = [`${client.guilds.cache.size} servers!`, `${client.channels.cache.size} channels!`, `${client.users.cache.size} users!`]
 
       client.user.setActivity(activities[i], { type : "WATCHING" })
 
