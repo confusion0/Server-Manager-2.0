@@ -43,6 +43,10 @@ client.on('guildMemberAdd', member => {
   return client.events.get("guildMemberAdd").run(Discord, client, member);
 })
 
+client.on('inviteCreate', invite => {
+  return client.events.get("inviteCreate").run(Discord, client, invite);
+})
+
 client.on('message', message => {
   return client.events.get("message").run(Discord, client, message);
 })
