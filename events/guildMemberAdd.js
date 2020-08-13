@@ -21,7 +21,7 @@ module.exports = {
       const logChannel = member.guild.channels.cache.find(channel => channel.name === "invite-logs");
       if(!logChannel) return
       // A real basic message with the information we need. 
-      logChannel.send(`${member.user} joined using invite code \`${invite.code}\` from ${inviter}. **(${invite.uses} Invites)**`);
+      logChannel.send(`${member.user} **joined**; Invited by **${inviter.tag}** (${invite.uses} Invites)`);
     });
   }
 }
