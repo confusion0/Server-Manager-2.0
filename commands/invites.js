@@ -22,6 +22,7 @@ module.exports = {
 
       embed.setAuthor(iUser.tag, iUser.displayAvatarURL())
       embed.setDescription(`${userInvites} Invites!`)
+      embed.setFooter("This may not be accurate.")
 
       message.channel.send(embed)
     }
