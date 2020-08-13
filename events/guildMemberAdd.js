@@ -2,6 +2,8 @@ module.exports = {
   name: 'guildMemberAdd',
   run: async(Discord, client, member) => {
     member.guild.fetchInvites().then(guildInvites => {
+      const logChannel = member.guild.channels.cache.find(channel => channel.name === "invite-logs");
+      if(!logChannel) return
       // This is the *existing* invites for the guild.
       const ei = client.invites[member.guild.id];
       // Update the cached invites for the guild.
@@ -19,9 +21,6 @@ module.exports = {
       if(invite.maxAge != 0) logChannel.send(`${invite.inviter} please remake your invite as a invite that doesn't expire. I have already revoked your invite`).then(isTemp = true)
       if(invite.maxUses != 0) logChannel.send(`${invite.inviter} please remake your invite as a invite that has infinite uses. I have already revoked your invite`).then(isTemp = true)
       if(isTemp) invite.delete()
-      // Get the log channel (change to your liking)
-      const logChannel = member.guild.channels.cache.find(channel => channel.name === "invite-logs");
-      if(!logChannel) return
       // A real basic message with the information we need. 
       logChannel.send(`${member.user} **joined**; Invited by **${inviter.tag}** (${invite.uses} Invites)`);
     });
