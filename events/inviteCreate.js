@@ -1,6 +1,6 @@
 module.exports = {
   name: 'inviteCreate',
-  run: async(Discord, client, inviteCreate) => {
+  run: async(Discord, client, invite) => {
     const logChannel = invite.guild.channels.cache.find(channel => channel.name === "invite-logs");
     if(!logChannel) return
     const inviter = client.users.cache.get(invite.inviter.id);
