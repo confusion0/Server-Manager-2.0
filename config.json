@@ -1,6 +1,6 @@
 {
   "prefix" : "?",
-  "whitelist": [
+  "whitelist" : [
     { "name":"!!NoobMan13!!", "id": "564177349990416484"},
     { "name":"Sopia", "id": "449799698455461888"},
     { "name":"lolel", "id": "504367594795565086"},
@@ -10,5 +10,6 @@
     { "name":"TEADY", "id": "515191224773378049"},
     { "name":"Hello People", "id": "672231296021430332"},
     { "name":"Cyberblitz", "id": "695818865002807349"}
-  ]
+  ],
+  "mongoPath" : "mongodb+srv://discord_bot:xx0q6z8UUsz66fbT@servermanager20.2uzgc.mongodb.net/ServerManager20?retryWrites=true&w=majority"
 }
