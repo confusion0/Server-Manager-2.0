@@ -5,7 +5,7 @@ module.exports = {
   aliases: ['custom-embeds', 'ce'],
   run: async(Discord, client, message, args) => {
     const filter = m => m.content.includes("");
-    const collector = message.channel.createMessageCollector(filter);
+    const collector = message.channel.createMessageCollector(filter, {time: 500000});
 
     const steps = 4
     const text = ["Enter a **title** for your embed. Type **empty** for no title.", "Enter a **description** for your embed.", "Enter a **Hex color** for your embed. If you want random then just type **RANDOM**. Example: **#E32636** https://image-color.com/", "Mention the channel you would like to have your embed sent in. Type **current** if you want to use the current channel.", "Embed Creation Complete!"]
@@ -13,7 +13,7 @@ module.exports = {
     let step = 0
     let title = "none", description = "none", color = "none", channel = "none"
     let messages = []
-    let cancelled = false
+    let cancelled = true
 
     const embed = new Discord.MessageEmbed()
     .setTitle("Custom Embed Creator")
@@ -37,7 +37,6 @@ module.exports = {
       messages.push(m)
 
       if((m.content).trim().toLowerCase() == "cancel"){ 
-        cancelled = true
         return collector.stop()
       }
 
@@ -85,7 +84,10 @@ module.exports = {
 
       message2.edit(embed)
 
-      if(step >= steps) return collector.stop()
+      if(step >= steps){
+        cancelled = false
+        return collector.stop()
+      }
     });
 
     collector.on('end', async collected => {
