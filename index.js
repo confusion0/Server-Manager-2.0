@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const fs = require('fs')
 
 client.config = require("./config.json")
+client.mongo = require("./mongo")
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 client.invites = {}
