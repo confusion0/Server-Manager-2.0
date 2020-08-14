@@ -4,7 +4,7 @@ module.exports = {
   run: async(Discord, client, message, args) => {
     if(!args[0]) return message.channel.send("Please mention a user to use this command on. @Example")
     let rMember = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0])) 
-    let user = message.mentions.users.first()
+    let user = rMember.user
     if(!user) return message.channel.send("Please enter the user as a mention. Ex: @Example")
     let guild = message.guild
 
