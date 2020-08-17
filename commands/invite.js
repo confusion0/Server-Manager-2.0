@@ -1,5 +1,5 @@
 const Rmessage = `
-[Commands List]()
+[Commands/Feature List](https://servermanager20.herokuapp.com/)
 [Invite Bot](https://discord.com/api/oauth2/authorize?client_id=739943852726681650&permissions=8&scope=bot)
 [Support Server](https://discord.gg/r4WCBQe)
 `
