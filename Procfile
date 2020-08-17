@@ -1,2 +1,2 @@
 worker: node index.js
-web: start index.html
+web: open index.html
