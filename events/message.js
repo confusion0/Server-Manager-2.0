@@ -5,7 +5,7 @@ module.exports = {
   run: async(Discord, client, message) => {
     if (!message.guild) return;
     if (message.author.bot) return;
-    if (!message.content.startsWith(client.config.prefix)) return;
+    if (!message.content.startsWith(process.env.PREFIX)) return;
 
     // var hasPerms = false
     // client.config.whitelist.forEach((user) => {
@@ -20,15 +20,15 @@ module.exports = {
 
     console.log(message.content + ' -- ' + message.author.tag + " -- " + (message.guild).toString());
 
-    const args = message.content.slice(client.config.prefix.length).trim().split(/ +/g);
+    const args = message.content.slice(process.env.PREFIX.length).trim().split(/ +/g);
     const cmd = args.shift().toLowerCase();
 
     for (const file of client.commandFiles) {
       const command = require(`../commands/${file}`);
       var runCmd = false;
-      if (cmd === command.name) runCmd = true;
+      if (cmd == command.name) runCmd = true;
       for(const alias of command.aliases){
-        if(cmd === alias) runCmd = true;
+        if(cmd == alias) runCmd = true;
       }
       if(runCmd) return client.commands.get(command.name).run(Discord, client, message, args);
     }

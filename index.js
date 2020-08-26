@@ -2,6 +2,23 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const fs = require('fs')
 
+// var walk = function(dir) {
+//     var results = [];
+//     var list = fs.readdirSync(dir);
+//     list.forEach(function(file) {
+//         file = dir + '/' + file;
+//         var stat = fs.statSync(file);
+//         if (stat && stat.isDirectory()) { 
+//             /* Recurse into a subdirectory */
+//             results = results.concat(walk(file));
+//         } else { 
+//             /* Is a file */
+//             results.push(file);
+//         }
+//     });
+//     return results;
+// }
+
 client.config = require("./config.json")
 client.mongo = require("./mongo")
 client.commands = new Discord.Collection();
@@ -10,8 +27,8 @@ client.invites = {}
 
 const token = process.env.TOKEN;
 
-const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./commands', {recursive : true} ).filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync('./events', {recursive : true} ).filter(file => file.endsWith('.js'));
 
 client.commandFiles = commandFiles;
 client.eventFiles = eventFiles;
