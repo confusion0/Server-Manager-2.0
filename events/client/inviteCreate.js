@@ -7,7 +7,7 @@ module.exports = {
     let isTemp = false
     if(invite.maxAge != 0) logChannel.send(`${invite.inviter} please remake your invite as a invite that doesn't expire. I have already revoked your invite`).then(isTemp = true)
     if(invite.maxUses != 0) logChannel.send(`${invite.inviter} please remake your invite as a invite that has infinite uses. I have already revoked your invite`).then(isTemp = true)
-    if(isTemp) invite.delete()
+    if(isTemp) return invite.delete()
     logChannel.send(`${invite.inviter} invite creation was sucsessful! Code: ${invite.code}`)
   }
 }
