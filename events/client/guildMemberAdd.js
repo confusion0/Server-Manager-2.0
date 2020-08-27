@@ -23,6 +23,7 @@ module.exports = {
       if(invite.maxUses != 0) logChannel.send(`${invite.inviter} please remake your invite as a invite that has infinite uses. I have already revoked your invite`).then(isTemp = true)
       if(isTemp) invite.delete()
       // A real basic message with the information we need. 
+      let createdAt = (member.user.createdAt).toString().slice(0, 15)
       const embed = new Discord.MessageEmbed()
       .setColor("RANDOM")
       .setAuthor(member.user.tag + "Joined!", member.user.displayAvatarURL())
