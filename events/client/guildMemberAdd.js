@@ -29,7 +29,7 @@ module.exports = {
       .setAuthor(member.user.tag + "Joined!", member.user.displayAvatarURL())
       .addField(`Registered: `, createdAt, true)
       .addField(`Inviter`, inviter.tag)
-      .setFooter(`ID: ${id}`)
+      .setFooter(`ID: ${member.useid}`)
       .setTimestamp()
       message.channel.send(embed)
     });
