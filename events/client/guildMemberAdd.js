@@ -1,3 +1,4 @@
+const whois = require('../../commands/whois.js')
 module.exports = {
   name: 'guildMemberAdd',
   run: async(Discord, client, member) => {
@@ -22,7 +23,14 @@ module.exports = {
       if(invite.maxUses != 0) logChannel.send(`${invite.inviter} please remake your invite as a invite that has infinite uses. I have already revoked your invite`).then(isTemp = true)
       if(isTemp) invite.delete()
       // A real basic message with the information we need. 
-      logChannel.send(`${member.user} **joined**; Invited by **${inviter.tag}**`);
+      const embed = new Discord.MessageEmbed()
+      .setColor("RANDOM")
+      .setAuthor(member.user.tag + "Joined!", member.user.displayAvatarURL())
+      .addField(`Registered: `, createdAt, true)
+      .addField(`Inviter`, inviter.tag)
+      .setFooter(`ID: ${id}`)
+      .setTimestamp()
+      message.channel.send(embed)
     });
   }
 }
