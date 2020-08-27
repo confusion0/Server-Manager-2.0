@@ -17,25 +17,21 @@ const eventFiles = walkSync('./events')
 client.commandFiles = commandFiles;
 client.eventFiles = eventFiles;
 
-console.log('\x1b[1m%s\x1b[0m', 'Commands Loaded:');
+const loaded = []
+
 for (const file of commandFiles) {
   const command = require(`./${file}`);
   client.commands.set(command.name, command);
-  const loaded = [`${file}`];
-  console.log(loaded);
+  loaded.push({ type: "Command", name: command.name, loaded: true});
 }
 
-console.log();
-
-console.log('\x1b[1m%s\x1b[0m', 'Events Loaded:');
 for (const file of eventFiles) {
   const event = require(`./${file}`);
   client.events.set(event.name, event);
-  const loaded = [`${file}`];
-  console.log(loaded);
+  loaded.push({ type: "Event", name: event.name, loaded: true});
 }
 
-console.log();
+console.table(loaded)
 
 client.on('ready', () => {
   return client.events.get("ready").run(Discord, client);

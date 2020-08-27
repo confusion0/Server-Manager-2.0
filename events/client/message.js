@@ -7,7 +7,7 @@ module.exports = {
     if (!message.guild) return;
     if (message.author.bot) return;
 
-    anti_ad(client, message)
+    anti_ad.run(client, message)
 
     if (!message.content.startsWith(process.env.PREFIX)) return;
   
