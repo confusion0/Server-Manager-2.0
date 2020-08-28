@@ -17,7 +17,7 @@ module.exports = {
         if(!oldInvite) return false
         return oldInvite.uses < i.uses
       })
-      const inviter = "Unknown"
+      var inviter = "Unknown"
       if(invite) {
         inviter = client.users.cache.get(invite.inviter.id);
         let isTemp = false
