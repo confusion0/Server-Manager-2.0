@@ -12,11 +12,15 @@ module.exports = {
     args.shift()
 
     const embed = new Discord.MessageEmbed()
-    .setAuthor("From: " + user.tag, user.displayAvatarURL())
+    .setAuthor("From: " + message.author.tag, message.author.displayAvatarURL())
     .setDescription(args.join(" "))
     .setFooter("SENDER USER ID: " + user.id)
     .setTimestamp()
 
     user.send(embed)
+
+    message.channel.send("Your mail was sent! Here is what it looked like.")
+
+    message.channel.send(embed)
   }
 }
