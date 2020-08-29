@@ -1,6 +1,6 @@
 const addInfo = `
-[Invite Bot](https://discord.com/api/oauth2/authorize?client_id=739943852726681650&permissions=8&scope=bot)
-
+[Invite Bot](https://discord.com/oauth2/authorize?client_id=739943852726681650&scope=bot&permissions=2146958847)
+[Support Server](https://discord.gg/WftFPZc)
 `
 
 module.exports = {
