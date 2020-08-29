@@ -3,6 +3,7 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 module.exports = {
   name: 'drop',
   aliases: [],
+  reqPerms: ["MANAGE_GUILD"],
   run: async(Discord, client, message, args) => {
     var secs = args[0]
     args.shift()

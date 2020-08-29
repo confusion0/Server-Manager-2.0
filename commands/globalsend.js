@@ -1,6 +1,7 @@
 module.exports = {
   name: 'globalsend',
   aliases: [],
+  reqPerms: "BOT_OWNER",
   run: async(Discord, client, message, args) => {
     if(message.author.id == client.config.OWNERID){
       const content = args.join(" ");
