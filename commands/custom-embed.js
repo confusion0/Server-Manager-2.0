@@ -4,6 +4,8 @@ module.exports = {
   name: 'custom-embed',
   aliases: ['custom-embeds', 'ce'],
   reqPerms: ["MANAGE_GUILD"],
+  args: "",
+  desc: "Starts a custom embed constuctor/creator. (interactive)",
   run: async(Discord, client, message, args) => {
     const filter = m => m.content.includes("");
     const collector = message.channel.createMessageCollector(filter, {time: 500000});

@@ -5,6 +5,8 @@ module.exports = {
   name: 'purge',
   aliases: ['clear'],
   reqPerms: ["MANAGE_MESSAGES"],
+  args: "<amount>",
+  desc: "Purges the specified amount of messages. max: " + limit,
   run: async(Discord, client, message, args) => {
     message.delete()
     

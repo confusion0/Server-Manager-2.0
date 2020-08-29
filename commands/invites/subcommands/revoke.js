@@ -20,4 +20,7 @@ const revoke = async function(client, message, args){
   }
 }
 
-module.exports = { name : "revoke", run : revoke, reqPerms: ["ADMINISTRATOR"] }
+module.exports = { name : "revoke", run : revoke, reqPerms: ["ADMINISTRATOR"] ,
+  args: "<code>",
+  desc: "Revokes the invite with the specified code."
+}

@@ -8,6 +8,8 @@ module.exports = {
   name: 'help',
   aliases: [],
   reqPerms: [],
+  args: "",
+  desc: "shows useful info on how to use the bots commands",
   run: async(Discord, client, message, args) => {
     const embed = new Discord.MessageEmbed()
       .setTitle("Additional Resources")

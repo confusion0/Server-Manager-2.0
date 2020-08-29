@@ -6,6 +6,8 @@ module.exports = {
   name: 'invites',
   aliases: [],
   reqPerms: [],
+  args: "<subcommand>",
+  desc: "All things reguarding invites.",
   run: async (Discord, client, message, args) => {
     const subcmd = args[0]
 

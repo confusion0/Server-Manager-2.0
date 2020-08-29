@@ -2,6 +2,8 @@ module.exports = {
   name: 'whois',
   aliases: [],
   reqPerms: [],
+  args: "[mention]",
+  desc: "Displays useful information on a user.",
   run: async(Discord, client, message, args) => {
     if(!args[0]) return message.channel.send("Please mention a user to use this command on. @Example")
     let rMember = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0])) 

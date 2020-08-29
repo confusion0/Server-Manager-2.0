@@ -6,6 +6,8 @@ module.exports = {
   name: 'globalsend',
   aliases: [],
   reqPerms: "BOT_OWNER",
+  args: "<message",
+  desc: "Messages all the guild owners that have the bot the specified message.",
   run: async(Discord, client, message, args) => {
     const content = args.join(" ");
     const guildOwners = []

@@ -4,6 +4,8 @@ module.exports = {
   name: 'drop',
   aliases: [],
   reqPerms: ["MANAGE_GUILD"],
+  args: "<drop time in milliseconds> <drop timeout> <prize",
+  desc: "Starts a drop with the specified args.",
   run: async(Discord, client, message, args) => {
     var secs = args[0]
     args.shift()

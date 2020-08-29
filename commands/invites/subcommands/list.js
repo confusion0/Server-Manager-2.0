@@ -21,4 +21,7 @@ const list = async function(client, message, args){
   }
 }
 
-module.exports = { name : "list", run : list, reqPerms: ["MANAGE_GUILD"] }
+module.exports = { name : "list", run : list, reqPerms: ["MANAGE_GUILD"],
+  args: "",
+  desc: "Lists out all of the invites on this server."
+}

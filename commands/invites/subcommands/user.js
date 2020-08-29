@@ -29,4 +29,7 @@ const user = async function(client, message, args){
   }
 }
 
-module.exports = { name : "user", run : user, reqPerms: []}
+module.exports = { name : "user", run : user, reqPerms: [],
+  args: "[user]",
+  desc: "Checks yours or someone elses invites. This only shows how many times a invite was used, not how many people joined using that invite."
+}
