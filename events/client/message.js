@@ -27,9 +27,7 @@ module.exports = {
       }
       if(runCmd) {
         if(command.reqPerms == "BOT_OWNER" && message.author.id != client.config.OWNERID) return message.channel.send("This command is reserved for the owner of the bot only.")
-        
         if(command.reqPerms != "BOT_OWNER" && command.reqPerms.length > 0 && !message.member.hasPermission(command.reqPerms)) return message.channel.send(`You need \`${command.reqPerms.join("``")}\` perms to run this command.`)
-
         return client.commands.get(command.name).run(Discord, client, message, args);
       }
     }
