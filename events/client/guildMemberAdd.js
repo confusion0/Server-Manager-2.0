@@ -1,4 +1,3 @@
-const whois = require('../../commands/whois.js')
 const ms = require("ms")
 
 module.exports = {
