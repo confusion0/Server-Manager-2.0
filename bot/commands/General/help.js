@@ -1,6 +1,7 @@
 const addInfo = `
 [Invite Bot](https://discord.com/oauth2/authorize?client_id=739943852726681650&scope=bot&permissions=2146958847)
 [Support Server](https://discord.gg/WftFPZc)
+[Website](https://servermanager20.herokuapp.com/)
 `
 
 module.exports = {
@@ -15,7 +16,8 @@ module.exports = {
       let modules = []
       embed.setTitle("📚 Help")
       client.commands.forEach(command => {
-        const module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
+        var module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
+        module = module.slice(module.lastIndexOf('/')+1)
         modules.push(module)
       })
       modules.forEach(module => {
@@ -23,7 +25,8 @@ module.exports = {
         embed.addField(module, "TBD")
       })
       client.commands.forEach(command => {
-        const module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
+        var module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
+        module = module.slice(module.lastIndexOf('/')+1)
 
         if(embed.fields.find(c => c.name === module)['value'] === 'TBD') return embed.fields.find(c => c.name === module)['value'] = `\`${command.name}\` `
         embed.fields.find(c => c.name === module)['value'] += `\`${command.name}\` `

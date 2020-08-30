@@ -8,18 +8,18 @@ module.exports = {
     if(!args[0]) message.reply("Please include pc, android, or apple")
     else if(args[0] =="pc") {
       message.reply("check your DM's")
-      message.author.send("PC Permanent Invite: ", { files: [ "./files/InvitePCStep1.png",
-      "./files/InvitePCStep2.png",
-      "./files/InvitePCStep3.png",
-      "./files/InvitePCStep4.png",
-      "./files/InvitePCStep5.png",]})
+      message.author.send("PC Permanent Invite: ", { files: [ "./bot/files/InvitePCStep1.png",
+      "./bot/files/InvitePCStep2.png",
+      "./bot/files/InvitePCStep3.png",
+      "./bot/files/InvitePCStep4.png",
+      "./bot/files/InvitePCStep5.png",]})
     }
     else if(args[0] == "android"){
       message.reply("check your DM's")
-      message.author.send("Android Permanent Invite: ", { files: [ "./files/InviteAndroidStep1.jpg",
-      "./files/InviteAndroidStep2.jpg",
-      "./files/InviteAndroidStep3.jpg",
-      "./files/InviteAndroidStep4.jpg",]})
+      message.author.send("Android Permanent Invite: ", { files: [ "./bot/files/InviteAndroidStep1.jpg",
+      "./bot/files/InviteAndroidStep2.jpg",
+      "./bot/files/InviteAndroidStep3.jpg",
+      "./bot/files/InviteAndroidStep4.jpg",]})
     }
     else if(args[0] == "apple"){
       message.reply("check your DM's")
