@@ -3,8 +3,8 @@ const client = new Discord.Client();
 const fs = require('fs')
 const walkSync = require('./walkSync.js');
 
-client.config = require("./config.json")
-client.mongo = require("./mongo")
+client.OWNERID = process.env.OWNERID
+client.mongo = require("../mongo")
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 client.invites = {}

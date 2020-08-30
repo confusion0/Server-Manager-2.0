@@ -1,2 +1,0 @@
-- Make invites sub commands into invites main command and store them in a json style and make a function handler
-- make a help command.
