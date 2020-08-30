@@ -7,8 +7,8 @@ router.get("/", (req, res) =>
     res.sendFile(path.join(__dirname + "/index.html"))
 )
 
-router.get("/authorize", (request, response) => {
-    
+router.get("/authorize", async (req, res) => {
+
 })
 
 module.exports = router

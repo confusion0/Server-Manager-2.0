@@ -19,7 +19,7 @@ module.exports = {
     const cmd = args.shift().toLowerCase();
 
     for (const file of client.commandFiles) {
-      const command = require(`../../${file}`);
+      const command = require(`${file}`);
       var runCmd = false;
       if (cmd == command.name) runCmd = true;
       for(const alias of command.aliases){
