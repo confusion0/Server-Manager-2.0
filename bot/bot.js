@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const path = require('path')
 const fs = require('fs')
-const walkSync = require('./walkSync.js');
+const walkSync = require('../walkSync.js');
 
 client.OWNERID = process.env.OWNERID
 client.mongo = require("../mongo")
@@ -11,19 +12,19 @@ client.invites = {}
 
 const token = process.env.TOKEN;
 
-const commandFiles = walkSync('./commands')
-const eventFiles = walkSync('./events')
+const commandFiles = walkSync(path.join(__dirname, '/commands'))
+const eventFiles = walkSync(path.join(__dirname, '/events'))
 
 client.commandFiles = commandFiles;
 client.eventFiles = eventFiles;
 
 for (const file of commandFiles) {
-  const command = require(`./${file}`);
+  const command = require(`${file}`);
   client.commands.set(command.name, command);
 }
 
 for (const file of eventFiles) {
-  const event = require(`./${file}`);
+  const event = require(`${file}`);
   client.events.set(event.name, event);
 }
 
