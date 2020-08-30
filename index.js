@@ -3,11 +3,9 @@ const manager = new ShardingManager('./bot.js', { token: process.env.TOKEN });
 manager.on('shardCreate', shard => console.log(`Launched shard ${shard.id}`));
 manager.spawn();
 
+const path = require("path")
 const express = require("express")
-const app = express()
-app.use(express.static("public"))
-app.get("/", function (req, res) {
-  res.send("<h1>Hello World!</h1>")
-})
-app.listen(process.env.PORT || 3000, 
-	() => console.log("Server is running..."));
+const websiteRoutes = require('./website/routes')
+const server = express()
+server.use('/', websiteRoutes)
+server.listen(3000, function() { console.log("Web Server is Ready") })
