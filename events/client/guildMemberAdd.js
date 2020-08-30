@@ -20,8 +20,8 @@ module.exports = {
       if(invite) {
         inviter = client.users.cache.get(invite.inviter.id);
         let isTemp = false
-        if(invite.maxAge != 0) logChannel.send(`${invite.inviter} please remake your invite as a invite that doesn't expire. I have already revoked your invite`).then(isTemp = true)
-        if(invite.maxUses != 0) logChannel.send(`${invite.inviter} please remake your invite as a invite that has infinite uses. I have already revoked your invite`).then(isTemp = true)
+        if(invite.maxAge != 0) logChannel.send(`${invite.inviter} please remake your invite as a invite that doesn't expire. I have already revoked your invite. Use the command: ${process.env.PREFIX}invitehelp`).then(isTemp = true)
+        if(invite.maxUses != 0) logChannel.send(`${invite.inviter} please remake your invite as a invite that has infinite uses. I have already revoked your invite. Use the command: ${process.env.PREFIX}invitehelp`).then(isTemp = true)
         if(isTemp) invite.delete()
       }
       // A real basic message with the information we need. 

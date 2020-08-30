@@ -13,9 +13,7 @@ module.exports = {
 
       let userInvites = 0
 
-      let iUser = message.mentions.users.first()
-
-      if(!iUser) return message.channel.send('Please mention the user you would like to check')
+      let iUser = message.mentions.users.first() || message.author
 
       for(invite of invites){
         invite = invite[1]
@@ -24,8 +22,8 @@ module.exports = {
       }
 
       embed.setAuthor(iUser.tag, iUser.displayAvatarURL())
-      embed.setDescription(`${userInvites} Invites!`)
-      embed.setFooter("This may not be 100% accurate. This only displays how many times a invite was used not how many people joined using it.")
+      embed.setDescription(`${userInvites} Invite Uses!`)
+      embed.setFooter("This only displays how many times a invite was used not how many people joined using it.")
 
       channel.send(embed)
     }
