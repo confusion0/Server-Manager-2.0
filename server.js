@@ -1,6 +1,9 @@
 const path = require("path")
 const express = require("express")
-const websiteRoutes = require('./website/routes')
+
 const server = express()
+
+const websiteRoutes = require('./website/routes')
+
 server.use('/', websiteRoutes)
-server.listen(3000, function() { console.log("Web Server is Ready") })
+server.listen(process.env.PORT || 3000, function() { console.log("Web Server is Ready") })
