@@ -15,6 +15,7 @@ module.exports = {
     if(!args[0]){
       let modules = []
       embed.setTitle("📚 Help")
+      embed.setDescription(`For more info in a command do ${process.env.PREFIX}help <command-name>`)
       client.commands.forEach(command => {
         var module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
         module = module.slice(module.lastIndexOf('/')+1)
@@ -44,7 +45,8 @@ module.exports = {
     })
     if(command === {}) return message.channel.send('I could not find a command with that name.')
     embed.setTitle(`Command Information - ${command.name}`)
-    embed.setDescription(command.desc)
+    embed.setDescription("<> means required, and [] means optional")
+    embed.addField("Description: ", command.desc)
     embed.addField("Usage: ", process.env.PREFIX + command.name + " " + command.args)
     if(command.aliases.length > 0) embed.addField("Aliases: ", command.aliases.join(" "))
     if(command.reqPerms.length > 0) embed.addField("Required Permissions: ", command.reqPerms) 
