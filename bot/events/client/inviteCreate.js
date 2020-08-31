@@ -11,6 +11,7 @@ module.exports = {
     logChannel.send(inviter.toString() + " 👇")
 
     const embed = new MessageEmbed()
+    .setColor("RANDOM")
     .setTitle("Invite Creation Unsuccessful")
     .setDescription("")
 
