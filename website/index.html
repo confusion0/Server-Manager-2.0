@@ -1,16 +1,38 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Server Manager 2.0</title>
-  </head>
-  <body>
-    <h1>Server Manager 2.0</h1>
-    <h2>Login with Discord</h2>
-    <a href="/authorize">
-	    <button>Discord OAuth</button>
-	  </a>
-    <h3><%= name %></h3>
-    Your username is: <%= name %>
-    Your ID is: <%= id %>
-  </body>
+<head>
+	<title>My First OAuth2 App</title>
+</head>
+<body>
+	<div id="info">
+		Hoi!
+	</div>
+	<a id="login" style="display: none;" href="your oauth2 url here">Identify Yourself</a>
+	<script>
+		window.onload = () => {
+			const fragment = new URLSearchParams(window.location.hash.slice(1));
+
+			if (fragment.has("access_token")) {
+				const accessToken = fragment.get("access_token");
+				const tokenType = fragment.get("token_type");
+
+				fetch('https://discordapp.com/api/users/@me', {
+					headers: {
+						authorization: `${tokenType} ${accessToken}`
+					}
+				})
+					.then(res => res.json())
+					.then(response => {
+						const { username, discriminator } = response;
+						document.getElementById('info').innerText += ` ${username}#${discriminator}`;
+					})
+					.catch(console.error);
+
+			}
+			else {
+				document.getElementById('login').style.display = 'block';
+			}
+		}
+	</script>
+</body>
 </html>
