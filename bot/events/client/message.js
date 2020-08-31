@@ -9,6 +9,8 @@ module.exports = {
 
     anti_ad.run(client, message)
 
+    if(message.content.startsWith('<@') && message.mentions.users.first() && message.mentions.users.first().id === client.user.id) return message.channel.send(`Bot prefix is \`${process.env.PREFIX}\``)
+
     if (!message.content.startsWith(process.env.PREFIX)) return;
   
     //if(message.author.id != client.OWNERID ) return message.channel.send("The owner has set the bot to owner only mode.")

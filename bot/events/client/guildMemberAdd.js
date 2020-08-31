@@ -17,26 +17,34 @@ module.exports = {
         return oldInvite.uses < i.uses
       })
       var inviter = "Unknown"
-      if(invite) {
-        inviter = client.users.cache.get(invite.inviter.id);
-        let isTemp = false
-        if(invite.maxAge != 0) logChannel.send(`${invite.inviter} please remake your invite as a invite that doesn't expire. I have already revoked your invite. Use the command: ${process.env.PREFIX}invitehelp`).then(isTemp = true)
-        if(invite.maxUses != 0) logChannel.send(`${invite.inviter} please remake your invite as a invite that has infinite uses. I have already revoked your invite. Use the command: ${process.env.PREFIX}invitehelp`).then(isTemp = true)
-        if(isTemp) invite.delete()
-      }
+      if(invite) inviter = client.users.cache.get(invite.inviter.id);
       // A real basic message with the information we need. 
       let createdAt = (member.user.createdAt).toString().slice(0, 15)
       var diff = Math.abs(new Date() - member.user.createdAt);
       const embed = new Discord.MessageEmbed()
       .setColor("RANDOM")
       .setAuthor(member.user.tag + " Joined!", member.user.displayAvatarURL())
-      .setDescription(member.user)
-      .addField(`Registered At: `, createdAt, true)
-      .addField(`Registered: `, ms(diff,{long:true}) + " ago", true)
-      .addField(`Inviter`, inviter)
-      .setFooter(`ID: ${member.user.id}`)
-      .setTimestamp()
+      if(!isbot(member.user)) embed.setDescription(`${member.user} Member #${getMembersWithoutBots(member.guild)}`)
+      else embed.setDescription(`${member.user} 🤖BOT`)
+      embed.addField(`Registered At: `, createdAt, true)
+      embed.addField(`Registered: `, ms(diff,{long:true}) + " ago", true)
+      if(!isbot(member.user)) embed.addField(`Inviter`, inviter)
+      embed.setFooter(`ID: ${member.user.id}`)
+      embed.setTimestamp()
       logChannel.send(embed)
     });
   }
+}
+
+function isbot(user){
+  if(user.bot) return true
+  return false
+}
+
+function getMembersWithoutBots(guild){
+  var members = 0;
+  guild.members.cache.forEach(member => {
+    if(!isbot(member.user)) members++;
+  })
+  return members
 }

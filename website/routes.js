@@ -11,4 +11,8 @@ router.get("/authorize", async (req, res) => {
 
 })
 
+router.get("/adminlogin", async (req, res) => {
+  
+})
+
 module.exports = router

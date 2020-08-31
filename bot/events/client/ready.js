@@ -1,17 +1,10 @@
 const wait = require('util').promisify(setTimeout);
+const chalk = require('chalk')
 
 module.exports = {
   name: 'ready',
   run: async(Discord, client) => {
     console.log(`Logged in as ${client.user.tag}`)
-
-    await client.mongo().then(mongoose => {
-      try {
-        console.log('Connected to Mongo')
-      } finally {
-        mongoose.connection.close()
-      }
-    })
 
     let i = 0
 

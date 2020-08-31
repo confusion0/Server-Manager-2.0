@@ -5,8 +5,7 @@ module.exports = {
   args: "[mention]",
   desc: "Displays useful information on a user.",
   run: async(Discord, client, message, args) => {
-    if(!args[0]) return message.channel.send("Please mention a user to use this command on. @Example")
-    let rMember = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0])) 
+    let rMember = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]) || message.guild.member(message.author))
     let user = rMember.user
     if(!user) return message.channel.send("Please enter the user as a mention. Ex: @Example")
     let guild = message.guild
@@ -29,6 +28,7 @@ module.exports = {
 
     const embed = new Discord.MessageEmbed()
     .setColor("RANDOM")
+    .setDescription(rMember.user)
     .setAuthor(user.tag, user.displayAvatarURL())
     .setThumbnail(user.displayAvatarURL())
     .addField(`Registered: `, createdAt, true)

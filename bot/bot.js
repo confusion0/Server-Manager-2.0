@@ -5,7 +5,7 @@ const fs = require('fs')
 const walkSync = require('../walkSync.js');
 
 client.OWNERID = process.env.OWNERID
-client.mongo = require("../mongo")
+client.mongo = require("../mongo").mongo
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 client.invites = {}
