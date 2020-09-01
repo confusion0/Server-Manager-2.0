@@ -7,8 +7,6 @@ module.exports = {
   run: async(Discord, client, message, args) => {
     const { totalGuilds, totalChannels, totalMembers, shardId} = client
 
-    console.log(client)
-
     const msg = await message.channel.send(`🏓 Pinging....`);
 
     const embed = new Discord.MessageEmbed()

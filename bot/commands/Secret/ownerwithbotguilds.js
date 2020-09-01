@@ -6,7 +6,7 @@ module.exports = {
   desc: "Runs the specified code.",
   run: async(Discord, client, message, args) => {
     const user = message.mentions.users.first() || client.users.cache.get(args[0])
-    if(!user) return message.channel.send('No mention detected')
+    if(!user) return message.channel.send('No mention or ID detected')
     const ownerID = user.id
 
     const promises = [ client.shard.fetchClientValues('guilds.cache') ]
@@ -16,6 +16,9 @@ module.exports = {
         var guilds = []
         for( guild of results[0][0]){
           if(guild.ownerID == ownerID) guilds.push(guild)
+        }
+        if(guilds.length < 1) {
+          message.channel.send("No guilds found")
         }
         for( guild of guilds ){
           message.channel.send(`\`${guild.id}\` is owned by \`${user.tag}\`, called \`${guild.name}\``)
