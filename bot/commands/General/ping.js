@@ -5,7 +5,7 @@ module.exports = {
   args: "",
   desc: "Pings the bot and gives you some info on the bot.",
   run: async(Discord, client, message, args) => {
-    const { totalGuilds, totalChannels, totalMembers, shardId} = client
+    const { totalGuilds, totalChannels, totalMembers, shardId } = client
 
     const msg = await message.channel.send(`🏓 Pinging....`);
 

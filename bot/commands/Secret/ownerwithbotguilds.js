@@ -1,6 +1,6 @@
 module.exports = {
   name: 'ownerwithbotguilds',
-  aliases: [],
+  aliases: ['owbg'],
   reqPerms: "BOT_OWNER",
   args: "[mention]",
   desc: "Runs the specified code.",
