@@ -4,6 +4,7 @@ module.exports = {
     const { guild, member, content } = message
 
     var bypass = false
+    if(member.hasPermission("MANAGE_GUILD")) bypass = true
     if(member.roles.cache.find(r => r.name === "anti-ad bypass")) bypass = true
 
     // discord.gg/23RAN4
@@ -26,8 +27,8 @@ module.exports = {
       }
       const isOurInvite = await isInvite(guild, code)
       if (!isOurInvite && !bypass) {
-        message.channel.send("No Advertising")
-        message.delete()
+        message.channel.send('You need the MANAGE_GUILD permmision or the role "anti-ad bypass" all lowercase to advertise. Or just do in dm\'s')
+        message.delete({timeout:5000})
       }
     }
   }
