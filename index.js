@@ -4,9 +4,14 @@ const { ShardingManager } = require('discord.js');
 
 displaymongostatus()
 
-const manager = new ShardingManager('./bot/bot.js', { token: process.env.TOKEN });
+const manager = new ShardingManager('./bot/bot.js', { token: process.env.TOKEN, totalShards: 'auto' });
 
-manager.on('shardCreate', shard => console.log(`Launched shard ${shard.id}`));
+manager.on('shardCreate', shard => {
+  shard.on("ready", () => {
+      console.log(`Shard ${shard.id} connected to Discord's Gateway.`)
+      shard.send({type: "shardId", data: {shardId: shard.id}});
+  });
+})
 
 manager.spawn();
 

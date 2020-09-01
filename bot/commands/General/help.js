@@ -19,7 +19,7 @@ module.exports = {
       client.commands.forEach(command => {
         var module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
         module = module.slice(module.lastIndexOf('/')+1)
-        modules.push(module)
+        if(module != "Secret") modules.push(module)
       })
       modules.forEach(module => {
         if(embed.fields.find(c => c.name === module) && embed.fields.find(c => c.name === module)['name'] === module) return 
@@ -28,6 +28,7 @@ module.exports = {
       client.commands.forEach(command => {
         var module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
         module = module.slice(module.lastIndexOf('/')+1)
+        if(module == "Secret") return
 
         if(embed.fields.find(c => c.name === module)['value'] === 'TBD') return embed.fields.find(c => c.name === module)['value'] = `\`${command.name}\` `
         embed.fields.find(c => c.name === module)['value'] += `\`${command.name}\` `

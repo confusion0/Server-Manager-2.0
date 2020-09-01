@@ -28,6 +28,12 @@ for (const file of eventFiles) {
   client.events.set(event.name, event);
 }
 
+process.on("message", message => {
+    if (!message.type) return false;
+
+    if (message.type == "shardId") client.shardId = message.data.shardId
+});
+
 client.on('ready', () => {
   return client.events.get("ready").run(Discord, client);
 })

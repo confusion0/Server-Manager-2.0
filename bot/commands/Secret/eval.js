@@ -5,8 +5,6 @@ module.exports = {
   args: "<code",
   desc: "Runs the specified code.",
   run: async(Discord, client, message, args) => {
-    if (message.content.startsWith(config.prefix + "eval")) {
-      if(message.author.id !== config.ownerID) return;
       try {
         const code = args.join(" ");
         let evaled = eval(code);
@@ -18,7 +16,6 @@ module.exports = {
       } catch (err) {
         message.channel.send(`\`ERROR\` \`\`\`xl\n${clean(err)}\n\`\`\``);
       }
-    }
   }
 }
 

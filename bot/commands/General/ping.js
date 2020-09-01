@@ -5,17 +5,23 @@ module.exports = {
   args: "",
   desc: "Pings the bot and gives you some info on the bot.",
   run: async(Discord, client, message, args) => {
-    const promises = [
- 		  client.shard.fetchClientValues('guilds.cache.size'),
-			client.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)')
-		];
+    const { totalGuilds, totalChannels, totalMembers, shardId} = client
 
-		return Promise.all(promises)
-			.then(results => {
-				const totalGuilds = results[0].reduce((acc, guildCount) => acc + guildCount, 0);
-				const totalMembers = results[1].reduce((acc, memberCount) => acc + memberCount, 0);
-				return message.channel.send(`Server count: ${totalGuilds}\nMember count: ${totalMembers}`);
-			})
-			.catch(console.error);
+    console.log(client)
+
+    const msg = await message.channel.send(`🏓 Pinging....`);
+
+    const embed = new Discord.MessageEmbed()
+    .setTitle("🏓Pong!")
+    .setDescription(`
+    Gateway Latency: ${Math.floor(msg.createdAt - message.createdAt)}
+    API Latency: ${Math.round(client.ping)}
+    Total Guilds: ${totalGuilds}
+    Total Channels: ${totalChannels}
+    Total Members: ${totalMembers}
+    Current Shard: ${shardId}
+    `)
+
+    msg.edit(embed)
   }
 }
