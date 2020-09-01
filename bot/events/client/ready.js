@@ -10,14 +10,14 @@ module.exports = {
 
     function updateClientData(client){
       const promises = [
-        client.shard.broadcastEval('this.guilds.cache.size'),
+        client.shard.fetchClientValues('guilds.cache.size'),
         client.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.channels.cache.size, 0)'),
         client.shard.broadcastEval('this.guilds.cache.reduce((acc, guild) => acc + guild.memberCount, 0)')
       ];
 
       return Promise.all(promises)
         .then(results => {
-          client.totalGuilds = results[0]
+          client.totalGuilds = results[0].reduce((acc, guildCount) => acc + guildCount, 0);
           client.totalChannels = results[1].reduce((acc, channelCount) => acc + channelCount, 0);
           client.totalMembers = results[2].reduce((acc, memberCount) => acc + memberCount, 0);
         })
