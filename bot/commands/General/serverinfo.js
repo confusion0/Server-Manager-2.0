@@ -41,10 +41,6 @@ module.exports = {
           name: 'AFK Timeout',
           value: afkTimeout / 60,
         },
-        {
-          name: `Roles[${roles.cache.size-1}]`,
-          value: rolesToString(guild),
-        }
       )
 
     message.channel.send(embed)

@@ -23,6 +23,7 @@ module.exports = {
       if(role.toString() != "@everyone") roles += role.toString() + " "
     })
     if(!roles) roles = "No roles"
+    if(roles.length > 1024) roles = roleAmount + " roles"
 
     let userStatus = user.presence.status
     if(userStatus === "offline") userStatus = "⚫ Offline"
