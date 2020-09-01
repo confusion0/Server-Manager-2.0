@@ -2,7 +2,7 @@ module.exports = {
   name: 'ownerwithbotguilds',
   aliases: ['owbg'],
   reqPerms: "BOT_OWNER",
-  args: "[mention]",
+  args: "<mention or id>",
   desc: "Runs the specified code.",
   run: async(Discord, client, message, args) => {
     const user = message.mentions.users.first() || client.users.cache.get(args[0])
