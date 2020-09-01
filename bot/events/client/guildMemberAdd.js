@@ -1,5 +1,4 @@
 const ms = require("ms")
-
 module.exports = {
   name: 'guildMemberAdd',
   run: async(Discord, client, member) => {
@@ -26,8 +25,8 @@ module.exports = {
       .setAuthor(member.user.tag + " Joined!", member.user.displayAvatarURL())
       if(!isbot(member.user)) embed.setDescription(`${member.user} Member #${getMembersWithoutBots(member.guild)}`)
       else embed.setDescription(`${member.user} 🤖BOT`)
-      embed.addField(`Registered At: `, createdAt, true)
-      embed.addField(`Registered: `, ms(diff,{long:true}) + " ago", true)
+      embed.addField(`Registered At: `, `${createdAt}
+      (${ms(diff,{long:true})})`, true)
       if(!isbot(member.user)) embed.addField(`Inviter`, inviter)
       embed.setFooter(`ID: ${member.user.id}`)
       embed.setTimestamp()

@@ -1,3 +1,4 @@
+const ms = require("ms")
 module.exports = {
   name: 'whois',
   aliases: [],
@@ -12,6 +13,8 @@ module.exports = {
 
     let createdAt = (user.createdAt).toString().slice(0, 15)
     let joinedAt = (rMember.joinedAt).toString().slice(0, 15)
+    var createdAgo = ms(Math.abs(new Date() - user.createdAt),{long:true})
+    var joinedAgo = ms(Math.abs(new Date() - rMember.joinedAt),{long:true})
     let roleAmount = rMember.roles.cache.size - 1
     let id = user.id
 
@@ -31,8 +34,8 @@ module.exports = {
     .setDescription(rMember.user)
     .setAuthor(user.tag, user.displayAvatarURL())
     .setThumbnail(user.displayAvatarURL())
-    .addField(`Registered: `, createdAt, true)
-    .addField(`Joined: `, joinedAt, true)
+    .addField(`Registered: `, `${createdAt} (${createdAgo} ago)`, true)
+    .addField(`Joined: `, `${joinedAt} (${joinedAgo} ago)`, true)
     .addField(`Status: `, userStatus)
     .addField(`Roles[${roleAmount}]: `, roles)
     .setFooter(`ID: ${id}`)

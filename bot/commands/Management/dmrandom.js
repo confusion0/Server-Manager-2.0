@@ -23,7 +23,11 @@ module.exports = {
     console.log(users)
     for(user of users){
       try {
-        user.send(args.join(' '))
+        const embed = new Discord.MessageEmbed()
+        embed.setTitle("From: " + message.guild.name)
+        embed.setDescription(args.join(' '))
+        embed.setFooter("Sent by: " + message.author.tag + " ID: " + message.author.id)
+        user.send(embed)
         message.channel.send("Messaged: " + user.tag + " (" + user + ")")
       } catch(error){
         message.channel.send("Couldn't message: " + user)
