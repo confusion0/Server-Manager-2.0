@@ -25,7 +25,7 @@ module.exports = {
     }
 
     updateClientData(client)
-    setInterval(updateClientData, 5 * 60 * 1000);
+    setInterval(updateClientData, 10 * 60 * 1000, client);
 
     let i = 0
 
