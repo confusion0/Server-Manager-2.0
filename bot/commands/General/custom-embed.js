@@ -11,7 +11,7 @@ module.exports = {
     const collector = message.channel.createMessageCollector(filter, {time: 500000});
 
     const steps = 4
-    const text = ["Enter a **title** for your embed. Type **empty** for no title.", "Enter a **description** for your embed.", "Enter a **Hex color** for your embed. If you want random then just type **RANDOM**. Example: **#E32636** https://image-color.com/", "Mention the channel you would like to have your embed sent in. Type **current** if you want to use the current channel.", "Embed Creation Complete!"]
+    const text = ["Enter a **title** for your embed. Type **empty** for no title.", "Enter a **description** for your embed. Type **empty** for no description.", "Enter a **Hex color** for your embed. If you want random then just type **RANDOM**. Example: **#E32636** https://image-color.com/", "Mention the channel you would like to have your embed sent in. Type **current** if you want to use the current channel.", "Embed Creation Complete!"]
 
     let step = 0
     let title = "none", description = "none", color = "none", channel = "none"
@@ -61,7 +61,11 @@ module.exports = {
           let errorMessage = await message.channel.send("The **description** cannot be longer than 1024 characters.")
           return messages.push(errorMessage)
         }
-        embed.fields.find(c => c.name === 'Description')['value'] = description;
+        if(description === "empty") {
+          embed.fields.find(c => c.name === 'Description')['value'] = "empty"
+          description = ""
+        }
+        else embed.fields.find(c => c.name === 'Description')['value'] = description;
       }
       if(step == 2){
         color = (m.content).trim()
