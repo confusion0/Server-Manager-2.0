@@ -6,9 +6,25 @@ module.exports = {
       if(!guild) return
       if(!member) return
 
+      const bypassRoleName = "Anti-Ad Bypass"
+
+      var bypassRole = guild.roles.cache.find(r => r.name === bypassRoleName)
+
+      if(!bypassRole){
+        guild.roles.create({
+          data: {
+            name: bypassRoleName,
+            color: 'GREY',
+            position: 0,
+            mentionable: false,
+          },
+        })
+        .then(role => bypassRole = role)
+      }
+
       var bypass = false
       if(member.hasPermission("MANAGE_GUILD")) bypass = true
-      if(member.roles.cache.find(r => r.name === "anti-ad bypass")) bypass = true
+      if(member.roles.cache.find(r => r === bypassRole)) bypass = true
 
       // discord.gg/23RAN4
 
@@ -30,8 +46,8 @@ module.exports = {
         }
         const isOurInvite = await isInvite(guild, code)
         if (!isOurInvite && !bypass) {
-          message.channel.send('You need the MANAGE_GUILD permmision or the role "anti-ad bypass" all lowercase to advertise. Or just do in dm\'s')
-          message.delete({timeout:5000})
+          message.delete()
+          const message2 = await message.channel.send(`In order to post invites to other servers you must have the role ${bypassRole} or have the \`MANAGE_SERVER\` permmision.`)
         }
       }
     })
