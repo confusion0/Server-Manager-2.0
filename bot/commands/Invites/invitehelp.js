@@ -5,6 +5,7 @@ module.exports = {
   args: "",
   desc: "Sends you a help message.",
   run: async (Discord, client, message, args) => {
+    args[0] = args[0].toLowerCase()
     if(!args[0]) message.reply("Please include pc, android, or apple")
     else if(args[0] =="pc") {
       message.reply("check your DM's")
