@@ -1,7 +1,7 @@
 module.exports = {
   name: 'snipe',
   aliases: [],
-  reqPerms: [],
+  reqPerms: ["MANAGE_MESSAGES"],
   args: "",
   desc: "snipes the last deleted message.",
   run: async(Discord, client, message, args) => {
