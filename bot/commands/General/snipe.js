@@ -9,7 +9,7 @@ module.exports = {
     if(!msg) return message.channel.send('There is nothing to snipe!')
 
     const embed = new Discord.MessageEmbed()
-    .setAuthor(`Deleted by ${msg.author.tag}`, msg.author.displayAvatarURL())
+    .setAuthor(msg.author.tag, msg.author.displayAvatarURL())
     .setDescription(msg.content)
     .setTimestamp()
 
