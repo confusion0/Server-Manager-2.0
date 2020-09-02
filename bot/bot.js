@@ -10,6 +10,8 @@ client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
 client.invites = {}
 
+client.snipes = new Map()
+
 const token = process.env.TOKEN;
 
 const commandFiles = walkSync(path.join(__dirname, '/commands'))
@@ -34,20 +36,9 @@ process.on("message", message => {
     if (message.type == "shardId") client.shardId = message.data.shardId
 });
 
-client.on('ready', () => {
-  return client.events.get("ready").run(Discord, client);
-})
-
-client.on('guildMemberAdd', member => {
-  return client.events.get("guildMemberAdd").run(Discord, client, member);
-})
-
-client.on('inviteCreate', invite => {
-  return client.events.get("inviteCreate").run(Discord, client, invite);
-})
-
-client.on('message', message => {
-  return client.events.get("message").run(Discord, client, message);
-})
+for (const file of client.eventFiles) {
+  const event = require(`${file}`);
+  client.events.get(event.name).run(client);
+}
 
 client.login(token);
