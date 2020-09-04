@@ -5,9 +5,9 @@ module.exports = {
   args: "",
   desc: "Sends you a help message.",
   run: async (Discord, client, message, args) => {
+    if(!args[0]) return message.reply("Please include pc, android, or apple")
     args[0] = args[0].toLowerCase()
-    if(!args[0]) message.reply("Please include pc, android, or apple")
-    else if(args[0] =="pc") {
+    if(args[0] =="pc") {
       message.reply("check your DM's")
       message.author.send("PC Permanent Invite: ", { files: [ "./bot/files/InvitePCStep1.png",
       "./bot/files/InvitePCStep2.png",

@@ -1,7 +1,7 @@
 module.exports = {
   name: 'dmrole',
   aliases: [],
-  reqPerms: "ADMINISTRATOR",
+  reqPerms: ["ADMINISTRATOR"],
   args: "<mention> <message",
   desc: "DM's the amount specified",
   run: async(Discord, client, message, args) => {
