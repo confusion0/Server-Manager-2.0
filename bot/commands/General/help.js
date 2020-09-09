@@ -15,7 +15,7 @@ module.exports = {
     if(!args[0]){
       let modules = []
       embed.setTitle("📚 Help")
-      embed.setDescription(`For more info in a command do ${process.env.PREFIX}help <command-name>`)
+      embed.setDescription(`For more info in a command do ${process.env.PREFIX}help <command-name> \nPrefix: \`${message.prefix}\``)
       client.commands.forEach(command => {
         var module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
         module = module.slice(module.lastIndexOf('/')+1)

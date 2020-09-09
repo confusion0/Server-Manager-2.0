@@ -28,6 +28,8 @@ module.exports = {
       updateClientData(client)
       setInterval(updateClientData, 10 * 60 * 1000, client);
 
+      wait(1000);
+
       let i = 0
 
       setInterval(function(){
@@ -37,8 +39,6 @@ module.exports = {
 
         i = (i + 1) % activities.length
       }, 5 * 1000);
-
-      wait(1000);
 
       client.guilds.cache.forEach(g => {
         g.fetchInvites().then(guildInvites => {

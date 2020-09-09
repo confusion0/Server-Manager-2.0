@@ -6,11 +6,14 @@ const walkSync = require('../walkSync.js');
 
 client.OWNERID = process.env.OWNERID
 client.mongo = require("../mongo").mongo
+client.schemas = require('../schemas')
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
+client.shardId = "Not Sharded" //deafult
 client.invites = {}
 
 client.snipes = new Map()
+client.gData = new Map()
 
 const token = process.env.TOKEN;
 

@@ -14,6 +14,6 @@ server.listen(process.env.PORT || 3000, function() { console.log(chalk.green("We
 
 async function displaymongostatus(){
   const status = await mongostatus()
-  if(status) console.log(chalk.green('Web Server Successfully Connected to Mongo'))
-  else console.log(chalk.red('Web Server Mongo Connection Error'))
+  if(status) console.log(chalk.green('Connected to Mongo'))
+  else console.log(chalk.red('Mongo Connection Error'))
 }
