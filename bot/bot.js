@@ -8,7 +8,6 @@ client.OWNERID = process.env.OWNERID
 client.mongo = require("../mongo").mongo
 client.schemas = require('../schemas')
 client.commands = new Discord.Collection();
-client.events = new Discord.Collection();
 client.shardId = "Not Sharded" //deafult
 client.invites = {}
 
@@ -30,7 +29,7 @@ for (const file of commandFiles) {
 
 for (const file of eventFiles) {
   const event = require(`${file}`);
-  client.events.set(event.name, event);
+  event.run(client);
 }
 
 process.on("message", message => {
@@ -38,10 +37,5 @@ process.on("message", message => {
 
     if (message.type == "shardId") client.shardId = message.data.shardId
 });
-
-for (const file of client.eventFiles) {
-  const event = require(`${file}`);
-  client.events.get(event.name).run(client);
-}
 
 client.login(token);
