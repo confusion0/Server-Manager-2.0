@@ -9,6 +9,7 @@ module.exports = {
   args: "<message",
   desc: "Messages all the guild owners that have the bot the specified message.",
   run: async(Discord, client, message, args) => {
+    return //disabled
     const content = args.join(" ");
     const guildOwners = []
     client.guilds.cache.forEach(guild => {
