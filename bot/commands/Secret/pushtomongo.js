@@ -2,7 +2,7 @@ const Keyv = require('keyv');
 const keyv = new Keyv()
 
 module.exports = {
-  name: 'pushtokeyv',
+  name: 'pushtomongo',
   aliases: [],
   reqPerms: "BOT_OWNER",
   args: "<guild id>",

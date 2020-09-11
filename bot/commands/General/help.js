@@ -14,8 +14,9 @@ module.exports = {
     const embed = new Discord.MessageEmbed();
     if(!args[0]){
       let modules = []
+      const gData = client.gData.get(message.guild.id)
       embed.setTitle("📚 Help")
-      embed.setDescription(`For more info in a command do ${process.env.PREFIX}help <command-name> \nPrefix: \`${message.prefix}\``)
+      embed.setDescription(`For more info in a command do ${gData.prefix}help <command-name> \nPrefix: \`${gData.prefix}\``)
       client.commands.forEach(command => {
         var module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
         module = module.slice(module.lastIndexOf('/')+1)
