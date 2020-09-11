@@ -1,9 +1,5 @@
 const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
-const Keyv = require('keyv');
-const keyv = new Keyv()//'mongodb://Keyv:isVGgfUZ1AGV7tu2@servermanager20.2uzgc.mongodb.net:27017/servermanager20');
-keyv.on('error', err => console.error('Keyv connection error:', err));
-
 module.exports = {
   name: 'datasetup',
   run: async(client) => { 
@@ -23,9 +19,9 @@ module.exports = {
       client.gData.delete(guild.id)
     })
 
-    client.guilds.cache.forEach(guild => {
-      console.log(kGuilds.get(guild.id))
-    })
+    // client.guilds.cache.forEach(guild => {
+      
+    // })
 
     await sleep(1000)
 
