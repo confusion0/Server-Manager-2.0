@@ -6,7 +6,7 @@ const walkSync = require('../walkSync.js');
 
 client.OWNERID = process.env.OWNERID
 client.mongo = require("../mongo").mongo
-client.schemas = require('../schemas')
+// client.acts = require('./helperfunctions') BROKEN
 client.commands = new Discord.Collection();
 client.shardId = "Not Sharded" //deafult
 client.invites = {}
