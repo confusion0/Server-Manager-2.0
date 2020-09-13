@@ -38,4 +38,8 @@ process.on("message", message => {
     if (message.type == "shardId") client.shardId = message.data.shardId
 });
 
+// process.on('uncaughtException', function (err) {
+  
+// })
+
 client.login(token);
