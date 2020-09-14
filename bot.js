@@ -38,8 +38,4 @@ for (const file of eventFiles) {
   event.run(client);
 }
 
-// process.on('uncaughtException', function (err) {
-  
-// })
-
 client.login(token);
