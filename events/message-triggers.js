@@ -6,7 +6,6 @@ module.exports = {
     client.on('message', message => {
       var { content, guild, author } = message
       if(!guild || author.bot) return
-      console.log(client.gData.get(guild.id))
       const triggers = client.gData.get(guild.id).messageTriggers
       triggers.forEach(trigger => {
         var { includes, mtrigger, response, caseSensitive, deleteMessage } = trigger

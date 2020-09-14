@@ -19,10 +19,6 @@ module.exports = {
       client.gData.delete(guild.id)
     })
 
-    // client.guilds.cache.forEach(guild => {
-      
-    // })
-
     await sleep(1000)
 
     client.guilds.cache.forEach(guild => {

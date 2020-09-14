@@ -1,8 +1,7 @@
 const chalk = require('chalk');
 const { ShardingManager } = require('discord.js');
 
-
-const manager = new ShardingManager('./bot/bot.js', { token: process.env.TOKEN, totalShards: 'auto' });
+const manager = new ShardingManager('./bot.js', { token: process.env.TOKEN, totalShards: 'auto' });
 
 manager.on('shardCreate', shard => {
   shard.on("ready", () => {
