@@ -8,17 +8,14 @@ module.exports = {
     const { guild, channel } = message
       try {
         let invites = await guild.fetchInvites()
-        let messageArray = []
+        let inviteslist = ""
         
         for(invite of invites){
           invite = invite[1]
           const inviter = client.users.cache.get(invite.inviter.id);
-          messageArray.push(`\`${invite.code}\` was created by **${inviter.tag}** and currently has **${invite.uses} uses**`)
+          inviteslist += `\`${invite.code}\` was created by **${inviter.tag}** and currently has **${invite.uses} uses** \n`
         }
-
-        for(msg of messageArray){
-          channel.send(msg)
-        }
+        message.channel.send(inviteslist, {split: true})
       }
       catch(error) {
         channel.send("Please contact a server administrator and make sure that this bot has every permission in this server")

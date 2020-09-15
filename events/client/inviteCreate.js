@@ -5,7 +5,7 @@ module.exports = {
   run: async(client) => {
     client.on('inviteCreate', async invite => {
       const logChannel = invite.guild.channels.cache.find(channel => channel.name === "invite-logs");
-      if(!logChannel) return console.log("nolog")
+      if(!logChannel) return
 
       const inviter = client.users.cache.get(invite.inviter.id);
 

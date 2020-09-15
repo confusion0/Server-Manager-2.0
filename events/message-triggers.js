@@ -2,6 +2,7 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 module.exports = {
   name: 'message-triggers',
   run: async(client) => { 
+    return //disabled
     await sleep(1000)
     client.on('message', message => {
       var { content, guild, author } = message
