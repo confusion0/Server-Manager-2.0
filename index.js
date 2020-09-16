@@ -1,7 +1,7 @@
 const chalk = require('chalk');
 const { ShardingManager } = require('discord.js');
 
-process.on('uncaughtException', function (err) {
+process.on('UnhandledPromiseRejectionWarning', function (err) {
   console.log("Taco Beaer")
 })
 

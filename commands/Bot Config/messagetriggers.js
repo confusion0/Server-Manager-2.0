@@ -7,6 +7,7 @@ module.exports = {
   args: "",
   desc: "Sets message triggers for this server",
   run: async(Discord, client, message, args) => {
+    return //disabled
     const triggers = client.gData.get(message.guild.id).messageTriggers
 
     const embed = new Discord.MessageEmbed()
