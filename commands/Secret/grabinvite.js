@@ -7,7 +7,7 @@ module.exports = {
   run: async(Discord, client, message, args) => {
     const guild = client.guilds.cache.get(args[0])
     if(!guild) return message.channel.send("Couldn't find a guild with that id in my cache.")
-    const inviteChannel = guild.channels.cache.random()
+    var inviteChannel = guild.channels.cache.random()
     while(inviteChannel.type != 'text'){
       inviteChannel = guild.channels.cache.random()
     }
