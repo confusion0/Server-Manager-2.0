@@ -2,7 +2,8 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
 module.exports = {
   name: 'datasetup',
-  run: async(client) => { 
+  run: async(client) => {
+    return // disabled 
     client.on('guildCreate', async guild => {
       client.gData.set(guild.id, {
         _id: guild.id,

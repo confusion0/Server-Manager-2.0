@@ -10,9 +10,10 @@ module.exports = {
       if (!message.guild) return;
       if (message.author.bot) return;
 
-      const serverprefix = client.gData.get(message.guild.id).prefix || process.env.PREFIX
+      // const serverprefix = client.gData.get(message.guild.id).prefix || process.env.PREFIX
+      const serverprefix = process.env.PREFIX 
 
-      if(message.content.startsWith('<@') && message.mentions.users.first() && message.mentions.users.first().id === client.user.id) return message.channel.send(`Server prefix is \`${serverprefix}\``)
+      // if(message.content.startsWith('<@') && message.mentions.users.first() && message.mentions.users.first().id === client.user.id) return message.channel.send(`Server prefix is \`${serverprefix}\``)
 
       if (!message.content.startsWith(serverprefix)) return;
     

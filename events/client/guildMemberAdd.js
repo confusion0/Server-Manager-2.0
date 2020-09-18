@@ -6,7 +6,7 @@ module.exports = {
   run: async(client) => {
     client.on('guildMemberAdd', async member => {
       member.guild.fetchInvites().then(guildInvites => {
-        const logChannel = member.guild.channels.cache.find(channel => channel.name === "invite-logs");
+        const logChannel = member.guild.channels.cache.find(channel => channel.name.includes('invite-logs'));
         if(!logChannel) return
         // This is the *existing* invites for the guild.
         const ei = client.invites[member.guild.id];

@@ -47,7 +47,7 @@ module.exports = {
         const isOurInvite = await isInvite(guild, code)
         if (!isOurInvite && !bypass) {
           message.delete()
-          const message2 = await message.channel.send(`In order to post invites to other servers you must have the role ${bypassRole} or have the \`MANAGE_SERVER\` permmision.`)
+          const message2 = await message.channel.send(`In order to post invites to other servers you must have the role ${bypassRole} or have the \`MANAGE_SERVER\` permmision. Advertiser: ${message.author}`)
         }
       }
     })
