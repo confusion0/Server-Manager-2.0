@@ -1,11 +1,11 @@
-console.log('Start of index.js')
+console.log('Start of index.js') // DELETE
 
 const chalk = require('chalk');
 const { ShardingManager } = require('discord.js');
 
 const manager = new ShardingManager('./bot.js', { token: process.env.TOKEN, totalShards: 'auto' });
 
-console.log('After shard manager is created')
+console.log('After shard manager is created') // DELETE
 
 manager.on('shardCreate', shard => {
   shard.on("ready", () => {
@@ -14,10 +14,10 @@ manager.on('shardCreate', shard => {
   });
 })
 
-console.log('After shard manager listener is created')
+console.log('After shard manager listener is created') // DELETE
 
 manager.spawn();
 
-console.log('After shard manager spawned')
+console.log('After shard manager spawned') // DELETE
 
 

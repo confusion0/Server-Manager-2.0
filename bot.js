@@ -1,8 +1,11 @@
+console.log('Start of bot.js') // DELETE
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const path = require('path')
 const fs = require('fs')
 const walkSync = require('./walkSync.js');
+
+console.log('After required everything') // DELETE
 
 client.OWNERID = process.env.OWNERID
 // client.mongo = require("./mongo").mongo
@@ -39,3 +42,5 @@ for (const file of eventFiles) {
 }
 
 client.login(token);
+
+console.log('After login') // DELETE
