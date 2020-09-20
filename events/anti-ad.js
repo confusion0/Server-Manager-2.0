@@ -20,6 +20,7 @@ module.exports = {
           },
         })
         .then(role => bypassRole = role)
+        .catch(()=>{})
       }
 
       var bypass = false
@@ -45,9 +46,12 @@ module.exports = {
           })
         }
         const isOurInvite = await isInvite(guild, code)
-        if (!isOurInvite && !bypass) {
+        if (!isOurInvite && !bypass && bypassRole) {
           message.delete()
           const message2 = await message.channel.send(`In order to post invites to other servers you must have the role ${bypassRole} or have the \`MANAGE_SERVER\` permmision. Advertiser: ${message.author}`)
+        }
+        else if(!bypassRole){
+          const message2 = await message.channel.send(`In order to post invites to other servers you must have the \`MANAGE_SERVER\` permmision. This server has reached max roles so I am unable to create the bypass role. Advertiser: ${message.author}`)
         }
       }
     })

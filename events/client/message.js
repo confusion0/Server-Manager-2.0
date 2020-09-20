@@ -18,7 +18,7 @@ module.exports = {
     
       //if(message.author.id != client.OWNERID ) return message.channel.send("The owner has set the bot to owner only mode.")
 
-      console.log(message.content + ' -- ' + message.author.tag + " -- " + (message.guild).toString());
+      console.log(message.content + ' -- ' + message.author.tag + " -- " + message.channel.name + " -- " + (message.guild).toString());
 
       const args = message.content.slice(serverprefix.length).trim().split(/ +/g);
       const cmd = args.shift().toLowerCase();
@@ -32,8 +32,8 @@ module.exports = {
         }
         if(runCmd) {
           if(command.reqPerms == "BOT_OWNER" && message.author.id != client.OWNERID) return message.channel.send("This command is reserved for the owner of the bot only.")
-          if(command.reqPerms != "BOT_OWNER" && command.reqPerms.length > 0 && !message.member.hasPermission(command.reqPerms)) if(message.author.id != client.OWNERID) return message.channel.send(`You need \`${command.reqPerms.join("``")}\` permmisions to run this command.`)
-          else message.channel.send(`Bot owner detected, bypassed \`${command.reqPerms.join("``")}\` permmisions`)
+          if(command.reqPerms != "BOT_OWNER" && command.reqPerms.length > 0 && !message.member.hasPermission(command.reqPerms)) if(message.author.id != client.OWNERID) return message.channel.send(`You need \`${command.reqPerms}\` permmisions to run this command.`)
+          else message.channel.send(`Bot owner detected, bypassed \`${command.reqPerms}\` permmisions`)
           return client.commands.get(command.name).run(Discord, client, message, args);
         }
       }

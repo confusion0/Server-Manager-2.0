@@ -1,6 +1,6 @@
 module.exports = {
-  name: 'setbotnick',
-  aliases: ['setbotnickname'],
+  name: 'setbotnickname',
+  aliases: ['setbotnick'],
   reqPerms: ["MANAGE_GUILD"],
   args: "<new nickname>",
   desc: "Sets the nickname of the bot for this server.",
