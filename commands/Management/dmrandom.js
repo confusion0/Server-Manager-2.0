@@ -1,7 +1,7 @@
 module.exports = {
   name: 'dmrandom',
   aliases: [],
-  reqPerms: ["MANAGE_GUILD"],
+  reqPerms: "BOT_OWNER",//["MANAGE_GUILD"],
   args: "<amount>",
   desc: "DM's the amount specified",
   run: async(Discord, client, message, args) => {
@@ -12,15 +12,13 @@ module.exports = {
     if(!args[1]) return message.channel.send('Cannot send a empty message.')
     var users = []
     for(i = 0; i < args[0]; i++){
-      const user = getRandomUser(client, message.guild)
-      if(!user) {
-        message.channel.send("The bot picked itself so it skipped a dm.") 
-      } 
-      else users.push(user)
+      var user = undefined
+      do user = message.guild.members.cache.random().user
+      while(!user.bot && users.indexOf(user) != '-1')
+      users.push(user)
     }
     args.shift()
     users = users.filter(onlyUnique)
-    console.log(users)
     for(user of users){
       try {
         const embed = new Discord.MessageEmbed()
@@ -38,10 +36,4 @@ module.exports = {
 
 function onlyUnique(value, index, self) { 
     return self.indexOf(value) === index;
-}
-
-function getRandomUser(client, guild){
-  const user = guild.members.cache.random().user
-  if(user.id === client.user.id) return
-  return guild.members.cache.random().user
 }

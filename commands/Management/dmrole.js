@@ -1,7 +1,7 @@
 module.exports = {
   name: 'dmrole',
   aliases: [],
-  reqPerms: ["ADMINISTRATOR"],
+  reqPerms: "BOT_OWNER", //["ADMINISTRATOR"],
   args: "<mention> <message",
   desc: "DM's the amount specified",
   run: async(Discord, client, message, args) => {
@@ -15,7 +15,7 @@ module.exports = {
         embed.setTitle("From: " + message.guild.name)
         embed.setDescription(args.join(' '))
         embed.setFooter("Sent by: " + message.author.tag + " ID: " + message.author.id)
-        member.user.send(embed);
+        member.user.send(embed)
         amount++
       }
     })
