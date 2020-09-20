@@ -13,3 +13,6 @@ manager.on('shardCreate', shard => {
 
 manager.spawn()
 
+// const Keyv = require('keyv')
+
+// const gData = new Keyv('mongodb://discord_bot:Jw9N6LOAAkseI24t@servermanager20.2uzgc.mongodb.net:27017/gData?retryWrites=true&w=majority', {namespace:'guilds'})

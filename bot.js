@@ -2,10 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 const path = require('path')
 const fs = require('fs')
-const Keyv = require('keyv')
 const walkSync = require('./walkSync.js');
-
-//client.gData = new Keyv(, {namespace:'guilds'}) //create guilds Data
 
 client.OWNERID = process.env.OWNERID
 client.commandFiles = walkSync(path.join(__dirname, '/commands'))
