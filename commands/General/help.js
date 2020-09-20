@@ -12,11 +12,11 @@ module.exports = {
   desc: "Shows all the commands and how to use them.",
   run: async(Discord, client, message, args) => {
     const embed = new Discord.MessageEmbed();
+    const serverprefix = process.env.PREFIX
     if(!args[0]){
       let modules = []
-      const gData = client.gData.get(message.guild.id)
       embed.setTitle("📚 Help")
-      embed.setDescription(`For more info in a command do ${gData.prefix}help <command-name> \nPrefix: \`${gData.prefix}\``)
+      embed.setDescription(`For more info in a command do ${serverprefix}help <command-name> \nPrefix: \`${serverprefix}\``)
       client.commands.forEach(command => {
         var module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
         module = module.slice(module.lastIndexOf('/')+1)
