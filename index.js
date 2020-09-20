@@ -12,6 +12,5 @@ manager.on('shardCreate', shard => {
   });
 })
 
-manager.spawn().catch(error => console.log("An Error Occured: " + error))
-
+manager.spawn()
 
