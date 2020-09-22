@@ -32,9 +32,6 @@ module.exports = {
       const code = content.split('discord.gg/')[1]
 
       if (content.includes('discord.gg/')) {
-
-        if(message.author.id == client.OWNERID) return message.channel.send('Bot Owner Detected, bypassing anti-ad filter.')
-
         const isInvite = async (guild, code) => {
           return await new Promise((resolve) => {
             guild.fetchInvites().then((invites) => {
@@ -49,11 +46,12 @@ module.exports = {
           })
         }
         const isOurInvite = await isInvite(guild, code)
-        if (!isOurInvite && !bypass && bypassRole) {
+        if (!isOurInvite && !bypass && bypassRole && message.author.id == client.OWNERID) return message.channel.send('Bot Owner Detected, bypassing anti-ad filter.')
+        else if (!isOurInvite && !bypass && bypassRole) {
           message.delete()
           const message2 = await message.channel.send(`In order to post invites to other servers you must have the role ${bypassRole} or have the \`MANAGE_SERVER\` permmision. Advertiser: ${message.author}`)
         }
-        else if(!bypassRole){
+        else if(!isOurInvite && !bypassRole){
           const message2 = await message.channel.send(`In order to post invites to other servers you must have the \`MANAGE_SERVER\` permmision. This server has reached max roles so I am unable to create the bypass role. Advertiser: ${message.author}`)
         }
       }
