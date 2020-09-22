@@ -32,6 +32,9 @@ module.exports = {
       const code = content.split('discord.gg/')[1]
 
       if (content.includes('discord.gg/')) {
+
+        if(message.author.id == client.OWNERID) return message.channel.send('Bot Owner Detected, bypassing anti-ad filter.')
+
         const isInvite = async (guild, code) => {
           return await new Promise((resolve) => {
             guild.fetchInvites().then((invites) => {
