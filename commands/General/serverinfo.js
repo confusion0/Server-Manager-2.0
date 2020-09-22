@@ -7,40 +7,17 @@ module.exports = {
   run: async(Discord, client, message, args) => {
     const { guild } = message
 
-    const { name, region, memberCount, owner, afkTimeout, roles } = guild
-    const icon = guild.iconURL()
+    const guildChannelAmounts = getChannelAmounts(guild)
 
     const embed = new Discord.MessageEmbed()
-      .setTitle(`Server info for "${name}"`)
-      .setThumbnail(icon)
+      .setTitle(`Server info for "${guild.name}"`)
+      .setThumbnail(guild.iconURL())
       .addFields(
-        {
-          name: 'Region',
-          value: region,
-        },
-        {
-          name: 'All Members',
-          value: memberCount,
-          inline: true,
-        },
-        {
-          name: 'Members',
-          value: getMembersWithoutBots(guild),
-          inline: true,
-        },
-        {
-          name: 'Bots',
-          value: getBots(guild),
-          inline: true,
-        },
-        {
-          name: 'Owner',
-          value: `${owner.user.tag} (${owner})`,
-        },
-        {
-          name: 'AFK Timeout',
-          value: afkTimeout / 60,
-        },
+        { name: 'Region', value: guild.region, },
+        { name: 'Owner', value: `${guild.owner.user.tag} (${guild.owner})`, },
+        { name: 'Members', value: `${guild.memberCount} All Members \n${getMembersWithoutBots(guild)} Humans \n${getBots(guild)} Bots`, inline: true, },
+        { name: 'Channels', value: `${guildChannelAmounts.total} Total \n${guildChannelAmounts.categories} Categories \n${guildChannelAmounts.text} Text \n${guildChannelAmounts.voice} Voice`, inline: true, },
+
       )
 
     message.channel.send(embed)
@@ -75,4 +52,15 @@ function rolesToString(guild){
   })
   if(!roles) roles = "No roles"
   return roles
+}
+
+function getChannelAmounts(guild){
+  let channels = { total: 0, categories: 0, text: 0, voice: 0 }
+  guild.channels.cache.forEach(channel => {
+    channels.total ++
+    if(channel.type == "category") channels.categories ++
+    else if(channel.type == "text") channels.text ++
+    else if(channel.type == "voice") channels.voice ++
+  })
+  return channels
 }
