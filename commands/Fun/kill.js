@@ -12,10 +12,10 @@ module.exports = {
   aliases: ['murder'],
   reqPerms: [],
   args: "<user mention or id>",
-  desc: "Sets the nickname of the bot for this server.",
+  desc: "Displays a kill message with your and the mentioned users names.",
   run: async(Discord, client, message, args) => {
     const user = message.mentions.users.first() || client.users.cache.get(args[0])
-    if (!user) return message.channel.send("No user found.")
+    if (!user) return message.channel.send("Please mention or add the users user id after the command.")
 
     let killMessage = killMessages[Math.floor(Math.random() * killMessages.length)]
 

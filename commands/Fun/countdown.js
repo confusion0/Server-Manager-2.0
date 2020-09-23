@@ -28,7 +28,7 @@ module.exports = {
   aliases: ['cd'],
   reqPerms: ['MANAGE_GUILD'],
   args: "(length) <title>",
-  desc: "Sets the nickname of the bot for this server.",
+  desc: "Starts a countdown (interactive setup)",
   run: async(Discord, client, message, args) => {
     var countdown = {}
 

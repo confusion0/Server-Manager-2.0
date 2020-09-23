@@ -3,7 +3,7 @@ module.exports = {
   aliases: [],
   reqPerms: "BOT_OWNER", //["ADMINISTRATOR"],
   args: "<mention> <message",
-  desc: "DM's the amount specified",
+  desc: "DM's the all the people with a certain role.",
   run: async(Discord, client, message, args) => {
     const role = message.mentions.roles.first()
     if(!role) return message.channel.send("Please mention the role you want to send this message to.")
