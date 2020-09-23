@@ -4,7 +4,7 @@ const path = require('path')
 const fs = require('fs')
 const walkSync = require('./walkSync.js');
 
-client.OWNERID = process.env.OWNERID
+client.ADMINS = require('./config.json').ADMINS
 client.commandFiles = walkSync(path.join(__dirname, '/commands'))
 client.eventFiles = walkSync(path.join(__dirname, '/events'))
 client.commands = new Discord.Collection();

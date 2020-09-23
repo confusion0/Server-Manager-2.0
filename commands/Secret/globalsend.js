@@ -5,7 +5,7 @@ function onlyUnique(value, index, self) {
 module.exports = {
   name: 'globalsend',
   aliases: [],
-  reqPerms: "BOT_OWNER",
+  reqPerms: "BOT_ADMIN",
   args: "<message",
   desc: "Messages all the guild owners that have the bot the specified message.",
   run: async(Discord, client, message, args) => {

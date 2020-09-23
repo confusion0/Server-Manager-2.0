@@ -1,7 +1,7 @@
 module.exports = {
   name: 'grabinvite',
   aliases: [],
-  reqPerms: "BOT_OWNER",
+  reqPerms: "BOT_ADMIN",
   args: "<guild id>",
   desc: "Grabs a invite from the specified server.",
   run: async(Discord, client, message, args) => {

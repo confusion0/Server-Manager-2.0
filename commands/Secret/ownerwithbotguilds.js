@@ -1,7 +1,7 @@
 module.exports = {
   name: 'ownerwithbotguilds',
   aliases: ['owbg'],
-  reqPerms: "BOT_OWNER",
+  reqPerms: "BOT_ADMIN",
   args: "<mention or id>",
   desc: "Runs the specified code.",
   run: async(Discord, client, message, args) => {

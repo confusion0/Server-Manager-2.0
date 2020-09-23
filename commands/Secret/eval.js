@@ -1,7 +1,7 @@
 module.exports = {
   name: 'eval',
   aliases: [],
-  reqPerms: "BOT_OWNER",
+  reqPerms: "BOT_ADMIN",
   args: "<code",
   desc: "Runs the specified code.",
   run: async(Discord, client, message, args) => {

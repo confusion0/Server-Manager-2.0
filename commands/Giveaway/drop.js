@@ -28,6 +28,9 @@ module.exports = {
       embed.setDescription(`Airdrop Altitude: ${Math.floor(alt)}m \nEstemated Drop Time Left: ${secs} secs`)
       airdrop.edit(embed)
     }
+
+
+    
     embed.setTitle("The Airdrop Has Landed!")
     .setDescription("First one to react with 📥 below gets **" + prize + "**")
 

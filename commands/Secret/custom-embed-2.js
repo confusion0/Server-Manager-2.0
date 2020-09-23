@@ -4,7 +4,7 @@ const timeout = 200000
 module.exports = {
   name: 'custom-embed-2',
   aliases: ['custom-embeds-2', 'ce2'],
-  reqPerms: "BOT_OWNER", //["MANAGE_GUILD"],
+  reqPerms: "BOT_ADMIN", //["MANAGE_GUILD"],
   args: "",
   desc: "Starts a custom embed constuctor/creator. (interactive)",
   run: async(Discord, client, message, args) => {

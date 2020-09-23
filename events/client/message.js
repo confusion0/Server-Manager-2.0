@@ -5,7 +5,6 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 module.exports = {
   name: 'message',
   run: async(client) => {
-    await sleep(2000)
     client.on('message', async message => {
       if (!message.guild) return;
       if (message.author.bot) return;
@@ -15,8 +14,6 @@ module.exports = {
       if(message.content.startsWith('<@') && message.mentions.users.first() && message.mentions.users.first().id === client.user.id) return message.channel.send(`Server prefix is \`${serverprefix}\``)
 
       if (!message.content.startsWith(serverprefix)) return;
-    
-      //if(message.author.id != client.OWNERID ) return message.channel.send("The owner has set the bot to owner only mode.")
 
       console.log(message.content + ' -- ' + message.author.tag + " -- " + message.channel.name + " -- " + (message.guild).toString());
 
@@ -31,9 +28,9 @@ module.exports = {
           if(cmd == alias) runCmd = true;
         }
         if(runCmd) {
-          if(command.reqPerms == "BOT_OWNER" && message.author.id != client.OWNERID) return message.channel.send("This command is reserved for the owner of the bot only.")
-          if(command.reqPerms != "BOT_OWNER" && command.reqPerms.length > 0 && !message.member.hasPermission(command.reqPerms)) if(message.author.id != client.OWNERID) return message.channel.send(`You need \`${command.reqPerms}\` permmisions to run this command.`)
-          else message.channel.send(`Bot owner detected, bypassed \`${command.reqPerms}\` permmisions`)
+          if(command.reqPerms == "BOT_ADMIN" && !client.ADMINS.find(admin => admin.ID === message.author.id)) return message.channel.send("This command is reserved for bot admins only.")
+          if(command.reqPerms != "BOT_ADMIN" && command.reqPerms.length > 0 && !message.member.hasPermission(command.reqPerms)) if(!client.ADMINS.find(admin => admin.ID === message.author.id)) return message.channel.send(`You need \`${command.reqPerms}\` permmisions to run this command.`)
+          else message.channel.send(`Bot admin detected, bypassed \`${command.reqPerms}\` permmisions for ${message.author.tag}`)
           return client.commands.get(command.name).run(Discord, client, message, args);
         }
       }
