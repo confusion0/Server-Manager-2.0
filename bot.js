@@ -4,7 +4,11 @@ const path = require('path')
 const fs = require('fs')
 const walkSync = require('./walkSync.js');
 
-client.ADMINS = require('./config.json').ADMINS
+client.ADMINS = [
+  {"lastKnownTag": "!!NoobMan13!!#6972", "ID": "564177349990416484"},
+  {"lastKnownTag": "Commander786#5848", "ID": "691663740512501811"}
+]
+
 client.commandFiles = walkSync(path.join(__dirname, '/commands'))
 client.eventFiles = walkSync(path.join(__dirname, '/events'))
 client.commands = new Discord.Collection();
