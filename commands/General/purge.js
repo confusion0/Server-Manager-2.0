@@ -4,9 +4,10 @@ const limit = 10000
 module.exports = {
   name: 'purge',
   aliases: ['clear'],
-  reqPerms: ["MANAGE_MESSAGES"],
+  reqPerm: "MANAGE_MESSAGES",
   args: "<amount>",
   desc: "Purges the specified amount of messages. max: " + limit,
+  example: ['100', '25'],
   run: async(Discord, client, message, args) => {
     message.delete()
     

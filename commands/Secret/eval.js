@@ -1,9 +1,10 @@
 module.exports = {
   name: 'eval',
   aliases: [],
-  reqPerms: "BOT_ADMIN",
+  reqPerm: "BOT_ADMIN",
   args: "<code",
   desc: "Runs the specified code.",
+  example: ['message.channel.name'],
   run: async(Discord, client, message, args) => {
     try {
       const code = args.join(" ");

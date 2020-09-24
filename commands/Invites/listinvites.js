@@ -1,9 +1,10 @@
 module.exports = {
   name: 'listinvites',
   aliases: [],
-  reqPerms: [],
+  reqPerm: "NONE",
   args: "",
   desc: "Lists out all of the invites on this server.",
+  example: [],
   run: async (Discord, client, message, args) => {
     const { guild, channel } = message
       try {

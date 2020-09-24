@@ -1,9 +1,10 @@
 module.exports = {
   name: 'dmrandom',
   aliases: [],
-  reqPerms: "BOT_OWNER",//["MANAGE_GUILD"],
-  args: "<amount>",
+  reqPerm: "MANAGE_GUILD",
+  args: "<amount> <message",
   desc: "DM's the amount specified",
+  example: ['1000 This message has been sent to 1000 random people', '500'],
   run: async(Discord, client, message, args) => {
     if(!args[0]) return message.channel.send("No amount was specified.")
     if(isNaN(args[0])) return message.channel.send("Please enter a valid number")

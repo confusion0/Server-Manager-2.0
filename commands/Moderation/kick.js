@@ -1,9 +1,10 @@
 module.exports = {
   name: 'kick',
   aliases: [],
-  reqPerms: ["KICK_MEMBERS"],
+  reqPerm: "KICK_MEMBERS",
   args: "<mention or id> [reason",
   desc: "Kicks the specified member.",
+    example: ['@person1 spamming', '@coolboy being rude'],
   run: async(Discord, client, message, args) => {
     const user = message.mentions.users.first() || client.users.cache.get(args[0])
     const reason = args.slice(1).join(' ')

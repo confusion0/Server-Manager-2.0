@@ -1,9 +1,10 @@
 module.exports = {
   name: 'invites',
   aliases: [],
-  reqPerms: [],
+  reqPerm: "NONE",
   args: "[user]",
   desc: "Checks yours or someone elses invites. This only shows how many times a invite was used, not how many people joined using that invite.",
+  example: ['@!!NoobMan!!', '@Commander786'],
   run: async (Discord, client, message, args) => {
     const { guild, channel } = message
     try{

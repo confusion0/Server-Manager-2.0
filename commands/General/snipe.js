@@ -1,9 +1,10 @@
 module.exports = {
   name: 'snipe',
   aliases: [],
-  reqPerms: ["MANAGE_MESSAGES"],
+  reqPerm: "MANAGE_MESSAGES",
   args: "",
   desc: "snipes the last deleted message.",
+  example: [],
   run: async(Discord, client, message, args) => {
     const msg = client.snipes.get(message.channel.id)
     if(!msg) return message.channel.send('There is nothing to snipe!')

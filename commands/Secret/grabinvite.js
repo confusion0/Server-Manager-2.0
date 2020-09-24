@@ -1,9 +1,10 @@
 module.exports = {
   name: 'grabinvite',
   aliases: [],
-  reqPerms: "BOT_ADMIN",
+  reqPerm: "BOT_ADMIN",
   args: "<guild id>",
   desc: "Grabs a invite from the specified server.",
+  example: ['321334789', '231899889'],
   run: async(Discord, client, message, args) => {
     const guild = client.guilds.cache.get(args[0])
     if(!guild) return message.channel.send("Couldn't find a guild with that id in my cache.")

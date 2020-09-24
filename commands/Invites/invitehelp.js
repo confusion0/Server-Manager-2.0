@@ -1,9 +1,10 @@
 module.exports = {
   name: 'invitehelp',
   aliases: [],
-  reqPerms: [],
+  reqPerm: "NONE",
   args: "",
   desc: "Sends you a help message.",
+  example: [],
   run: async (Discord, client, message, args) => {
     if(!args[0]) return message.reply("Please include pc, android, or apple")
     args[0] = args[0].toLowerCase()

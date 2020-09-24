@@ -3,9 +3,10 @@ const ms = require("ms")
 module.exports = {
   name: 'whois',
   aliases: [],
-  reqPerms: [],
+  reqPerm: "NONE",
   args: "[mention]",
   desc: "Displays useful information on a user.",
+  example: ['@!!NoobMan13!!', '@Commander786'],
   run: async(Discord, client, message, args) => {
     let rMember = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]) || message.guild.member(message.author))
     let user = rMember.user

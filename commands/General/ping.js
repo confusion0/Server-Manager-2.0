@@ -1,9 +1,10 @@
 module.exports = {
   name: 'ping',
   aliases: [],
-  reqPerms: [],
+  reqPerm: "NONE",
   args: "",
   desc: "Pings the bot and gives you some info on the bot.",
+  example: [],
   run: async(Discord, client, message, args) => {
     const { totalGuilds, totalChannels, totalMembers, shardId } = client
 

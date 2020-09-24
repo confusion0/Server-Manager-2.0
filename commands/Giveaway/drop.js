@@ -3,9 +3,10 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 module.exports = {
   name: 'drop',
   aliases: [],
-  reqPerms: ["MANAGE_GUILD"],
+  reqPerm: "MANAGE_GUILD",
   args: "<drop time in milliseconds> <drop timeout> <prize",
   desc: "Starts a drop with the specified args.",
+  example: ['300 5s nitro', '100 20s premium'],
   run: async(Discord, client, message, args) => {
     var secs = args[0]
     args.shift()

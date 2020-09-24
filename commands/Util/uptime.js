@@ -3,9 +3,10 @@ const ms = require('ms')
 module.exports = {
   name: 'uptime',
   aliases: [],
-  reqPerms: [],
+  reqPerm: "NONE",
   args: "",
   desc: "Checks uptime",
+  example: [],
   run: async(Discord, client, message, args) => {
     const embed = new Discord.MessageEmbed()
     .setTitle('Uptime')

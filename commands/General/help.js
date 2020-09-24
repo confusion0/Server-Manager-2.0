@@ -7,9 +7,10 @@ const addInfo = `
 module.exports = {
   name: 'help',
   aliases: [],
-  reqPerms: [],
+  reqPerm: "NONE",
   args: "[command]",
   desc: "Shows all the commands and how to use them.",
+  example: ['', 'ping', 'snipe'],
   run: async(Discord, client, message, args) => {
     const embed = new Discord.MessageEmbed();
     const serverprefix = process.env.PREFIX
@@ -18,8 +19,8 @@ module.exports = {
       embed.setTitle("📚 Help")
       embed.setDescription(`For more info in a command do ${serverprefix}help <command-name> \nPrefix: \`${serverprefix}\``)
       client.commands.forEach(command => {
-        var module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
         module = module.slice(module.lastIndexOf('/')+1)
+        var module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
         if(module != "Secret") modules.push(module)
       })
       modules.forEach(module => {

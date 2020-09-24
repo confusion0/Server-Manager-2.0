@@ -26,9 +26,10 @@ const embeds = {
 module.exports = {
   name: 'countdown',
   aliases: ['cd'],
-  reqPerms: ['MANAGE_GUILD'],
-  args: "(length) <title>",
+  reqPerm: 'MANAGE_GUILD',
+  args: "[length] <title>",
   desc: "Starts a countdown (interactive setup)",
+  example: ['', '2m reminder', '1h timer'],
   run: async(Discord, client, message, args) => {
     var countdown = {}
 

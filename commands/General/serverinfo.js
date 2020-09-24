@@ -1,9 +1,10 @@
 module.exports = {
   name: 'serverinfo',
   aliases: [],
-  reqPerms: [],
-  args: "[mention]",
-  desc: "Displays useful information on a user.",
+  reqPerm: "NONE",
+  args: "",
+  desc: "Displays useful information on a server.",
+  example: [],
   run: async(Discord, client, message, args) => {
     const { guild } = message
 

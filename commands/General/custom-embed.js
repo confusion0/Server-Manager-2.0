@@ -3,9 +3,10 @@ const timeout = 5000
 module.exports = {
   name: 'custom-embed',
   aliases: ['custom-embeds', 'ce'],
-  reqPerms: ["MANAGE_GUILD"],
+  reqPerm: "MANAGE_GUILD",
   args: "",
   desc: "Starts a custom embed constuctor/creator. (interactive)",
+  example: [],
   run: async(Discord, client, message, args) => {
     const filter = m => m.content.includes("");
     const collector = message.channel.createMessageCollector(filter, {time: 500000});

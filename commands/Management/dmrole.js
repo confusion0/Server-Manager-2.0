@@ -1,9 +1,10 @@
 module.exports = {
   name: 'dmrole',
   aliases: [],
-  reqPerms: "BOT_OWNER", //["ADMINISTRATOR"],
+  reqPerm: "MANAGE_GUILD",
   args: "<mention> <message",
   desc: "DM's the all the people with a certain role.",
+  example: ['@leaders Hello', '@deveopers Emergeny meeting'],
   run: async(Discord, client, message, args) => {
     const role = message.mentions.roles.first()
     if(!role) return message.channel.send("Please mention the role you want to send this message to.")
