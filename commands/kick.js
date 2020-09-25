@@ -1,11 +1,14 @@
+const { MessageEmbed } = require('discord.js')
+
 module.exports = {
   name: 'kick',
   aliases: [],
   reqPerm: "KICK_MEMBERS",
   args: "<mention or id> [reason",
   desc: "Kicks the specified member.",
-    example: ['@person1 spamming', '@coolboy being rude'],
-  run: async(Discord, client, message, args) => {
+  example: ['@person1 spamming', '@coolboy being rude'],
+  module: "Moderator",
+  run: async(client, message, args) => {
     const user = message.mentions.users.first() || client.users.cache.get(args[0])
     const reason = args.slice(1).join(' ')
 
@@ -18,7 +21,7 @@ module.exports = {
 
     await member.kick(user, {reason: reason}) 
 
-    const kickConfirmationEmbed = new Discord.MessageEmbed()
+    const kickConfirmationEmbed = new MessageEmbed()
     .setColor('RED')
     .setDescription(`✅ ${user.tag} has been successfully kick!`);
     message.channel.send({
@@ -28,7 +31,7 @@ module.exports = {
     const logChannel = member.guild.channels.cache.find(channel => channel.name === "mod-logs");
     if(!logChannel) return
     
-    const kickConfirmationEmbedModlog = new Discord.MessageEmbed()
+    const kickConfirmationEmbedModlog = new MessageEmbed()
     .setAuthor(`Kicked by **${msg.author.username}#${msg.author.discriminator}**`, msg.author.displayAvatarURL)
     .setThumbnail(user.displayAvatarURL)
     .setColor('RED')

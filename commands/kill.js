@@ -13,8 +13,9 @@ module.exports = {
   reqPerm: "NONE",
   args: "<user mention or id>",
   desc: "Displays a kill message with your and the mentioned users names.",
+  module: "Fun",
   example: ['@Commander786', '@!!Noobman13!!'],
-  run: async(Discord, client, message, args) => {
+  run: async(client, message, args) => {
     const user = message.mentions.users.first() || client.users.cache.get(args[0])
     if (!user) return message.channel.send("Please mention or add the users user id after the command.")
 

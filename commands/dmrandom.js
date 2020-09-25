@@ -1,3 +1,5 @@
+const { MessageEmbed } = require('discord.js')
+
 module.exports = {
   name: 'dmrandom',
   aliases: [],
@@ -5,7 +7,8 @@ module.exports = {
   args: "<amount> <message",
   desc: "DM's the amount specified",
   example: ['1000 This message has been sent to 1000 random people', '500'],
-  run: async(Discord, client, message, args) => {
+  module: "Management",
+  run: async(client, message, args) => {
     if(!args[0]) return message.channel.send("No amount was specified.")
     if(isNaN(args[0])) return message.channel.send("Please enter a valid number")
     if(args[0] < 1) return message.channel.send("Please enter a value greater than 1")
@@ -22,7 +25,7 @@ module.exports = {
     users = users.filter(onlyUnique)
     for(user of users){
       try {
-        const embed = new Discord.MessageEmbed()
+        const embed = new MessageEmbed()
         embed.setTitle("From: " + message.guild.name)
         embed.setDescription(args.join(' '))
         embed.setFooter("Sent by: " + message.author.tag + " ID: " + message.author.id)

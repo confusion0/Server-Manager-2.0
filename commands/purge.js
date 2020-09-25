@@ -1,3 +1,5 @@
+const { MessageEmbed } = require('discord.js')
+
 const timeout = 5000
 const limit = 10000
 
@@ -6,9 +8,10 @@ module.exports = {
   aliases: ['clear'],
   reqPerm: "MANAGE_MESSAGES",
   args: "<amount>",
+  module: "General",
   desc: "Purges the specified amount of messages. max: " + limit,
   example: ['100', '25'],
-  run: async(Discord, client, message, args) => {
+  run: async(client, message, args) => {
     message.delete()
     
     const amount = args[0]

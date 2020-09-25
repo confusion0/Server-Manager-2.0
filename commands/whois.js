@@ -1,3 +1,4 @@
+const { MessageEmbed } = require('discord.js')
 const ms = require("ms")
 
 module.exports = {
@@ -5,9 +6,10 @@ module.exports = {
   aliases: [],
   reqPerm: "NONE",
   args: "[mention]",
+  module: "General",
   desc: "Displays useful information on a user.",
   example: ['@!!NoobMan13!!', '@Commander786'],
-  run: async(Discord, client, message, args) => {
+  run: async(client, message, args) => {
     let rMember = message.guild.member(message.mentions.users.first() || message.guild.members.cache.get(args[0]) || message.guild.member(message.author))
     let user = rMember.user
     if(!user) return message.channel.send("Please enter the user as a mention. Ex: @Example")
@@ -32,7 +34,7 @@ module.exports = {
     if(userStatus === "dnd") userStatus = "⛔ Do Not Disturb"
     if(userStatus === "online") userStatus = ":green_circle: Online"
 
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
     .setColor("RANDOM")
     .setDescription(rMember.user)
     .setAuthor(user.tag, user.displayAvatarURL())

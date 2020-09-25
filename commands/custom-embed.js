@@ -1,13 +1,15 @@
 const timeout = 5000
+const { MessageEmbed } = require('discord.js')
 
 module.exports = {
   name: 'custom-embed',
   aliases: ['custom-embeds', 'ce'],
   reqPerm: "MANAGE_GUILD",
   args: "",
+  module: "General",
   desc: "Starts a custom embed constuctor/creator. (interactive)",
   example: [],
-  run: async(Discord, client, message, args) => {
+  run: async(client, message, args) => {
     const filter = m => m.content.includes("");
     const collector = message.channel.createMessageCollector(filter, {time: 500000});
 
@@ -19,7 +21,7 @@ module.exports = {
     let messages = []
     let cancelled = true
 
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
     .setTitle("Custom Embed Creator")
     .setColor('RANDOM')
     .setFooter(`Step ${step} of ${steps} | Type cancel to exit • ${message.author.tag}`)
@@ -115,7 +117,7 @@ module.exports = {
 
       message4.delete({timeout: timeout}).then(message2.delete({timeout: timeout}))
 
-      const embed1 = new Discord.MessageEmbed()
+      const embed1 = new MessageEmbed()
       .setTitle(title)
       .setDescription(description)
       .setColor(color)

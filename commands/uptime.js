@@ -7,7 +7,8 @@ module.exports = {
   args: "",
   desc: "Checks uptime",
   example: [],
-  run: async(Discord, client, message, args) => {
+  module: "Util",
+  run: async(client, message, args) => {
     const embed = new Discord.MessageEmbed()
     .setTitle('Uptime')
     .setColor('GREEN')

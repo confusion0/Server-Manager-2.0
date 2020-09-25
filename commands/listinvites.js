@@ -5,7 +5,8 @@ module.exports = {
   args: "",
   desc: "Lists out all of the invites on this server.",
   example: [],
-  run: async (Discord, client, message, args) => {
+  module: "Invites",
+  run: async (client, message, args) => {
     const { guild, channel } = message
       try {
         let invites = await guild.fetchInvites()

@@ -1,3 +1,5 @@
+const { MessageEmbed } = require('discord.js')
+
 module.exports = {
   name: 'dmrole',
   aliases: [],
@@ -5,14 +7,15 @@ module.exports = {
   args: "<mention> <message",
   desc: "DM's the all the people with a certain role.",
   example: ['@leaders Hello', '@deveopers Emergeny meeting'],
-  run: async(Discord, client, message, args) => {
+  module: "Management",
+  run: async(client, message, args) => {
     const role = message.mentions.roles.first()
     if(!role) return message.channel.send("Please mention the role you want to send this message to.")
     args.shift()
     var amount = 0;
     message.guild.members.cache.forEach(member => {
       if(member.roles.cache.find(crole => crole.id === role.id)){
-        const embed = new Discord.MessageEmbed()
+        const embed = new MessageEmbed()
         embed.setTitle("From: " + message.guild.name)
         embed.setDescription(args.join(' '))
         embed.setFooter("Sent by: " + message.author.tag + " ID: " + message.author.id)

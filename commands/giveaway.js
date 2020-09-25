@@ -1,3 +1,5 @@
+const { MessageEmbed } = require('discord.js')
+
 module.exports = {
   name: 'giveaway',
   aliases: ['gg'],
@@ -5,7 +7,8 @@ module.exports = {
   args: "",
   desc: "Starts a giveaway constructor (Not Finished) (interactive)",
   example: [],
-  run: async(Discord, client, message, args) => {
+  module: "Giveaway",
+  run: async(client, message, args) => {
     
   }
 }

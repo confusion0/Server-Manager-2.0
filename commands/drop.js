@@ -1,3 +1,5 @@
+const { MessageEmbed } = require('discord.js')
+
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 
 module.exports = {
@@ -5,9 +7,10 @@ module.exports = {
   aliases: [],
   reqPerm: "MANAGE_GUILD",
   args: "<drop time in milliseconds> <drop timeout> <prize",
+  module: "Giveaway",
   desc: "Starts a drop with the specified args.",
   example: ['300 5s nitro', '100 20s premium'],
-  run: async(Discord, client, message, args) => {
+  run: async(client, message, args) => {
     var secs = args[0]
     args.shift()
     var timeoutMins = args[0]
@@ -18,7 +21,7 @@ module.exports = {
 
     const dropSpeed = alt/secs
     
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
     .setTitle("✈️ A Airdrop Apeared!")
     .setDescription(`Airdrop Altitude: ${Math.floor(alt)}m \nEstemated Drop Time Left: ${secs} secs`)
 

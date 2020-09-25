@@ -29,8 +29,9 @@ module.exports = {
   reqPerm: 'MANAGE_GUILD',
   args: "[length] <title>",
   desc: "Starts a countdown (interactive setup)",
+  module: "Fun",
   example: ['', '2m reminder', '1h timer'],
-  run: async(Discord, client, message, args) => {
+  run: async(client, message, args) => {
     var countdown = {}
 
     if(args[0] && args[1]){

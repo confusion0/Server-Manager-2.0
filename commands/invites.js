@@ -1,3 +1,5 @@
+const { MessageEmbed } = require('discord.js')
+
 module.exports = {
   name: 'invites',
   aliases: [],
@@ -5,12 +7,13 @@ module.exports = {
   args: "[user]",
   desc: "Checks yours or someone elses invites. This only shows how many times a invite was used, not how many people joined using that invite.",
   example: ['@!!NoobMan!!', '@Commander786'],
-  run: async (Discord, client, message, args) => {
+  module: "Invites",
+  run: async (client, message, args) => {
     const { guild, channel } = message
     try{
       let invites = await guild.fetchInvites()
 
-      const embed = new Discord.MessageEmbed()
+      const embed = new MessageEmbed()
 
       let userInvites = 0
 

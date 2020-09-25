@@ -1,16 +1,19 @@
+const { MessageEmbed } = require('discord.js')
+
 module.exports = {
   name: 'serverinfo',
   aliases: [],
   reqPerm: "NONE",
   args: "",
+  module: "General",
   desc: "Displays useful information on a server.",
   example: [],
-  run: async(Discord, client, message, args) => {
+  run: async(client, message, args) => {
     const { guild } = message
 
     const guildChannelAmounts = getChannelAmounts(guild)
 
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
       .setTitle(`Server info for "${guild.name}"`)
       .setThumbnail(guild.iconURL())
       .addFields(

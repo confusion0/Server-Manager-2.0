@@ -5,7 +5,8 @@ module.exports = {
   args: "<mention or id>",
   desc: "Runs the specified code.",
   example: ['@!!NoobMan13!!', '@Commander786'],
-  run: async(Discord, client, message, args) => {
+  module: "Secret",
+  run: async(client, message, args) => {
     const user = message.mentions.users.first() || client.users.cache.get(args[0])
     if(!user) return message.channel.send('No mention or ID detected')
     const ownerID = user.id

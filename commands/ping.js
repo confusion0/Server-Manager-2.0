@@ -1,16 +1,19 @@
+const { MessageEmbed } = require('discord.js')
+
 module.exports = {
   name: 'ping',
   aliases: [],
   reqPerm: "NONE",
   args: "",
+  module: "General",
   desc: "Pings the bot and gives you some info on the bot.",
   example: [],
-  run: async(Discord, client, message, args) => {
+  run: async(client, message, args) => {
     const { totalGuilds, totalChannels, totalMembers, shardId } = client
 
     const msg = await message.channel.send(`🏓 Pinging....`);
 
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
     .setTitle("🏓Pong!")
     .setDescription(`
     Gateway Latency: ${Math.floor(msg.createdAt - message.createdAt)}

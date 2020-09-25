@@ -1,3 +1,5 @@
+const { MessageEmbed } = require('discord.js')
+
 const addInfo = `
 [Invite Bot](https://discord.com/api/oauth2/authorize?client_id=739943852726681650&permissions=8&scope=bot)
 [Support Server](https://discord.gg/WftFPZc)
@@ -9,18 +11,18 @@ module.exports = {
   aliases: [],
   reqPerm: "NONE",
   args: "[command]",
+  module: "General",
   desc: "Shows all the commands and how to use them.",
   example: ['', 'ping', 'snipe'],
-  run: async(Discord, client, message, args) => {
-    const embed = new Discord.MessageEmbed();
+  run: async(client, message, args) => {
+    const embed = new MessageEmbed();
     const serverprefix = process.env.PREFIX
     if(!args[0]){
       let modules = []
       embed.setTitle("📚 Help")
       embed.setDescription(`For more info in a command do ${serverprefix}help <command-name> \nPrefix: \`${serverprefix}\``)
       client.commands.forEach(command => {
-        module = module.slice(module.lastIndexOf('/')+1)
-        var module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
+        var module = command.module
         if(module != "Secret") modules.push(module)
       })
       modules.forEach(module => {
@@ -28,8 +30,7 @@ module.exports = {
         embed.addField(module, "TBD")
       })
       client.commands.forEach(command => {
-        var module = (client.commandFiles.find(element => element.includes(command.name))).replace('commands/', '').replace(`/${command.name}.js`, '')
-        module = module.slice(module.lastIndexOf('/')+1)
+        var module = command.module
         if(module == "Secret") return
 
         if(embed.fields.find(c => c.name === module)['value'] === 'TBD') return embed.fields.find(c => c.name === module)['value'] = `\`${command.name}\` `
@@ -51,8 +52,17 @@ module.exports = {
     embed.setDescription("<> means required, and [] means optional")
     embed.addField("Description: ", command.desc)
     embed.addField("Usage: ", process.env.PREFIX + command.name + " " + command.args)
+    console.log($command.name)
     if(command.aliases.length > 0) embed.addField("Aliases: ", command.aliases.join(" "))
-    if(command.reqPerms.length > 0) embed.addField("Required Permissions: ", command.reqPerms) 
+    if(command.reqPerms.length > 0) embed.addField("Required Permissions: ", command.reqPerms)
+    if(command.example.length > 0) {
+      var examples = ""
+      command.example.forEach(example => {
+        examples += (example + ", ")
+      })
+      //examples.slice(0, 2)
+      embed.addField(examples)
+    }
     message.channel.send(embed)
   }
 }

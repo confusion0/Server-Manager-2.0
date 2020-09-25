@@ -5,7 +5,8 @@ module.exports = {
   args: "<code",
   desc: "Runs the specified code.",
   example: ['message.channel.name'],
-  run: async(Discord, client, message, args) => {
+  module: "Secret",
+  run: async(client, message, args) => {
     try {
       const code = args.join(" ");
       let evaled = eval(code);
