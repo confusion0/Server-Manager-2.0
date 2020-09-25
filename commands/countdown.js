@@ -76,7 +76,7 @@ module.exports = {
       } while (!countdown.channel)
     }
 
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
     .setTitle(countdown.title)
     .setDescription(formatTime(countdown.length))
     countdown.message = await countdown.channel.send(embed)
