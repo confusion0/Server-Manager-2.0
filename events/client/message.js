@@ -5,11 +5,17 @@ const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 module.exports = {
   name: 'message',
   run: async(client) => {
+    await sleep(2000)
     client.on('message', async message => {
       if (!message.guild) return;
       if (message.author.bot) return;
       
-      const serverprefix = process.env.PREFIX 
+      var serverprefix = undefined
+      await client.gData.get(message.guild.id)
+      .then(data => {
+        if(!data) return
+        serverprefix = data.prefix
+      })
 
       if(message.content.startsWith('<@') && message.mentions.users.first() && message.mentions.users.first().id === client.user.id) return message.channel.send(`Server prefix is \`${serverprefix}\``)
 

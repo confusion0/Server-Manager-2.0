@@ -16,7 +16,7 @@ client.events = new Discord.Collection()
 client.shardId = "Not Sharded" // deafult
 client.invites = {}
 client.snipes = new Map()
-client.gData = new Map()
+
 
 const token = process.env.TOKEN;
 
