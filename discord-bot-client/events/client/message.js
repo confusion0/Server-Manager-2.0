@@ -10,7 +10,7 @@ module.exports = {
       if (!message.guild) return;
       if (message.author.bot) return;
       
-      var serverprefix = undefined
+      var serverprefix = process.env.PREFIX
       await client.gData.get(message.guild.id)
       .then(data => {
         if(!data) return

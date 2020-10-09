@@ -7,10 +7,12 @@ module.exports = {
   run: async(client) => {
     await sleep(1000)
     
-    client.gData = new Keyv(process.env.MONGOPATH.replace('<dbname>', 'Guilds'))
-    client.uData = new Keyv(process.env.MONGOPATH.replace('<dbname>', 'Users'))
+    client.gData = new Keyv(process.env.MONGOPATH, {namespace: 'guilds'})
+    client.uData = new Keyv(process.env.MONGOPATH, {namespace: 'users'})
     
     client.on('guildCreate', guild => {
+      client.gData.set(new Map())
+      
       client.gData.set(guild.id, {
         id: guild.id,
         prefix: '?'
