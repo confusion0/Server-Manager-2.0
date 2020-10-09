@@ -7,7 +7,6 @@ module.exports = {
   args: "<mention or id> [reason",
   desc: "Bans the specified member.",
   example: ['@person1 spamming', '@coolboy advertising'],
-  module: "Moderator",
   run: async(client, message, args) => {
     const user = message.mentions.users.first() || client.users.cache.get(args[0])
     const reason = args.slice(1).join(' ')

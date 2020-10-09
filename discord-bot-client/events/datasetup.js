@@ -7,8 +7,8 @@ module.exports = {
   run: async(client) => {
     await sleep(1000)
     
-    client.gData = new Keyv(process.env.MONGOPATH, {namespace:'guilds'})
-    client.uData = new Keyv(process.env.MONGOPATH, {namespace:'users'})
+    client.gData = new Keyv(process.env.MONGOPATH.replace('<dbname>', 'Guilds'))
+    client.uData = new Keyv(process.env.MONGOPATH.replace('<dbname>', 'Users'))
     
     client.on('guildCreate', guild => {
       client.gData.set(guild.id, {
@@ -23,6 +23,7 @@ module.exports = {
     client.guilds.cache.forEach(async guild => {
       const data = await client.gData.get(guild.id)
       if(!data) return client.emit('guildCreate', guild)
+      updateDatabase(client)
     })
     
     // client.gData.forEach(async (value, key, map) => {

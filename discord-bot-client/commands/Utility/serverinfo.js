@@ -1,4 +1,5 @@
 const { MessageEmbed } = require('discord.js')
+const ms = require('ms')
 
 module.exports = {
   name: 'serverinfo',
@@ -21,8 +22,8 @@ module.exports = {
         { name: 'Owner', value: `${guild.owner.user.tag} (${guild.owner})`, },
         { name: 'Members', value: `${guild.memberCount} All Members \n${getMembersWithoutBots(guild)} Humans \n${getBots(guild)} Bots`, inline: true, },
         { name: 'Channels', value: `${guildChannelAmounts.total} Total \n${guildChannelAmounts.categories} Categories \n${guildChannelAmounts.text} Text, ${guildChannelAmounts.voice} Voice`, inline: true, },
-        { name: 'Roles', value: `${guild.roles.cache.size}`, inline: true, },
-
+        { name: `Roles[${guild.roles.cache.size-1}]`, value: `${rolesToString(guild, { characterLimit: 700 })}`, },
+        { name: `Created At`, value: `${(guild.createdAt).toString().slice(0, 15)} (${ms(guild.createdTimestamp, { long: true })} ago)`, },
       )
 
     message.channel.send(embed)
@@ -50,13 +51,21 @@ function getBots(guild){
   return members
 }
 
-function rolesToString(guild){
-  let roles = ""
+function rolesToString(guild, options){
+  const characterLimit = options.characterLimit || false
+
+  const notAdded = 'and {amount} more...'
+  var notAddedAmount = 0
+  
+  let finalString = ""
   guild.roles.cache.forEach(role => {
-    if(role.toString() != "@everyone") roles += role.toString() + " "
+    if(role.toString() == "@everyone") return "@everyone"
+    if(characterLimit && !finalString.endsWith(notAdded) && (finalString + role.toString() + notAdded + '   ').length > characterLimit ) finalString += notAdded
+    if(!finalString.endsWith(notAdded)) return finalString += role.toString() + " "
+    notAddedAmount++
   })
-  if(!roles) roles = "No roles"
-  return roles
+
+  return (finalString.length > 0) ? finalString.replace('{amount}', notAddedAmount) : "No Roles"
 }
 
 function getChannelAmounts(guild){

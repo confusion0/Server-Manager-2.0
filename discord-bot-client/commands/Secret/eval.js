@@ -5,7 +5,6 @@ module.exports = {
   args: "<code",
   desc: "Runs the specified code.",
   example: ['message.channel.name'],
-  module: "Secret",
   run: async(client, message, args) => {
     try {
       const code = args.join(" ");

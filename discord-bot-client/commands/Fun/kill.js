@@ -13,7 +13,6 @@ module.exports = {
   reqPerm: "NONE",
   args: "<user mention or id>",
   desc: "Displays a kill message with your and the mentioned users names.",
-  module: "Fun",
   example: ['@Commander786', '@!!Noobman13!!'],
   run: async(client, message, args) => {
     const user = message.mentions.users.first() || client.users.cache.get(args[0])
