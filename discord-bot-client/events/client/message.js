@@ -26,7 +26,8 @@ module.exports = {
       const args = message.content.slice(serverprefix.length).split(/ +/);
       const cmd = args.shift().toLowerCase();
 
-      const command = client.commands.get(cmd.toLowerCase)
+      const command = client.commands.get(cmd.toLowerCase())
+
       if( !command ) client.commands.forEach( $command => { $command.aliases.forEach( alias => { if(alias == cmd) command = $command } ) } )
 
       if(command){
@@ -36,6 +37,7 @@ module.exports = {
           if(!client.ADMINS.find(admin => admin.ID === message.author.id)) return message.channel.send(`You need \`${command.reqPerm}\` permmision to run this command.`)
           else message.channel.send(`Bot admin detected, bypassed \`${command.reqPerm}\` permmisions for ${message.author.tag}`)
         }
+
         return command.run(client, message, args);
       }
     })
