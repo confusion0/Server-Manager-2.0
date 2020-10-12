@@ -26,7 +26,7 @@ module.exports = {
       const args = message.content.slice(serverprefix.length).split(/ +/);
       const cmd = args.shift().toLowerCase();
 
-      const command = client.commands.get(cmd.toLowerCase())
+      var command = client.commands.get(cmd.toLowerCase())
 
       if( !command ) client.commands.forEach( $command => { $command.aliases.forEach( alias => { if(alias == cmd) command = $command } ) } )
 
