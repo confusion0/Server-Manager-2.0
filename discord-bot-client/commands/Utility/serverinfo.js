@@ -6,6 +6,7 @@ module.exports = {
   aliases: [],
   reqPerm: "NONE",
   args: "",
+  cooldown: 2000,
   module: "General",
   desc: "Displays useful information on a server.",
   example: [],

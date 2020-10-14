@@ -8,6 +8,7 @@ module.exports = {
   aliases: ['lr'],
   reqPerm: "NONE",
   args: "",
+  cooldown: 3000,
   desc: "Prompt the user to verify and if successful will link their roblox with their discord.",
   example: [],
   run: async(client, message, args) => {
@@ -90,14 +91,8 @@ module.exports = {
           .setDescription(`Verification successful, you can now verify yourself in servers by doing the \`rverify\` command!`)
           .setColor("GREEN")
         )
-  
-        var data = await client.uData.get(user.id)
-        if(!data) client.uData.set(user.id, {})
-        data = await client.uData.get(user.id)
-        data.robloxID = foundId
-        client.uData.set(user.id, data)
-
-
+        
+        client.uData.set(`${user.id}:robloxID`, foundId)
       } else {
         return user.send(
           new MessageEmbed()

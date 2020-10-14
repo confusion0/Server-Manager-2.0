@@ -7,6 +7,7 @@ module.exports = {
   aliases: [],
   reqPerm: "MANAGE_GUILD",
   args: "<drop time in milliseconds> <drop timeout> <prize",
+  cooldown: 2000,
   desc: "Starts a drop with the specified args.",
   example: ['300 5s nitro', '100 20s premium'],
   run: async(client, message, args) => {

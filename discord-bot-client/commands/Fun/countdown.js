@@ -28,6 +28,7 @@ module.exports = {
   aliases: ['cd'],
   reqPerm: 'MANAGE_GUILD',
   args: "[length] <title>",
+  cooldown: 2000,
   desc: "Starts a countdown (interactive setup)",
   module: "Fun",
   example: ['', '2m reminder', '1h timer'],

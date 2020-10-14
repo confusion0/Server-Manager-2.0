@@ -7,6 +7,7 @@ module.exports = {
   aliases: ['nchannel', 'nukec'],
   reqPerm: "MANAGE_MESSAGES",
   args: "[channel]",
+  cooldown: 3000,
   desc: "deletes and remakes a channel with the exact settings",
   example: ['#general', '#bot-commands', ""],
   run: async(client, message, args) => {

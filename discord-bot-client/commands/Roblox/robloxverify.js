@@ -8,18 +8,19 @@ module.exports = {
   aliases: ['rverify'],
   reqPerm: "NONE",
   args: "",
+  cooldown: 1000,
   desc: "Verifies the user inside the server if they have linked a account and the server has set a verified role.",
   example: [],
   run: async(client, message, args) => {
-    const gData = await client.gData.get(message.guild.id)
-    if(!gData.vRole) return message.channel.send('This guild hasn\'t set it verified role yet. Use the `setverifiedrole` command to do so.')
+    const vRoleID = await client.gData.get(`${message.guild.id}:vRole`)
+    if(!vRole) return message.channel.send('This guild hasn\'t set it verified role yet. Use the `setverifiedrole` command to do so.')
 
-    const uData = await client.uData.get(message.author.id)
-    if(!uData || !uData.robloxID) return message.channel.send('You haven\'t linked your roblox account yet! Use the `linkroblox` commmand to do so.')
+    const robloxID = await client.uData.get(`${message.author.id}:robloxID`)
+    if(!robloxID) return message.channel.send('You haven\'t linked your roblox account yet! Use the `linkroblox` commmand to do so.')
 
-    const vRole = message.guild.roles.cache.get(gData.vRole)
+    const vRole = message.guild.roles.cache.get(vRoleID)
 
-    if(!vRole) return message.channel.send(`lease relink a verified role. Do the setverifiedrole command!`)
+    if(!vRole) return message.channel.send(`A person with \`MANAGE_SERVER\` permission needs to link a verified role with the \`setverifiedrole\` command!`)
 
     message.guild.members.cache.get(message.author.id).roles.add(vRole)
 

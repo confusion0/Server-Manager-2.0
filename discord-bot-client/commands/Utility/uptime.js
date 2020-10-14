@@ -5,6 +5,7 @@ module.exports = {
   aliases: [],
   reqPerm: "NONE",
   args: "",
+  cooldown: 2000,
   desc: "Checks uptime",
   example: [],
   module: "Util",

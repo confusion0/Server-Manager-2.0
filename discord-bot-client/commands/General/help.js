@@ -12,12 +12,13 @@ module.exports = {
   aliases: [],
   reqPerm: "NONE",
   args: "[command]",
+  cooldown: 1000,
   module: "General",
   desc: "Shows all the commands and how to use them.",
   example: ['', 'ping', 'snipe'],
   run: async(client, message, args) => {
     const embed = new MessageEmbed();
-    const serverprefix = (await client.gData.get(message.guild.id)).prefix
+    const serverprefix = (await client.gData.get(`${message.guild.id}:prefix`))
     if(!args[0]){
       let modules = []
       embed.setTitle("📚 Help")
@@ -44,11 +45,10 @@ module.exports = {
       return message.channel.send(embed)
     }
 
-    let command = {}
-    client.commands.forEach($command => {
-        if($command.name == args[0]) command = $command
-    })
-    if(command === {}) return message.channel.send('I could not find a command with that name.')
+    client.commands.get(args[0])
+
+    if(!command) return message.channel.send('I could not find a command with that name.')
+
     embed.setTitle(`Command Information - ${command.name}`)
     embed.setDescription("<> means required, and [] means optional")
     embed.addField("Description: ", command.desc)

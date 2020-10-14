@@ -3,6 +3,7 @@ module.exports = {
   aliases: [],
   reqPerm: "MANAGE_GUILD",
   args: "[user]",
+  cooldown: 2000,
   desc: "Emulates a user joining the server that this command is ran in.",
   example: ['!!Noobman13!!', '@Commander786'],
   module: "Util",

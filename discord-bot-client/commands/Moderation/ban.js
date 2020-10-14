@@ -5,6 +5,7 @@ module.exports = {
   aliases: [],
   reqPerm: "BAN_MEMBERS",
   args: "<mention or id> [reason",
+  cooldown: 3000,
   desc: "Bans the specified member.",
   example: ['@person1 spamming', '@coolboy advertising'],
   run: async(client, message, args) => {

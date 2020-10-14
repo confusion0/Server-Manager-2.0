@@ -5,6 +5,7 @@ module.exports = {
   aliases: [],
   reqPerm: "KICK_MEMBERS",
   args: "<mention or id> [reason",
+  cooldown: 2000,
   desc: "Kicks the specified member.",
   example: ['@person1 spamming', '@coolboy being rude'],
   module: "Moderator",

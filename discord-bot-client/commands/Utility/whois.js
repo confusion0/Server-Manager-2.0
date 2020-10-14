@@ -6,6 +6,7 @@ module.exports = {
   aliases: [],
   reqPerm: "NONE",
   args: "[mention]",
+  cooldown: 1000,
   module: "General",
   desc: "Displays useful information on a user.",
   example: ['@!!NoobMan13!!', '@Commander786'],

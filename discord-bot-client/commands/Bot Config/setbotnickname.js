@@ -3,6 +3,7 @@ module.exports = {
   aliases: ['setbotnick'],
   reqPerm: "MANAGE_GUILD",
   args: "<new nickname>",
+  cooldown: 10000,
   desc: "Sets the nickname of the bot for this server.",
   module: "Bot Config",
   example: ['wanky bot', 'Bot 1'], 

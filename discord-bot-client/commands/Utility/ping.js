@@ -5,6 +5,7 @@ module.exports = {
   aliases: [],
   reqPerm: "NONE",
   args: "",
+  cooldown: 2000,
   module: "General",
   desc: "Pings the bot and gives you some info on the bot.",
   example: [],

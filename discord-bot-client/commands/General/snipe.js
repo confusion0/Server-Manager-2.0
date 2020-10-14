@@ -5,6 +5,7 @@ module.exports = {
   aliases: [],
   reqPerm: "MANAGE_MESSAGES",
   args: "",
+  cooldown: 1000,
   module: "General",
   desc: "snipes the last deleted message.",
   example: [],

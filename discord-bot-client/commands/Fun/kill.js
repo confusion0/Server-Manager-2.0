@@ -12,6 +12,7 @@ module.exports = {
   aliases: ['murder'],
   reqPerm: "NONE",
   args: "<user mention or id>",
+  cooldown: 1000,
   desc: "Displays a kill message with your and the mentioned users names.",
   example: ['@Commander786', '@!!Noobman13!!'],
   run: async(client, message, args) => {

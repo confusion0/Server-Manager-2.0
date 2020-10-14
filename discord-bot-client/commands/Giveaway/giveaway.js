@@ -5,6 +5,7 @@ module.exports = {
   aliases: ['gg'],
   reqPerm: "BOT_ADMIN",//["MANAGE_GUILD"],
   args: "",
+  cooldown: 3000,
   desc: "Starts a giveaway constructor (Not Finished) (interactive)",
   example: [],
   module: "Giveaway",

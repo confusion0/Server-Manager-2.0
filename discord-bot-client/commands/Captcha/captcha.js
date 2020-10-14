@@ -7,6 +7,7 @@ module.exports = {
   aliases: ['ctc'],
   reqPerm: "NONE",
   args: "",
+  cooldown: 2000,
   desc: "Sends a captcha.",
   example: [],
   run: async(client, message, args) => {

@@ -8,6 +8,7 @@ module.exports = {
   aliases: ['clear'],
   reqPerm: "MANAGE_MESSAGES",
   args: "<amount>",
+  cooldown: 2000,
   module: "General",
   desc: "Purges the specified amount of messages. max: " + limit,
   example: ['100', '25'],
