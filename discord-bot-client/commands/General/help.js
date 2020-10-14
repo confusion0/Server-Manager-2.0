@@ -18,7 +18,7 @@ module.exports = {
   example: ['', 'ping', 'snipe'],
   run: async(client, message, args) => {
     const embed = new MessageEmbed();
-    const serverprefix = (await client.gData.get(`${message.guild.id}:prefix`))
+    const serverprefix = (await client.gData.get(`${message.guild.id}:prefix`)) || process.env.PREFIX
     if(!args[0]){
       let modules = []
       embed.setTitle("📚 Help")
@@ -45,7 +45,7 @@ module.exports = {
       return message.channel.send(embed)
     }
 
-    client.commands.get(args[0])
+    var command = client.commands.get(args[0])
 
     if(!command) return message.channel.send('I could not find a command with that name.')
 
