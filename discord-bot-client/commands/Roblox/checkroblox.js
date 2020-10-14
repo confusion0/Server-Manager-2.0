@@ -18,7 +18,7 @@ module.exports = {
     
     if(!robloxID) return message.channel.send('They/you haven\'t linked their/your roblox account yet! Use the `linkroblox` commmand to do so.')
 
-    const playerinfo = await noblox.getPlayerInfo(uData.robloxID)
+    const playerinfo = await noblox.getPlayerInfo(robloxID)
 
     message.channel.send(
       new MessageEmbed()
