@@ -7,5 +7,8 @@ module.exports = {
   run: async(client) => {
     client.gData = new Keyv(process.env.MONGOPATH, {namespace: 'guilds'})
     client.uData = new Keyv(process.env.MONGOPATH, {namespace: 'users'})
+
+    client.gData.on('error', err => console.error('Keyv connection error:', err));
+    client.uData.on('error', err => console.error('Keyv connection error:', err));
   }
 }
