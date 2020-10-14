@@ -64,6 +64,7 @@ module.exports = {
       examples.substring(0, examples.length-2)
       embed.addField('Examples', examples)
     }
+    if(command.cooldown) embed.addField('Cooldown: ', command.cooldown)
     message.channel.send(embed)
   }
 }

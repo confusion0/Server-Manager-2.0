@@ -8,6 +8,7 @@ module.exports = {
   args: "",
   desc: "Starts a custom embed constuctor/creator. (interactive)",
   example: [],
+  cooldown: undefined,
   run: async(client, message, args) => {
     const embed = new MessageEmbed()
     var timedout = false

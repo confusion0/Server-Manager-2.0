@@ -9,6 +9,7 @@ module.exports = {
   args: "<message",
   desc: "Messages all the guild owners that have the bot the specified message.",
   example: ['The Bot is updated.', 'Bot is back online'],
+  cooldown: undefined,
   run: async(client, message, args) => {
     const content = args.join(" ");
     const guildOwners = []
