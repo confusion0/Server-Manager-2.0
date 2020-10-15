@@ -21,10 +21,33 @@ module.exports = {
         if(!members[guild.id][formatted_date]) members[guild.id][formatted_date] = {}
 
         members[guild.id][formatted_date].date = formatted_date
-        members[guild.id][formatted_date].members = guild.memberCount
+        members[guild.id][formatted_date].totalmembers = guild.memberCount
+        members[guild.id][formatted_date].members = getMembersWithoutBots(guild)
+        members[guild.id][formatted_date].bots = getBots(guild)
       })
       console.log(members)
       client.gData.set('members', members)
     }
   }
+}
+
+function getMembersWithoutBots(guild){
+  var members = 0;
+  guild.members.cache.forEach(member => {
+    if(!isbot(member.user)) members++;
+  })
+  return members
+}
+
+function getBots(guild){
+  var members = 0;
+  guild.members.cache.forEach(member => {
+    if(isbot(member.user)) members++;
+  })
+  return members
+}
+
+function isbot(user){
+  if(user.bot) return true
+  return false
 }

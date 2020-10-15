@@ -35,24 +35,17 @@ module.exports = {
 
     if(!guildMembersData) return message.channel.send('I haven\'t gathered any data on this guild yet!')
 
+    var totalmembers = []
     var members = []
+    var bots = []
     var dates = []
 
     var data = Object.values(guildMembersData)
-    // if(args[0] == 'test'){
-    //   data = [
-    //     { date: '10/14/2020', members: 1002 },
-    //     { date: '10/15/2020', members: 2022 },
-    //     { date: '10/16/2020', members: 3455 },
-    //     { date: '10/17/2020', members: 4937 },
-    //     { date: '10/18/2020', members: 6535 },
-    //     { date: '10/19/2020', members: 9243 },
-    //     { date: '10/20/2020', members: 12312 }
-    //   ]
-    // }
 
     for(const item of data){
       members.push(item.members)
+      totalmembers.push(item.totalmembers)
+      bots.push(item.bots)
       dates.push(item.date)
     }
     
@@ -67,12 +60,28 @@ module.exports = {
         labels: dates,
         datasets: [
           {
-            label: 'Members',
+            label: 'Total Members',
             backgroundColor: '#7289d9',
             borderColor: '#7289d9',
             showLine: true,
             fill: false,
+            data: totalmembers,
+          },
+          {
+            label: 'Members',
+            backgroundColor: '#33cccc',
+            borderColor: '#33cccc',
+            showLine: true,
+            fill: false,
             data: members,
+          },
+          {
+            label: 'Bots',
+            backgroundColor: '#9966ff',
+            borderColor: '#9966ff',
+            showLine: true,
+            fill: false,
+            data: bots,
           },
         ],
       },
@@ -87,12 +96,6 @@ module.exports = {
     const image = await canvas.renderToBuffer(configuration)
 
     const attachment = new MessageAttachment(image)
-
-    // const embed = new MessageEmbed()
-    // .setTitle(":family: Members")
-    // .setDescription("Total: " + message.guild.memberCount)
-
-    // message.channel.send(embed)
 
     message.channel.send(attachment)
   }
