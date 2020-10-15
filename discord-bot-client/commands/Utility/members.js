@@ -21,7 +21,7 @@ const chartCallback = (ChartJS) => {
 module.exports = {
   name: 'members',
   aliases: [],
-  reqPerm: "MANAGE_GUILD",
+  reqPerm: "NONE",
   args: "",
   cooldown: 5000,
   desc: "Shows a chart with member joins data.",
