@@ -1,11 +1,9 @@
 const killMessages = [
-  '{killer} snapped {victim}\'s neck',
   '{killer} threw a rock at {victim} and killed them',
   '{victim} stepped on a landmine',
-  '{killer} shot {victim} and got away with it',
-  '{victim} was stabbed by {killer}',
-  'A atom bomb fell out of a B2 bomber and landed next to {victim} killing him/her instantly',
-  '{victim} died from drinking too much pee'
+  '{killer} shot {victim}',
+  '{killer} stabbed {victim}',
+  'A atom bomb fell out of a B2 bomber and landed next to {victim} killing him/her instantly'
 ]
 module.exports = {
   name: 'kill',
