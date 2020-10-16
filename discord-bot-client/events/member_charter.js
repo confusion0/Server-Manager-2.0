@@ -9,7 +9,7 @@ module.exports = {
 
     updateMembersChart()
 
-    setInterval(updateMembersChart, 3600000)
+    setInterval(updateMembersChart, 2100000)
 
     async function updateMembersChart(){
       var members = await client.gData.get('members') || {}
@@ -25,7 +25,6 @@ module.exports = {
         members[guild.id][formatted_date].members = getMembersWithoutBots(guild)
         members[guild.id][formatted_date].bots = getBots(guild)
       })
-      console.log(members)
       client.gData.set('members', members)
     }
   }
