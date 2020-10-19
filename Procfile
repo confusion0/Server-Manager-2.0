@@ -1,1 +1,1 @@
-worker: node discord-bot-client/index.js
+web: node discord-bot-client/index.js
