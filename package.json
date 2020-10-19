@@ -23,6 +23,7 @@
     "connect-mongo": "^3.2.0",
     "cookies": "^0.8.0",
     "create-react-app": "^3.4.1",
+    "dblapi.js": "^2.4.1",
     "discord.js": "^12.2.0",
     "emotion-theming": "^10.0.27",
     "express": "^4.17.1",

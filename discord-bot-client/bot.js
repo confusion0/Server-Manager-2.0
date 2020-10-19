@@ -17,6 +17,19 @@ client.shardId = "Not Sharded" // deafult
 client.invites = {}
 client.snipes = new Map()
 
+client.voted = async (userID, botlist) => {
+  if(!client.uData) return
+
+  var votes = (await client.uData.get(`${userID}:votes`)) + 1 || 1
+
+  await client.uData.set(`${userID}:votes`, votes)
+
+  const user = client.users.cache.get(userID)
+
+  if(user){
+    user.send(`Thank you for voting for ${client.user.username} on ${botlist}, I have added 1 vote to your votes! You currently have ${(await client.uData.get(`${userID}:votes`))}`)
+  }
+}
 
 const token = process.env.TOKEN;
 

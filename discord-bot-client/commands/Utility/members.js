@@ -29,18 +29,16 @@ module.exports = {
   run: async(client, message, args) => {
     const canvas = new CanvasRenderService(width, height, chartCallback)
 
-    const membersData = await client.gData.get('members')
+    const membersData = await client.gData.get(`${message.guild.id}:members`)
 
-    const guildMembersData = membersData[message.guild.id]
-
-    if(!guildMembersData) return message.channel.send('I haven\'t gathered any data on this guild yet!')
+    if(!membersData) return message.channel.send('I haven\'t gathered any data on this guild yet!')
 
     var totalmembers = []
     var members = []
     var bots = []
     var dates = []
 
-    var data = Object.values(guildMembersData)
+    var data = Object.values(membersData)
 
     for(const item of data){
       members.push(item.members)
