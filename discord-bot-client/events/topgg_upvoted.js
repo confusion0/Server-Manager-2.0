@@ -4,7 +4,7 @@ module.exports = {
   name: 'topgg_upvoted',
   run: async(client) => {
     const DBL = require("dblapi.js");
-    const dbl = new DBL(process.env.TOPGG_TOKEN, { webhookPort: process.env.TOPGG_WEBHOOK_PORT, webhookAuth: process.env.TOPGG_WEBHOOK_PASSWORD });
+    const dbl = new DBL(process.env.TOPGG_TOKEN, { webhookPort: process.env.PORT, webhookAuth: process.env.TOPGG_WEBHOOK_PASSWORD });
 
     dbl.on('error', (error) => console.log(`Top.gg Error: ${error}`) )
 
