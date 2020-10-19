@@ -26,7 +26,7 @@ module.exports = {
     });
     
     dbl.webhook.on('vote', vote => {
-      //if(vote.type == 'test') return console.log('Test POST Recived!')
+      if(vote.type == 'test') return console.log('Test POST Recived!')
       console.log(`User with ID ${vote.user} just voted!`);
       client.voted(vote.user, 'top.gg')
     });
