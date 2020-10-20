@@ -68,7 +68,7 @@ module.exports = {
       embed.setTitle('Bot Configuration Pannel')
       embed.setThumbnail(client.user.displayAvatarURL())
 
-      const prefix = await client.gData.get(`${message.guild.id}:prefix`)
+      const prefix = await client.gData.get(`${message.guild.id}:prefix`) || process.env.PREFIX
 
       for(config of configs){
         embed.addField(config.title, `**→ Current: **${(await config.current(client, message.guild))} \n\`\`\`${prefix}config ${config.name} ${config.args}\`\`\``)
