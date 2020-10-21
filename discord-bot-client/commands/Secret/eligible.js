@@ -21,7 +21,7 @@ module.exports = {
           if(guild.ownerID == ownerID) guilds.push(guild)
         }
         if(guilds.length < 1) {
-          return message.channel.send("You are ineligible to participate this giveaways that require you to add me. Use the `help` command to invite me.")
+          return message.channel.send("You/They are ineligible to participate this giveaways that require adding me. Use the `help` command to invite me.")
         }
         message.channel.send('Looks like you/they are eligible to enter giveaways that require adding me. Congrats!')
       })
