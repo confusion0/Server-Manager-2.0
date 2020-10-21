@@ -7,7 +7,7 @@ module.exports = {
   example: [],
   cooldown: 2000,
   run: async(client, message, args) => {
-    const user = message.mentions.users.first() || client.users.cache.get(args[0])
+    const user = message.mentions.users.first() || client.users.cache.get(args[0]) || message.author.id
     if(!user) return message.channel.send('No mention or ID detected')
     const ownerID = user.id
 
@@ -23,7 +23,7 @@ module.exports = {
         if(guilds.length < 1) {
           return message.channel.send("You are ineligible to participate this giveaways that require you to add me. Use the `help` command to invite me.")
         }
-        message.channel.send('Looks like you are eligible to enter giveaways that require you to add me. Congrats!')
+        message.channel.send('Looks like you/they are eligible to enter giveaways that require adding me. Congrats!')
       })
       .catch(console.error);
   }
