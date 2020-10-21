@@ -109,7 +109,7 @@ module.exports = {
           let errorMessage = await message.channel.send("The **color** you inputed is not valid")
           return messages.push(errorMessage)
         }
-        embed.fields.find(c => c.name === 'Color')['value'] = color;
+        embed.fields.find(c => c.name === 'Color')['value'] = color.toUpperCase();
       }
       if(step == 3){
         channel = (m.content).trim()
