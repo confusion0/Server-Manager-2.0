@@ -46,9 +46,33 @@ var configs = [
       }
       else if(args[0].toLowerCase() == 'none') {
         client.gData.delete(`${guild.id}:vRole`)
-        channel.send('Set verified role to none.')
+        channel.send('Set verified role to None.')
       }
       else return channel.send("Please enter the role as a mention or its id, or none to remove. Ex: @Example or 129038032234 or none")
+    }
+  },
+  { title: 'Audit Log Channel',
+    name: 'auditlog',
+    args: '[Channel ID | Channel Mention | None]',
+    current: async (client, guild) => {
+      if(!(await client.gData.get(`${guild.id}:auditlogchannel`))) return 'None'
+      return "<#" + await client.gData.get(`${guild.id}:auditlogchannel`) + ">"
+    },
+    run: async (client, message, args) => {
+      const { channel, guild } = message
+      if(!args[0]) return message.channel.send('Please enter the channel as a mention or its id, or none to remove. Ex: @Channel or 129038032234 or none')
+
+      let logChannel = message.mentions.channels.first() || guild.channels.cache.get(args[0])
+
+      if(logChannel){
+        client.gData.set(`${guild.id}:auditlogchannel`, logChannel.id)
+        channel.send(`Set audit log channel to ${logChannel}.`)
+      }
+      else if(args[0].toLowerCase() == 'none') {
+        client.gData.delete(`${guild.id}:auditlogchannel`)
+        channel.send('Set audit log channel to None.')
+      }
+      else return message.channel.send('Please enter the channel as a mention or its id, or none to remove. Ex: @Channel or 129038032234 or none')
     }
   }
 ]

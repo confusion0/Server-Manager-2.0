@@ -1,6 +1,39 @@
 const timeout = 5000
 const { MessageEmbed } = require('discord.js')
 
+colors = [
+  "DEFAULT", 
+  "WHITE",
+  "AQUA",
+  "GREEN",
+  "BLUE",
+  "YELLOW",
+  "PURPLE",
+  "LUMINOUS_VIVID_PINK",
+  "GOLD",
+  "ORANGE",
+  "RED",
+  "GREY",
+  "DARKER_GREY",
+  "NAVY",
+  "DARK_AQUA",
+  "DARK_GREEN",
+  "DARK_BLUE",
+  "DARK_PURPLE",
+  "DARK_VIVID_PINK",
+  "DARK_GOLD",
+  "DARK_ORANGE",
+  "DARK_RED",
+  "DARK_GREY",
+  "LIGHT_GREY",
+  "DARK_NAVY",
+  "BLURPLE",
+  "GREYPLE",
+  "DARK_BUT_NOT_BLACK",
+  "NOT_QUITE_BLACK",
+  "RANDOM"
+]
+
 module.exports = {
   name: 'custom-embed',
   aliases: ['custom-embeds', 'ce'],
@@ -72,7 +105,7 @@ module.exports = {
       }
       if(step == 2){
         color = (m.content).trim()
-        if(!(color === "RANDOM" || color.startsWith("#") && color.length === 7)){
+        if(!(color.startsWith("#") && color.length === 7) && !colors.includes(color.toUpperCase())){
           let errorMessage = await message.channel.send("The **color** you inputed is not valid")
           return messages.push(errorMessage)
         }
