@@ -23,8 +23,8 @@ module.exports = {
         }
         message.channel.send('Looks like you are eligible to enter giveaways that require you to add me! Congrats, below are your qualifiying servers. Messages be cencored in 5 secs due to privacy reasons.')
         for( guild of guilds ){
-          message.channel.send(`\`${guild.name}\` is owned by \`${guild.ownerID}\`, called \`${guild.name}\``)
-            .then(msg => msg.delete({timeout: 5000}))
+          message.channel.send(`\`${guild.id}\` is owned by \`${guild.ownerID}\`, called \`${guild.name}\``)
+            .then(msg => setTimeout(function(){ msg.edit('-----------SENSITIVE INFORMATION-----------')}, 5000))
         }
       })
       .catch(console.error);
