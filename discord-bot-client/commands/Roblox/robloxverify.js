@@ -13,7 +13,7 @@ module.exports = {
   example: [],
   run: async(client, message, args) => {
     const vRoleID = await client.gData.get(`${message.guild.id}:vRole`)
-    if(!vRoleID) return message.channel.send('This guild hasn\'t set it verified role yet. Use the `config` command to do so.')
+    if(!vRoleID) return message.channel.send('This guild hasn\'t set its verified role yet. Use the `config` command to do so.')
 
     const robloxID = await client.uData.get(`${message.author.id}:robloxID`)
     if(!robloxID) return message.channel.send('You haven\'t linked your roblox account yet! Use the `linkroblox` commmand to do so.')
