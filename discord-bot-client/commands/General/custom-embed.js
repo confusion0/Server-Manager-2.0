@@ -39,7 +39,7 @@ module.exports = {
   aliases: ['custom-embeds', 'ce'],
   reqPerm: "MANAGE_GUILD",
   args: "",
-  cooldown: 2000,
+  cooldown: 3000,
   desc: "Starts a custom embed constuctor/creator. (interactive)",
   example: [],
   run: async(client, message, args) => {

@@ -1,4 +1,5 @@
 const ms = require('ms')
+const { MessageEmbed } = require('discord.js')
 
 module.exports = {
   name: 'uptime',
@@ -10,7 +11,7 @@ module.exports = {
   example: [],
   module: "Util",
   run: async(client, message, args) => {
-    const embed = new Discord.MessageEmbed()
+    const embed = new MessageEmbed()
     .setTitle('Uptime')
     .setColor('GREEN')
     .setDescription(ms(client.uptime, {long:true}))
