@@ -24,6 +24,8 @@ module.exports = {
         .setColor('NAVY')
         .attachFiles([`${__dirname}/captchas/${captcha}.png`])
         .setImage(`attachment://${captcha}.png`)
+        .setTimestamp()
+        .setFooter(message.author.tag)
       )
 
       const filter = m => m.author.id === message.author.id
@@ -38,6 +40,8 @@ module.exports = {
         .setColor('RED')
         .attachFiles([`${__dirname}/captchas/${captcha}.png`])
         .setImage(`attachment://${captcha}.png`)
+        .setTimestamp()
+        .setFooter(message.author.tag)
         )
       } else {
         collected.first().delete()
@@ -51,6 +55,8 @@ module.exports = {
           .setColor('GREEN')
           .attachFiles([`${__dirname}/captchas/${captcha}.png`])
           .setImage(`attachment://${captcha}.png`)
+          .setTimestamp()
+          .setFooter(message.author.tag)
           )
         }
         else {
@@ -62,6 +68,8 @@ module.exports = {
           .setColor('RED')
           .attachFiles([`${__dirname}/captchas/${captcha}.png`])
           .setImage(`attachment://${captcha}.png`)
+          .setTimestamp()
+          .setFooter(message.author.tag)
           )
         }
       }
