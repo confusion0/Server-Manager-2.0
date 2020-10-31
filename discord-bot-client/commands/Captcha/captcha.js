@@ -28,7 +28,7 @@ module.exports = {
 
       const filter = m => m.author.id === message.author.id
 
-      let collected = await message.channel.awaitMessages(filter, { max: 1, time: 1000 }) 
+      let collected = await message.channel.awaitMessages(filter, { max: 1, time: 60000 }) 
 
       if(!collected || !collected.first()){
         exitCaptcha = true
