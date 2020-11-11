@@ -15,6 +15,22 @@ const keyPermissions = [
   'MANAGE_EMOJIS',
 ]
 
+var flagsDictionary = {
+    DISCORD_EMPLOYEE: '<:discord_staff:774836263081607238> Discord Employee',
+    PARTNERED_SERVER_OWNER: '<:discord_partner:774836262766641214> Discord Partner',
+    BUGHUNTER_LEVEL_1: '<:bug_hunter_lvl1:774836262942670908> Bug Hunter (Level 1)',
+    BUGHUNTER_LEVEL_2: '<:bug_hunter_lvl2:774836263156449280> Bug Hunter (Level 2)',
+    HYPESQUAD_EVENTS: '<:hypesquad_events:774836262762053653> HypeSquad Events',
+    HOUSE_BRAVERY: '<:bravery:774836262996934656> House of Bravery',
+    HOUSE_BRILLIANCE: '<:brilliance:774836262762446859> House of Brilliance',
+    HOUSE_BALANCE: '<:balance:774836262774374401> House of Balance',
+    EARLY_SUPPORTER: '<:early_supporter:774836262439092255> Early Supporter',
+    TEAM_USER: 'Team User',
+    SYSTEM: 'System',
+    VERIFIED_BOT: 'Verified Bot',
+    EARLY_VERIFIED_BOT_DEVELOPER: '<:Dev:765259202464579606> Early Verified Bot Developer',
+};
+
 module.exports = {
   name: 'whois',
   aliases: [],
@@ -58,6 +74,20 @@ module.exports = {
     if(userStatus === "dnd") userStatus = "⛔ Do Not Disturb"
     if(userStatus === "online") userStatus = ":green_circle: Online"
 
+    let flags = (await user.fetchFlags()).serialize()
+    flags = Object.entries(flags)
+    let flagsString = ''
+    let flagsAmount = 0
+
+    for(flag of flags){
+      if(flag[1] === true) {
+        flagsString += (flagsDictionary[flag[0]] + '  ')
+        flagsAmount += 1
+      }
+    }
+
+    if(flagsString < 1) flagsString = 'No Badges'
+
     const embed = new MessageEmbed()
     .setColor("RANDOM")
     .setDescription(rMember.user)
@@ -66,10 +96,11 @@ module.exports = {
     .addField(`Registered: `, `${createdAt} (${createdAgo} ago)`, true)
     .addField(`Joined: `, `${joinedAt} (${joinedAgo} ago)`, true)
     .addField(`Status: `, userStatus)
+    .addField(`Badges[${flagsAmount}]: `, flagsString)
     .addField(`Roles[${roleAmount}]: `, roles)
+    .addField('Key Permissions', permissionString)
     .setFooter(`ID: ${id}`)
     .setTimestamp()
-    if(permissionString.length > 0) embed.addField('Key Permissions', permissionString)
     message.channel.send(embed)
   }
 }
