@@ -20,7 +20,7 @@ module.exports = {
 
       const msg = await message.channel.send(new MessageEmbed()
         .setTitle('Discord Captcha')
-        .setDescription('You have 60 seconds to solve the captcha and enter it below.')
+        .setDescription('You have 60 seconds to solve the captcha and enter it below. \nEnter **cancel** to exit captcha')
         .setColor('NAVY')
         .attachFiles([`${__dirname}/captchas/${captcha}.png`])
         .setImage(`attachment://${captcha}.png`)
@@ -45,7 +45,19 @@ module.exports = {
         )
       } else {
         collected.first().delete()
-        if(collected.first().content == captcha) {
+        if(collected.first().content.toLowerCase() == 'cancel'){
+          exitCaptcha = true
+          msg.edit(new MessageEmbed()
+          .setTitle('Discord Captcha')
+          .setDescription('You cancelled the captcha, captcha failed.')
+          .setColor('RED')
+          .attachFiles([`${__dirname}/captchas/${captcha}.png`])
+          .setImage(`attachment://${captcha}.png`)
+          .setTimestamp()
+          .setFooter(message.author.tag)
+          )
+        }
+        else if(collected.first().content == captcha) {
           isRobot = false
           msg.edit(new MessageEmbed()
           .setTitle('Discord Captcha')
