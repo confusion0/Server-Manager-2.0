@@ -1,13 +1,15 @@
 const { MessageEmbed } = require('discord.js')
 const ms = require('ms')
 
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
 const timeout = 200000
 const max_tries = 3
 
 module.exports = {
   name: 'giveaway',
   aliases: ['gg'],
-  reqPerm: "BOT_ADMIN",//["MANAGE_GUILD"],
+  reqPerm: "MANAGE_GUILD",
   args: "",
   cooldown: 3000,
   desc: "Starts a giveaway constructor (Not Finished) (interactive)",
@@ -159,6 +161,10 @@ module.exports = {
     message.channel.send(`Length: ${giveaway.length}, Prize: '${giveaway.prize}', Channel: ${giveaway.channel}`)
     message.channel.send(`timedout: ${status.timedout}, moveon: ${status.moveon}, cancelled: ${status.cancelled}, tries_left: ${status.tries_left}`)
 
-    
+    // var end_time =  new Date() + giveaway.length
+
+    // while(new Date() < end_time){
+    //   await sleep()
+    // }
   }
 }
