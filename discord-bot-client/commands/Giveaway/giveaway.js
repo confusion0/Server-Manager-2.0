@@ -6,6 +6,8 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 const timeout = 200000
 const max_tries = 3
 
+const reaction = '🎉'
+
 module.exports = {
   name: 'giveaway',
   aliases: ['gg'],
@@ -18,7 +20,7 @@ module.exports = {
   run: async(client, message, args) => {
     const filter = response => response.author == message.author
 
-    var giveaway = {}
+    var giveaway = { host: message.author, winners: 1}
     var status = { timedout: false, moveon: false, cancelled: false, tries_left: 0 }
 
     //Getting the giveaway length
@@ -37,7 +39,7 @@ module.exports = {
         const response = collected.first()
         if(response.content.toLowerCase() != 'cancel'){
           const converted = ms(response.content)
-          if(!isNaN(converted)){
+          if(isNaN(response.content) && !isNaN(converted)){
             giveaway.length = converted
             status.moveon = true
           } else {
@@ -158,13 +160,51 @@ module.exports = {
       .setColor('RED')
     )
 
-    message.channel.send(`Length: ${giveaway.length}, Prize: '${giveaway.prize}', Channel: ${giveaway.channel}`)
-    message.channel.send(`timedout: ${status.timedout}, moveon: ${status.moveon}, cancelled: ${status.cancelled}, tries_left: ${status.tries_left}`)
+    var end_time =  new Date().getTime() + giveaway.length
+    giveaway.end_time = end_time
 
-    // var end_time =  new Date() + giveaway.length
+    const msg = await message.channel.send(new MessageEmbed().setTitle('Generating the giveaway embed... please wait'))
+    msg.react(reaction)
 
-    // while(new Date() < end_time){
-    //   await sleep()
-    // }
+    while(new Date().getTime() < end_time){
+      var time_left = Math.floor((end_time - new Date().getTime())/1000) //In seconds
+      var next_edit = Math.floor(Math.sqrt(time_left))
+      if(next_edit < 1) next_edit = 1
+      if(time_left <= 10) next_edit = 1
+      
+      if(time_left > 5) msg.edit(generateGiveawayEmbed(giveaway, ms(time_left*1000, {long: true}), ))
+      else if(time_left > 0) msg.edit(generateGiveawayEmbed(giveaway, ms(time_left*1000, {long: true}), true))
+      else msg.edit(generateGiveawayEmbed(giveaway, ms(time_left*1000, {long: true}), true, true))
+
+      await sleep(next_edit*1000)
+    }
+
+    var users = msg.reactions.cache.get(reaction).users.cache
+    users.delete(client.user.id)
+
+    var winner = users.random()
+
+    if(!winner) return message.channel.send('No one joined the giveaway!')
+    message.channel.send(`${winner} won the giveaway`)
   }
+}
+
+function generateGiveawayEmbed(giveawayObject, time_left_String, last_chance_to_join, ended){
+  const prize = giveawayObject.prize
+  const host = giveawayObject.host
+  const winners = giveawayObject.winners
+  const end_time = giveawayObject.end_time
+
+  const embed = new MessageEmbed()
+    .setTitle(prize)
+    .setDescription(`React with ${reaction} to enter \nTime remaining: ${time_left_String} \nHosted by: ${host}`)
+    .setFooter(`${winners} winners`)
+    .setColor('BLUE')
+    .setTimestamp()
+
+  if(last_chance_to_join) embed.setDescription(`**Last Chance to Enter!** \nReact with ${reaction} to enter \nTime remaining: ${time_left_String} \nHosted by: ${host}`).setColor('RED')
+
+  if(ended) embed.setDescription(`Giveaway Ended \nHosted by: ${host}`).setColor('GRAY')
+
+  return embed
 }
