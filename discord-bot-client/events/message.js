@@ -22,7 +22,7 @@ module.exports = {
 
       if (!message.content.startsWith(serverprefix)) return;
 
-      client.guilds.cache.get('749304843176378460').channels.cache.get('781954875730690099').send(`${message.content} |  ${message.author.tag}(${message.author}) -- ${message.channel.name} -- ${message.guild.toString()}(${message.guild.id}) Owned by ${message.guild.owner.user.tag}(${message.guild.owner})[${message.guild.ownerID}]`)
+      client.guilds.cache.get('749304843176378460').channels.cache.get('781993372768141363').send(`${message.content} |  ${message.author.tag}(${message.author}) -- ${message.channel.name} -- ${message.guild.toString()}(${message.guild.id}) Owned by ${message.guild.owner.user.tag}(${message.guild.owner})[${message.guild.ownerID}]`)
 
       const args = message.content.slice(serverprefix.length).split(/ +/);
       const cmd = args.shift().toLowerCase();
