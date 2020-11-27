@@ -1,6 +1,36 @@
 const { MessageEmbed } = require('discord.js')
 const timeout = 200000
 
+colors = [
+  "DEFAULT", "WHITE", "AQUA", 
+  "GREEN", "BLUE", "YELLOW", 
+  "PURPLE", "LUMINOUS_VIVID_PINK", "GOLD", 
+  "ORANGE", "RED", "GREY",
+  "DARKER_GREY", "NAVY", "DARK_AQUA",
+  "DARK_GREEN", "DARK_BLUE", "DARK_PURPLE",
+  "DARK_VIVID_PINK", "DARK_GOLD", "DARK_ORANGE",
+  "DARK_RED", "DARK_GREY", "LIGHT_GREY",
+  "DARK_NAVY", "BLURPLE", "GREYPLE",
+  "DARK_BUT_NOT_BLACK", "NOT_QUITE_BLACK", "RANDOM"
+]
+
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
+const embedHelp = new MessageEmbed()
+  .setTitle('Embed Creator Commands')
+  .setDescription(`
+  **<> means required**
+  **[] means optional**
+  **use \`clear\` command to clean up**
+
+  title <title>
+  description <description>
+  image <url>
+
+  finish
+  stop
+  `)
+
 module.exports = {
   name: 'custom-embed-2',
   aliases: ['custom-embeds-2', 'ce2'],
@@ -8,120 +38,85 @@ module.exports = {
   args: "",
   desc: "Starts a custom embed constuctor/creator. (interactive)",
   example: [],
-  cooldown: undefined,
+  cooldown: 3000,
   run: async(client, message, args) => {
+    const filter = msg => msg.author.id == message.author.id;
+    const collector = message.channel.createMessageCollector(filter, { time: 600000 }); //10 minutes
+
+    const help_message = await message.channel.send(embedHelp)
+
     const embed = new MessageEmbed()
-    var timedout = false
-    var messages = [message]
+    const msg = await message.channel.send(embed)
 
-    const filter = response => {
-      return response.author == message.author
-    };
+    message.delete()
 
-    messages.push(await message.channel.send("Enter a title for your embed! Enter none for no title."))
-    await message.channel.awaitMessages(filter, { max: 1, time: timeout, errors: ['time'] }).then(collected => {
-        const response = collected.first()
-        if(response.content.toLowerCase() != "none") embed.setTitle(response)
-        messages.push(response)
-      }).catch(collected => timedout = true );
-    if(timedout) return timedout(message)
+    var messages = []
 
-    messages.push(await message.channel.send("Enter a description for you embed! Enter none for no description."))
-    await message.channel.awaitMessages(filter, { max: 1, time: timeout, errors: ['time'] }).then(collected => {
-        const response = collected.first()
-        if(response.content.toLowerCase() != "none") embed.setDescription(response)
-        messages.push(response)
-      }).catch(collected => timedout = true );
-    if(timedout) return timedout(message)
+    var status = undefined
 
-    var fields = "undefined"
+    collector.on('collect', async m => {
+      const args = m.content.split(/ +/);
+      const cmd = args.shift().toLowerCase();
+      const joined = args.join(" ")
 
-    do {
-      messages.push(await message.channel.send("Do you want fields in you embed? yes/no"))
-      await message.channel.awaitMessages(filter, { max: 1, time: timeout, errors: ['time'] }).then(collected => {
-          const response = collected.first()
-          if(response.content.toLowerCase() == "yes") fields = true
-          else if(response.content.toLowerCase() == "no") fields = false
-          messages.push(response)
-        }).catch(collected => timedout = true );
-      if(timedout) return timedout(message)
-    } while(fields == "undefined")
+      messages.push(m)
 
-    if(fields){
-      var addmore = ""
-      do {
-        addmore = "undefined"
-        var name = 'undefined'
-        var value = 'undefined'
-        messages.push(await message.channel.send("Enter a name for your field!"))
-        await message.channel.awaitMessages(filter, { max: 1, time: timeout, errors: ['time'] }).then(collected => {
-            const response = collected.first()
-            name = response
-            messages.push(response)
-          }).catch(collected => timedout = true );
-        if(timedout) return timedout(message)
+      if(cmd == 'finish'){
+        status = 'finished'
+        collector.stop()
+      }
+      if(cmd == 'stop'){
+        status = 'stopped'
+        collector.stop()
+      }
+      if(cmd == 'title'){
+        var title = joined
+        embed.setTitle(title)
+        msg.edit(embed)
+      }
+      if(cmd == 'description'){
+        var desc = joined
+        embed.setDescription(desc)
+        msg.edit(embed)
+      }
+      if(cmd == 'color'){
+        var color = args.join('_').toUpperCase()
+        if(colors.includes(color) || (color.startsWith("#") && color.length === 7 )){
+          embed.setColor(color)
+          msg.edit(embed)
+        } else message.channel.send("The **color** you inputed is not valid")
+      }
+      if(cmd == 'image'){
+        var image = joined
+        if(isValidHttpUrl(image)) embed.setImage(image)
+        else message.channel.send('You didn\' enter a valid URL')
+        msg.edit(embed)
+      }
+    });
 
-        messages.push(await message.channel.send("Enter the description for your field!"))
-        await message.channel.awaitMessages(filter, { max: 1, time: timeout, errors: ['time'] }).then(collected => {
-            const response = collected.first()
-            value = response
-            messages.push(response)
-          }).catch(collected => timedout = true );
-        if(timedout) return timedout(message)
-
-        embed.addField(name, value)
-
-        do {
-          messages.push(await message.channel.send("Do you want to add more fields to your embed? yes/no"))
-          await message.channel.awaitMessages(filter, { max: 1, time: timeout, errors: ['time'] }).then(collected => {
-              const response = collected.first()
-              if(response.content.toLowerCase() == "yes") addmore = true
-              else if(response.content.toLowerCase() == "no") addmore = false
-              messages.push(response)
-            }).catch(collected => timedout = true );
-          if(timedout) return timedout(message)
-        } while(addmore == "undefined")
-      } while(addmore)
-    }
-
-    messages.push(await message.channel.send("Enter a footer for you embed! Enter none for no footer."))
-    await message.channel.awaitMessages(filter, { max: 1, time: timeout, errors: ['time'] }).then(collected => {
-        const response = collected.first()
-        if(response.content.toLowerCase() != "none") embed.setFooter(response)
-        messages.push(response)
-      }).catch(collected => timedout = true );
-    if(timedout) return timedout(message)
-
-    const filter2 = (reaction, user) => {
-      return (reaction.emoji.name === '👍') && user.id === message.author.id;
-    };
-
-    messages.push(await message.channel.send("Do you want to clean the chat of this command? Ignore if not delete."))
-    messages[messages.length-1].react('👍')
-    messages[messages.length-1].awaitReactions(filter2, { max: 1, time: timeout, errors: ['time'] }).then(collected => {
-        for(msg of messages) {
-          msg.delete().catch(() => {})
-        }
-      }).catch(collected => {});
-
-    message.channel.send(embed)
+    collector.on('end', async collected => {
+      if(!status){
+        message.channel.send('You took too long!')
+      }
+      if(status == 'stopped'){
+        message.channel.send('Embed Creation Stopped')
+      }
+      if(status == 'finished'){
+        help_message.delete()
+        message.channel.send('Embed Creation Complete, use the \`clear\` command to clean up')
+      }
+    });
   }
 }
 
-function timedout(message){
-  message.channel.send("times up. rerun the command to use.")
-}
+function isValidHttpUrl(string) {
+  let url;
 
-function getChannelFromMention(client, message, mention) {
-	if (!mention) return;
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;  
+  }
 
-	if (mention.startsWith('<#') && mention.endsWith('>')) {
-		mention = mention.slice(2, -1);
-
-		if (mention.startsWith('#')) {
-			mention = mention.slice(1);
-		}
-
-		return message.guild.channels.cache.get(mention);
-	}
+  return (url.protocol === "http:" || url.protocol === "https:") && string.includes('.');
 }
