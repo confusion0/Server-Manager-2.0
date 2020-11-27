@@ -1,10 +1,3 @@
-const emojis = [
-  ["$green_load$", client.emojis.cache.get("781994480567451668")],
-  ["$yellow_load$", client.emojis.cache.get("781994480638754837")],
-  ["$red_load$", client.emojis.cache.get("781994480676765696")],
-  ["$grey_load$", client.emojis.cache.get("781994480265592904")]
-]
-
 module.exports = {
   name: 'edit',
   aliases: [],
@@ -15,6 +8,13 @@ module.exports = {
   cooldown: undefined,
   run: async(client, message, args) => { 
     if(!args[1]) return message.channel.send('Invalid Arguments!')
+
+    const emojis = [
+      ["$green_load$", client.emojis.cache.get("781994480567451668")],
+      ["$yellow_load$", client.emojis.cache.get("781994480638754837")],
+      ["$red_load$", client.emojis.cache.get("781994480676765696")],
+      ["$grey_load$", client.emojis.cache.get("781994480265592904")]
+    ]
 
     var messageID = args.shift()
     var text = args.join()
