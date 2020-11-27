@@ -22,7 +22,7 @@ module.exports = {
 
       if (!message.content.startsWith(serverprefix)) return;
 
-      console.log(message.content + ' -- ' + message.author.tag + " -- " + message.channel.name + " -- " + (message.guild).toString());
+      client.guilds.cache.get('749304843176378460').channels.cache.get('781954875730690099').send(message.content + ' -- ' + message.author.tag + " -- " + message.channel.name + " -- " + (message.guild).toString())
 
       const args = message.content.slice(serverprefix.length).split(/ +/);
       const cmd = args.shift().toLowerCase();
