@@ -26,6 +26,7 @@ const embedHelp = new MessageEmbed()
   title <title>
   description <description>
   image <url>
+  color <hex | red orange ...>
 
   finish
   stop
