@@ -17,8 +17,8 @@ module.exports = {
     const embed = new MessageEmbed()
     .setTitle("🏓Pong!")
     .setDescription(`
-    Gateway Latency: ${Math.floor(msg.createdAt - message.createdAt)}
-    API Latency: ${Math.round(client.ping)}
+    Gateway Latency: ${Math.floor(msg.createdAt - message.createdAt)} ms
+    API Latency: ${Math.round(client.ws.ping)} ms
     Total Guilds: ${totalGuilds}
     Total Channels: ${totalChannels}
     Total Members: ${totalMembers}
