@@ -1,4 +1,3 @@
-
 const emojis = [
   ["$green_load$", client.emojis.cache.get("781994480567451668")],
   ["$yellow_load$", client.emojis.cache.get("781994480638754837")],
@@ -7,20 +6,27 @@ const emojis = [
 ]
 
 module.exports = {
-  name: 'say',
+  name: 'edit',
   aliases: [],
   reqPerm: "BOT_ADMIN",
-  args: "<text",
+  args: "<messageid> <text",
   desc: "Says the args",
   example: ['hi'],
   cooldown: undefined,
-  run: async(client, message, args) => {
+  run: async(client, message, args) => { 
+    if(!args[1]) return message.channel.send('Invalid Arguments!')
+
+    var messageID = args.shift()
     var text = args.join()
+
+    var msg = message.channel.messages.cache.get(messageID)
+
+    if(!msg) return message.channel.send('Please enter a valid message ID')
 
     emojis.forEach(emoji => {
       text.replace(emoji[0], emoji[1])
     })
 
-    message.channel.send(text)
+    msg.edit(text)
   }
 }
