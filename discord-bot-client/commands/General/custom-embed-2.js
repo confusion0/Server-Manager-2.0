@@ -34,7 +34,7 @@ const embedHelp = new MessageEmbed()
 module.exports = {
   name: 'custom-embed-2',
   aliases: ['custom-embeds-2', 'ce2'],
-  reqPerm: "BOT_ADMIN", //["MANAGE_GUILD"],
+  reqPerm: "MANAGE_GUILD",
   args: "",
   desc: "Starts a custom embed constuctor/creator. (interactive)",
   example: [],
