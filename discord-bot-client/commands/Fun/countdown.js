@@ -77,27 +77,27 @@ module.exports = {
       } while (!countdown.channel)
     }
 
+    var end_time =  new Date().getTime() + countdown.length
+
+    countdown.message = await message.channel.send(new MessageEmbed().setTitle('Generating the countdown embed... please wait'))
+
+    while(new Date().getTime() < end_time){
+      var time_left = Math.floor((end_time - new Date().getTime())/1000) //In seconds
+      var next_edit = Math.floor(Math.sqrt(time_left))
+      if(next_edit < 1) next_edit = 1
+      if(time_left <= 10) next_edit = 1
+      
+      const embed = new MessageEmbed()
+      .setTitle(countdown.title)
+      .setDescription(formatTime(time_left*1000))
+      countdown.message.edit(embed)
+
+      await sleep(next_edit*1000)
+    }
+
     const embed = new MessageEmbed()
     .setTitle(countdown.title)
-    .setDescription(formatTime(countdown.length))
-    countdown.message = await countdown.channel.send(embed)
-
-    countdown.interval = setInterval(function(){
-      if(countdown.message.deleted) clearInterval(countdown.interval) 
-      countdown.length -= 1000
-      if(countdown.length <= 0){
-        countdown.ended = true
-        clearInterval(countdown.interval) 
-      }
-      embed.setDescription(formatTime(countdown.length))
-      countdown.message.edit(embed)
-    }, 1000)
-
-    await sleep(countdown.length)
-
-    if(!countdown.ended) return
-
-    embed.setDescription('Countdown Finished')
+    .setDescription('Countdown Finished')
     countdown.message.edit(embed)
   }
 }
