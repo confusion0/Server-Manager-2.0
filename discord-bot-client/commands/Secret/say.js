@@ -9,16 +9,9 @@ module.exports = {
   run: async(client, message, args) => {
     var text = args.join(' ')
 
-    const emojis = [
-      ["&green_load&", client.emojis.cache.get("781994480567451668")],
-      ["&yellow_load&", client.emojis.cache.get("781994480638754837")],
-      ["&red_load&", client.emojis.cache.get("781994480676765696")],
-      ["&grey_load&", 'TACOS'],//client.emojis.cache.get("781994480265592904")]
-    ]
-
-    emojis.forEach(emoji => {
-      console.log(text, emoji[0], emoji[1])
-      text.replace(emoji[0], emoji[1])
+    client.emojilist.forEach(emoji => {
+      console.log(client.emojis.cache.get(emoji.id))
+      text = text.replace(emoji.name, client.emojis.cache.get(emoji.id))
     })
 
     message.channel.send(text)

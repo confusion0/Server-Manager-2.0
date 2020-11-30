@@ -3,6 +3,8 @@ const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 module.exports = {
   name: 'topgg_upvoted',
   run: async(client) => {
+    await sleep(1000)
+
     const DBL = require("dblapi.js");
     const dbl = new DBL(process.env.TOPGG_TOKEN, { webhookPort: process.env.PORT, webhookAuth: process.env.TOPGG_WEBHOOK_PASSWORD });
 

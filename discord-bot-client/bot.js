@@ -9,6 +9,13 @@ client.ADMINS = [
   {"lastKnownTag": "Commander786#5848", "ID": "691663740512501811"}
 ]
 
+client.emojilist = [
+  { name: "green_load", id: "781994480567451668" },
+  { name: "yellow_load", id: "781994480638754837"},
+  { name: "red_load", id: "781994480676765696"},
+  { name: "grey_load", id: "781994480265592904"}
+]
+
 client.commandFiles = walkSync(path.join(__dirname, '/commands'))
 client.eventFiles = walkSync(path.join(__dirname, '/events'))
 client.featureFiles = walkSync(path.join(__dirname, '/features'))

@@ -9,13 +9,6 @@ module.exports = {
   run: async(client, message, args) => { 
     if(!args[1]) return message.channel.send('Invalid Arguments!')
 
-    const emojis = [
-      ["$green_load$", client.emojis.cache.get("781994480567451668")],
-      ["$yellow_load$", client.emojis.cache.get("781994480638754837")],
-      ["$red_load$", client.emojis.cache.get("781994480676765696")],
-      ["$grey_load$", client.emojis.cache.get("781994480265592904")]
-    ]
-
     var messageID = args.shift()
     var text = args.join(' ')
 
@@ -23,8 +16,9 @@ module.exports = {
 
     if(!msg) return message.channel.send('Please enter a valid message ID')
 
-    emojis.forEach(emoji => {
-      text.replace(emoji[0], emoji[1])
+    client.emojilist.forEach(emoji => {
+      console.log(client.emojis.cache.get(emoji.id))
+      text = text.replace(emoji.name, client.emojis.cache.get(emoji.id))
     })
 
     msg.edit(text)
