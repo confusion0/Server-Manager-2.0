@@ -17,7 +17,6 @@ module.exports = {
     if(!msg) return message.channel.send('Please enter a valid message ID')
 
     client.emojilist.forEach(emoji => {
-      console.log(client.emojis.cache.get(emoji.id))
       text = text.replace(emoji.name, client.emojis.cache.get(emoji.id))
     })
 

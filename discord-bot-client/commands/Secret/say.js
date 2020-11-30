@@ -10,7 +10,6 @@ module.exports = {
     var text = args.join(' ')
 
     client.emojilist.forEach(emoji => {
-      console.log(client.emojis.cache.get(emoji.id))
       text = text.replace(emoji.name, client.emojis.cache.get(emoji.id))
     })
 
