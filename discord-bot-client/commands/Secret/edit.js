@@ -17,7 +17,7 @@ module.exports = {
     ]
 
     var messageID = args.shift()
-    var text = args.join()
+    var text = args.join(' ')
 
     var msg = message.channel.messages.cache.get(messageID)
 

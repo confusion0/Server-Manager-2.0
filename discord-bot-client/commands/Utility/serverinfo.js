@@ -21,6 +21,7 @@ module.exports = {
       .addFields(
         { name: 'Region', value: guild.region, },
         { name: 'Owner', value: `${guild.owner.user.tag} (${guild.owner})`, },
+        { name: 'Server Boost Status', value: `${guild.premiumSubscriptionCount} Boosts, Tier ${guild.premiumTier}`},
         { name: 'Members', value: `${guild.memberCount} All Members \n${getMembersWithoutBots(guild)} Humans \n${getBots(guild)} Bots`, inline: true, },
         { name: 'Channels', value: `${guildChannelAmounts.total} Total \n${guildChannelAmounts.categories} Categories \n${guildChannelAmounts.text} Text, ${guildChannelAmounts.voice} Voice`, inline: true, },
         { name: `Roles[${guild.roles.cache.size-1}]`, value: `${rolesToString(guild, { characterLimit: 700 })}`, },
