@@ -10,10 +10,10 @@ client.ADMINS = [
 ]
 
 client.emojilist = [
-  { name: "green_load", id: "781994480567451668" },
-  { name: "yellow_load", id: "781994480638754837"},
-  { name: "red_load", id: "781994480676765696"},
-  { name: "grey_load", id: "781994480265592904"}
+  { name: "green_load", id: "783056468496089098" },
+  { name: "yellow_load", id: "783056524057903144"},
+  { name: "red_load", id: "783056506299088928"},
+  { name: "grey_load", id: "783056491938316318"}
 ]
 
 client.commandFiles = walkSync(path.join(__dirname, '/commands'))
