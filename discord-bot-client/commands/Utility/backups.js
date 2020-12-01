@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js')
 module.exports = {
   name: 'backups',
   aliases: [],
-  reqPerm: "BOT_ADMIN",//"ADMINISTRATOR",
+  reqPerm: "ADMINISTRATOR",
   args: "<backup | load> <options>",
   cooldown: 0, //cooldowns: {user: {normal: 0, reduced: 0}, server: {normal: 0, reduced: 0}}
   desc: "Everything with backups",
@@ -27,8 +27,6 @@ module.exports = {
     )
 
     const option = args.shift().toLowerCase()
-
-    if(!guild.member(client.user).hasPermission('ADMINISTRATOR')) return message.channel.send('This command requires the bot to have Administrator permissions. Re run this command when the bot is given them.')
 
     var backups = await client.gData.get(`${guild.id}:backups`) || []
     
