@@ -13,11 +13,13 @@ module.exports = {
     const { guild } = message
     const embed = new MessageEmbed()
 
+    const option = args.shift().toLowerCase()
+
     if(!guild.member(client.user).hasPermission('ADMINISTRATOR')) return message.channel.send('This command requires the bot to have Administrator permissions. Re run this command when the bot is given them.')
 
-    var backups = await client.gData.get(`${message.guild.id}:backups`) || []
+    var backups = await client.gData.get(`${guild.id}:backups`) || []
     
-    if(args[0] == 'create'){
+    if(option == 'create'){
       if(backups.length >= 5) return message.channel.send('You can have maximim of 5 backups, please delete one to make a new one.')
 
       let date_ob = new Date();
@@ -41,11 +43,11 @@ module.exports = {
       }
       backups.push(data)
 
-      await client.gData.set(`${message.guild.id}:backups`, backups)
+      await client.gData.set(`${guild.id}:backups`, backups)
 
       return message.channel.send('Backup Creation Successful!')
     }
-    if(args[0] == 'list'){
+    if(option == 'list'){
       if(backups.length == 0) return message.channel.send('This server has no backups yet.')
 
       for(backup of backups){
@@ -53,29 +55,44 @@ module.exports = {
       }
       return message.channel.send(embed)
     }
-    if(args[0] == 'clear'){
-      await client.gData.set(`${message.guild.id}:backups`, undefined)
-      message.channel.send('Backups were cleared.')
+    if(option == 'clear'){
+      await client.gData.set(`${guild.id}:backups`, undefined)
+      return message.channel.send('Backups were cleared.')
     }
-    if(args[0] == 'delete'){
-      if(!args[1]) return message.channel.send('You didn\'t provide a backup ID')
-      if(!client.gData.get(`${message.guild.id}:backups`).find(element => element.id == args[1])) return message.channel.send('You didn\'t enter a valid backup ID')
+    if(option == 'delete'){
+      if(!args[0]) return message.channel.send('You didn\'t provide a backup ID')
+      const backup = backups.find(backup => backup.backupID == args[0])
+      if(!backup) return message.channel.send('You didn\'t enter a valid backup ID')
+      backups.splice(backups.indexOf(backup), 1)
+      await client.gData.set(`${guild.id}:backups`, backups)
+      return message.channel.send(`Backup ${args[0]} was deleted!`)
     }
-    if(args[0] == 'info'){
-      const channelOverview = ''
-      if(!args[1]) return message.channel.send('You didn\'t provide a backup ID')
+    if(option == 'info'){
+      if(!args[0]) return message.channel.send('You didn\'t provide a backup ID')
       if(!backups) return message.channel.send('No backups exist for this server.')
 
-      var backup = backups.find(element => element.backupID == args[1])
+      var backup = backups.find(element => element.backupID == args[0])
       if(!backup) return message.channel.send('You didn\'t enter a valid backup ID')
 
-      console.log(backup.channels)
+      const gData = backup.data
       
-      for(channel of backup.channels){
-        if(channel.parent !== null) channelOverview += "  "
-        channelOverview += (channelTypeToSymbol(channel.type) + " " + channel.name)
+      var channelsText = ''
+      for(channel of gData.channels){
+        if(channel.type != 'category') channelsText += "   "
+        channelsText += (channelTypeToSymbol(channel.type) + " " + channel.name) + '\n'
       }
-      message.channel.send(embed)
+
+      var rolesText = ''
+      for(role of gData.roles){
+        if(role.name == '@everyone') rolesText += role.name + '\n'
+        else rolesText += ('@' + role.name) + '\n'
+      }
+
+      embed.setTitle(`Backup ${backup.backupID}`)
+      embed.addField('Channels', `\`\`\`${channelsText}\`\`\``, true)
+      embed.addField('Roles', `\`\`\`${rolesText}\`\`\``, true)
+
+      return message.channel.send(embed)
     }
     if(args[0] == 'load'){
       try {
@@ -111,5 +128,6 @@ function channelTypeToSymbol(type){
   if(type == 'category') return '*'
   if(type == 'voice') return '>'
   if(type == 'text') return '#'
+  if(type == 'news') return '<'
   //if(type == 'category') return '*'
 }
