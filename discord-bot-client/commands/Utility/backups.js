@@ -88,14 +88,24 @@ module.exports = {
       
       var channelsText = ''
       for(channel of gData.channels){
-        if(channel.type != 'category') channelsText += "   "
-        channelsText += (channelTypeToSymbol(channel.type) + " " + channel.name) + '\n'
+        if(channelsText.length + (channelTypeToSymbol(channel.type) + " " + channel.name) + 'and more...' <= 1024) {
+          if(channel.type != 'category') channelsText += "   "
+          channelsText += (channelTypeToSymbol(channel.type) + " " + channel.name) + '\n'
+        }
+        else {
+          if(!channelsText.endsWith('and more...')) channelsText += 'and more...'
+        }
       }
 
       var rolesText = ''
       for(role of gData.roles){
-        if(role.name == '@everyone') rolesText += role.name + '\n'
-        else rolesText += ('@' + role.name) + '\n'
+        if(channelsText.length + ('@' + role.name) + 'and more...' <= 1024) {
+          if(role.name == '@everyone') rolesText += role.name + '\n'
+          else rolesText += ('@' + role.name) + '\n'
+        }
+        else {
+          if(!rolesText.endsWith('and more...')) rolesText += 'and more...'
+        }
       }
 
       embed.setTitle(`Backup ${backup.backupID}`)
