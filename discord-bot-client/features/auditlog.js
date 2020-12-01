@@ -3,7 +3,6 @@ const { MessageEmbed } = require('discord.js')
 module.exports = {
   name: 'auditlog',
   run: async(client) => {
-    return //disabled
     const logAudit = async (guild, embed) => {
       const logChannel = guild.channels.cache.get(await client.gData.get(`${guild.id}:auditlogchannel`))
       if(logChannel) logChannel.send(embed)
