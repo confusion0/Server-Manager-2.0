@@ -88,7 +88,7 @@ module.exports = {
       
       var channelsText = ''
       for(channel of gData.channels){
-        if(channelsText.length + (channelTypeToSymbol(channel.type) + " " + channel.name) + 'and more...' <= 1024) {
+        if(channelsText.length + ((channel.type != 'category') ? "   " : "" + (channelTypeToSymbol(channel.type) + " " + channel.name) + 'and more...').length <= 1024) {
           if(channel.type != 'category') channelsText += "   "
           channelsText += (channelTypeToSymbol(channel.type) + " " + channel.name) + '\n'
         }
@@ -99,7 +99,7 @@ module.exports = {
 
       var rolesText = ''
       for(role of gData.roles){
-        if(channelsText.length + ('@' + role.name) + 'and more...' <= 1024) {
+        if(rolesText.length + (('@' + role.name) + 'and more...').length <= 1024) {
           if(role.name == '@everyone') rolesText += role.name + '\n'
           else rolesText += ('@' + role.name) + '\n'
         }
