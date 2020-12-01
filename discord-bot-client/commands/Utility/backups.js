@@ -107,12 +107,7 @@ module.exports = {
       return message.channel.send(embed)
     }
     if(args[0] == 'load'){
-      try {
-
-      } catch (error){
-        message.channel.send('')
-      }
-
+      message.channel.send('Sorry this part of the backup command isn\'t finished yet!')
     }
   }
 }
