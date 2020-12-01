@@ -13,6 +13,19 @@ module.exports = {
     const { guild } = message
     const embed = new MessageEmbed()
 
+    if(!args[0]) return message.channel.send(new MessageEmbed()
+      .setTitle('Server Backup Hub')
+      .setDescription('Backups is a feature that will backup your server data so that in the case that it is raided/changed in a way that is hard to reverse you can just load a previous version of your server.')
+      .addFields(
+        {name: 'create', value: 'Create a backup of the server.'},
+        {name: 'info', value: 'Shows the data stored in a backup'},
+        {name: 'list', value: 'Lists all of the backups that exist for this server'},
+        {name: 'delete', value: 'Deletes a backup'},
+        {name: 'clear', value: 'Clears all of the backups'},
+        {name: 'load', value: 'Loads a backup'}
+      )
+    )
+
     const option = args.shift().toLowerCase()
 
     if(!guild.member(client.user).hasPermission('ADMINISTRATOR')) return message.channel.send('This command requires the bot to have Administrator permissions. Re run this command when the bot is given them.')
@@ -35,7 +48,6 @@ module.exports = {
           
           roles: guild.roles.cache,
           channels: guild.channels.cache,
-          emojis: guild.emojis.cache,
 
           afkTimeout: guild.afkTimeout,
           afkChannelID: guild.afkChannelID,
@@ -102,12 +114,6 @@ module.exports = {
       }
 
     }
-
-
-
-
-
-    message.channel.send(`\`${await client.gData.get(`${message.guild.id}:prefix`)}serverdata backup\`, \`${await client.gData.get(`${message.guild.id}:prefix`)}serverdata backups\` or \`${await client.gData.get(`${message.guild.id}:prefix`)}serverdata load\``)
   }
 }
 
