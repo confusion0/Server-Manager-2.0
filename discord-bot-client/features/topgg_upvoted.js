@@ -15,12 +15,10 @@ module.exports = {
       dbl.postStats(totalGuilds, shardId, client.shard.count);
     }
 
-    sleep(2000).then(() => postStats())
-
     setInterval(postStats, 1800000);
 
     dbl.on('posted', () => {
-      console.log('Server count posted!');
+      //console.log('Server count posted!');
     })
 
     dbl.webhook.on('ready', hook => {
