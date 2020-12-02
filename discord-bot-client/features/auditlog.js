@@ -24,13 +24,6 @@ module.exports = {
       const { guild } = channel
       if(!guild) return
 
-      const embed = new MessageEmbed()
-      .setAuthor(author.tag, author.displayAvatarURL())
-      .setDescription(`${author}'s message was from deleted inside ${channel}`)
-      .addField('Message', content)
-      .setColor('RED')
-      .setTimestamp()
-
       logAudit(guild, embed)
       audit(guild, { title: 'A channel was created', color: 'GREEN', desc: `${channel} was created!`})
     })
