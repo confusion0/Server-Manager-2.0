@@ -85,15 +85,18 @@ module.exports = {
       if(!backup) return message.channel.send('You didn\'t enter a valid backup ID')
 
       const gData = backup.data
-      
+
       var channelsText = ''
-      for(channel of gData.channels){
-        if(channelsText.length + ((channel.type != 'category') ? "   " : "" + (channelTypeToSymbol(channel.type) + " " + channel.name) + 'and more...').length <= 1024) {
-          if(channel.type != 'category') channelsText += "   "
-          channelsText += (channelTypeToSymbol(channel.type) + " " + channel.name) + '\n'
+      for(channel in gData.channels){
+        console.log(channel)
+        if(channel.type == 'category'){
+          channelsText += `*${channel.name}`
+          for(subChannel in channel.children){
+            channelsText += "   " + channelToSymbol(subChannel) + subChannel.name
+          }
         }
-        else {
-          if(!channelsText.endsWith('and more...')) channelsText += 'and more...'
+        else if(!channel.parent){
+          channelsText = channelToSymbol(channel) + channel.name + '\n' + channelsText
         }
       }
 
@@ -133,10 +136,10 @@ function generateNewID(array){
   return n
 }
 
-function channelTypeToSymbol(type){
+function channelToSymbol(channel){
+  const { type } = channel
   if(type == 'category') return '*'
   if(type == 'voice') return '>'
   if(type == 'text') return '#'
   if(type == 'news') return '<'
-  //if(type == 'category') return '*'
 }
