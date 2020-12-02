@@ -3,6 +3,8 @@ const ms = require('ms')
 
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 
+const twelve_hours = 12 * 60 * 60 * 1000
+
 module.exports = {
   name: 'vote',
   aliases: ['v'],
@@ -20,7 +22,7 @@ module.exports = {
       embed.addField('top.gg', `[AVAILABLE NOW!](https://top.gg/bot/739943852726681650/vote)`)
     }
     else {
-      embed.addField('top.gg', `\`${ms(new Date().getTime() - topgg_last_vote)} remaining\``)
+      embed.addField('top.gg', `\`${ms(twelve_hours - (new Date().getTime() - topgg_last_vote))} remaining\``)
     }
 
     embed.setFooter(`You currently have ${await client.uData.get(`${message.author.id}:votes`)} votes`)
