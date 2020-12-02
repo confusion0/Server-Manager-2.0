@@ -16,6 +16,9 @@ module.exports = {
       .setTitle(`Vote for ${client.user.username}`)
 
     const topgg_last_vote = client.gData.get(`${message.author.id}:votes:top.gg`)
+    console.log(topgg_last_vote)
+    console.log(!topgg_last_vote || new Date().getTime() - topgg_last_vote > 12 * 60 * 60 * 1000)
+    console.log(new Date().getTime() - topgg_last_vote > 12 * 60 * 60 * 1000)
     if(!topgg_last_vote || new Date().getTime() - topgg_last_vote > 12 * 60 * 60 * 1000){
       embed.setDescription('top.gg', `[AVAILABLE NOW!](https://top.gg/bot/739943852726681650/vote)`)
     }
