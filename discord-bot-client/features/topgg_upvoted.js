@@ -29,7 +29,7 @@ module.exports = {
     
     dbl.webhook.on('vote', async vote => {
       console.log(`User with ID ${vote.user} just voted!`);
-      if(dbl.isWeekend()) client.voted(vote.user, 'top.gg', 2)
+      if(await dbl.isWeekend()) client.voted(vote.user, 'top.gg', 2)
       else client.voted(vote.user, 'top.gg')
     });
   }
