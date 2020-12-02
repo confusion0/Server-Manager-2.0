@@ -32,18 +32,19 @@ client.invites = {}
 
 client.snipes = new Map()
 
-client.voted = async (userID, botlist) => {
+client.voted = async (userID, botlist, multiplier) => {
   if(!client.uData) return
 
-  var votes = (await client.uData.get(`${userID}:votes`)) + 1 || 1
+  const multi = multiplier || 1
+
+  var votes = (await client.uData.get(`${userID}:votes`)) + multi || multi
 
   await client.uData.set(`${userID}:votes`, votes)
+  await client.uData.set(`${userID}:votes:${botlist}`, new Date().getTime())
 
   const user = client.users.cache.get(userID)
 
-  if(user){
-    user.send(`Thank you for voting for ${client.user.username} on ${botlist}, I have added 1 vote to your votes! You currently have ${(await client.uData.get(`${userID}:votes`))}`)
-  }
+  if(user) user.send(`Thank you for voting for ${client.user.username} on ${botlist}, I have added ${multi} vote to your votes! You currently have ${(await client.uData.get(`${userID}:votes`))}`)
 }
 
 const token = process.env.TOKEN;

@@ -27,10 +27,10 @@ module.exports = {
       console.log(`Webhook running at http://${hook.hostname}:${hook.port}${hook.path}`);
     });
     
-    dbl.webhook.on('vote', vote => {
-      if(vote.type == 'test') return console.log('Test POST Recived!')
+    dbl.webhook.on('vote', async vote => {
       console.log(`User with ID ${vote.user} just voted!`);
-      client.voted(vote.user, 'top.gg')
+      if(dbl.isWeekend()) client.voted(vote.user, 'top.gg', 2)
+      else client.voted(vote.user, 'top.gg')
     });
   }
 }

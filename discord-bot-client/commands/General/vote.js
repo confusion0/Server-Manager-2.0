@@ -1,4 +1,5 @@
 const { MessageEmbed } = require('discord.js')
+const ms = require('ms')
 
 const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
 
@@ -13,8 +14,16 @@ module.exports = {
   run: async(client, message, args) => {
     const embed = new MessageEmbed()
       .setTitle(`Vote for ${client.user.username}`)
-      .setDescription(`**top.gg** \n[CLICK HERE](https://top.gg/bot/739943852726681650/vote)`)
-      .setFooter(`You currently have ${await client.uData.get(`${message.author.id}:votes`)} votes`)
+
+    const topgg_last_vote = client.gData.get(`${message.author.id}:votes:top.gg`) || 0
+    if(new Date().getTime() - topgg_last_vote > 12 * 60 * 60 * 1000){
+      embed.setDescription('top.gg', `[AVAILABLE NOW!](https://top.gg/bot/739943852726681650/vote)`)
+    }
+    else {
+      embed.setDescription('top.gg', `${ms(new Date().getTime() - topgg_last_vote)} remaining`)
+    }
+
+    embed.setFooter(`You currently have ${await client.uData.get(`${message.author.id}:votes`)} votes`)
 
     message.channel.send(embed)
   }
