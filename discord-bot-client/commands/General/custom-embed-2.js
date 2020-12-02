@@ -100,6 +100,11 @@ module.exports = {
 
       m.delete({timeout: 1000})
 
+      if(msg.deleted){
+        status = 'deleted'
+        collector.stop()
+      }
+
       if(cmd == 'stop'){
         status = 'stopped'
         collector.stop()
