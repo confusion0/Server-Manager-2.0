@@ -17,10 +17,10 @@ module.exports = {
 
     if (!user) return message.channel.send(embed.setDescription('No User Mention or User ID Provided'))
     if (user === message.author) return message.channel.send(embed.setDescription('You can\'t softban yourself')); 
-    if (!message.guild.member(user).bannable) return message.channel.send(embed.setDescription('You can\'t softban this user because you the bot has not sufficient permissions!')); 
+    if (!message.guild.member(user).bannable) return message.channel.send(embed.setDescription('You can\'t softban this user because the bot does not has sufficient permissions!')); 
 
-    await message.guild.members.ban(user, {reason: reason}) 
-    await message.guild.members.unban(user.id, {reason: `Unban for softban: ${reason}`})
+    await message.guild.members.ban(user, reason) 
+    await message.guild.members.unban(user.id, `Unban for softban: ${reason}`)
 
     if(reason) embed.setDescription(`✅  ${user.tag} has been successfully softbanned! \n**Reason:** ${reason}`);
     else embed.setDescription(`✅  ${user.tag} has been successfully softbanned!`);
