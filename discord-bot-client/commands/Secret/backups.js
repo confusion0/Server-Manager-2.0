@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js')
 module.exports = {
   name: 'backups',
   aliases: [],
-  reqPerm: "ADMINISTRATOR",
+  reqPerm: "BOT_ADMIN",//"ADMINISTRATOR",
   args: "<backup | load> <options>",
   cooldown: 0, //cooldowns: {user: {normal: 0, reduced: 0}, server: {normal: 0, reduced: 0}}
   desc: "Everything with backups",
@@ -118,7 +118,7 @@ module.exports = {
       return message.channel.send(embed)
     }
     if(args[0] == 'load'){
-      message.channel.send('Sorry this part of the backup command isn\'t finished yet!')
+      
     }
   }
 }
