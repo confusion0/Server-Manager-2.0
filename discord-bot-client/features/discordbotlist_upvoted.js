@@ -14,7 +14,5 @@ module.exports = {
     // }
 
     // setInterval(updateDBL, 1800000);
-
-
   }
 }

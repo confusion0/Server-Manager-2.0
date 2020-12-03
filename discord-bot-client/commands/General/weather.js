@@ -27,7 +27,7 @@ module.exports = {
       .setThumbnail(current.imageUrl)
       .setColor(0x111111)
       .addField('Timezone', `UTC${location.timezone}`, true)
-      .addField('Degree Type', 'Celsius', true)
+      .addField('Degree Type', 'Fahrenheit', true)
       .addField('Temperature', `${current.temperature}°`, true)
       .addField('Wind', current.winddisplay, true)
       .addField('Feels like', `${current.feelslike}°`, true)
