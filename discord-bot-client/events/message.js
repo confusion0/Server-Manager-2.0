@@ -22,7 +22,7 @@ module.exports = {
 
       if (!message.content.startsWith(serverprefix)) return;
 
-      console.log(`${message.content} |  ${message.author.tag} -- ${message.channel.name} -- ${message.guild.toString()}(${message.guild.id}) Owned by ${message.guild.owner.user.tag}`)
+      console.log(`${message.content} |  ${message.author.tag} -- ${message.channel.name} -- ${message.guild.toString()}`)
 
       const args = message.content.slice(serverprefix.length).split(/ +/);
       const cmd = args.shift().toLowerCase();
