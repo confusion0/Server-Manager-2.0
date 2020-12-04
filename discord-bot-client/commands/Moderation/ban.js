@@ -16,7 +16,7 @@ module.exports = {
     .setColor('RED')
 
     if (!user) return message.channel.send(embed.setDescription('No User Mention or User ID Provided'))
-    if (user === message.author) return message.channel.send(embed.setDescription('You can\'t ban yourself')); 
+    if (user.id === message.author.id) return message.channel.send(embed.setDescription('You can\'t ban yourself')); 
     if (!message.guild.member(user).bannable) return message.channel.send(embed.setDescription('You can\'t ban this user because the bot does not has sufficient permissions!')); 
 
     await message.guild.members.ban(user, reason) 

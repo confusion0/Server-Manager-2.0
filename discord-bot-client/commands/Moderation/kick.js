@@ -14,7 +14,7 @@ module.exports = {
     const reason = args.slice(1).join(' ')
 
     if (!user) return message.channel.send(embed.setDescription('No User Mention or User ID Provided'))
-    if (user === message.author) return message.channel.send(embed.setDescription('You can\'t kick yourself'));
+    if (user.id === message.author.id) return message.channel.send(embed.setDescription('You can\'t kick yourself'));
     if (!message.guild.member(user).bannable) return message.channel.send(embed.setDescription('You can\'t kick this user because the bot does not has sufficient permissions!'));
 
     const member = message.guild.member(user)
