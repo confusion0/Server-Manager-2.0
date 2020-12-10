@@ -98,6 +98,27 @@ var configs = [
       }
       else return message.channel.send('Please enter the channel as a mention or its id, or none to remove. Ex: @Channel or 129038032234 or none')
     }
+  },
+  { title: 'Anti-Ad',
+    name: 'antiad',
+    args: '[on | off]',
+    current: async (client, guild) => {
+      const antiad = await client.gData.get(`${guild.id}:antiad`)
+      if(!antiad) return 'off'
+      if(antiad === true) return 'on'
+    },
+    run: async (client, message, args) => {
+      if(!args[0]) return message.channel.send('Please enter on or off')
+      if(args[0].toLowerCase() == 'on'){
+        await client.gData.set(`${message.guild.id}:antiad`, true)
+        return message.channel.send('Anti-Ad is turned on')
+      }
+      if(args[0].toLowerCase() == 'off'){
+        await client.gData.set(`${message.guild.id}:antiad`, undefined)
+        return message.channel.send('Anti-Ad is turned off')
+      }
+      message.channel.send('Please make sure to enter a valid input')
+    }
   }
 ]
 

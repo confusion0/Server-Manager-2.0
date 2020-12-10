@@ -6,6 +6,9 @@ module.exports = {
       if(!guild) return
       if(!member) return
 
+      const antiad = await client.gData.get(`${guild.id}:antiad`)
+      if(!antiad) return
+
       const bypassRoleName = "Anti-Ad Bypass"
 
       var bypassRole = guild.roles.cache.find(r => r.name === bypassRoleName)
