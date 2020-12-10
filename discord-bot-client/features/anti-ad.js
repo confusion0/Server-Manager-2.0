@@ -6,9 +6,6 @@ module.exports = {
       if(!guild) return
       if(!member) return
 
-      const antiad = await client.gData.get(`${guild.id}:antiad`)
-      if(!antiad) return
-
       const bypassRoleName = "Anti-Ad Bypass"
 
       var bypassRole = guild.roles.cache.find(r => r.name === bypassRoleName)
@@ -49,8 +46,11 @@ module.exports = {
           })
         }
         const isOurInvite = await isInvite(guild, code)
-        if (!isOurInvite && !bypass && bypassRole && message.author.id == client.OWNERID) return message.channel.send('Bot Owner Detected, bypassing anti-ad filter.')
-        else if (!isOurInvite && !bypass && bypassRole) {
+        if(!isOurInvite){
+          const antiad = await client.gData.get(`${guild.id}:antiad`)
+          if(!antiad) return
+        }
+        if (!isOurInvite && !bypass && bypassRole) {
           message.delete()
           const message2 = await message.channel.send(`In order to post invites to other servers you must have the role ${bypassRole} or have the \`MANAGE_SERVER\` permmision. Advertiser: ${message.author}`)
         }
