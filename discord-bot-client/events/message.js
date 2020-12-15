@@ -58,9 +58,20 @@ module.exports = {
             }, command.cooldown)
           }
         }
-
-        return command.run(client, message, args);
+        try {
+          command.run(client, message, args);
+        }
+        catch(error) {
+          message.channel.send(`An error occured when running this command! Please join my support server in my help menu and report this error and what you were doing to the Devs though the ModMail Bot. ERROR: \`\`\`${clean(error)}\`\`\``)
+        }
       }
     })
   }
+}
+
+function clean(text) {
+  if (typeof(text) === "string")
+    return text.replace(/`/g, "`" + String.fromCharCode(8203)).replace(/@/g, "@" + String.fromCharCode(8203));
+  else
+      return text;
 }
