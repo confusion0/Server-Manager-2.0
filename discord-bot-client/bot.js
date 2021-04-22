@@ -58,28 +58,32 @@ process.on("message", message => {
 for (const file of client.commandFiles) {
   const command = require(`${file}`);
   client.commands.set(command.name, command);
-  console.log('Loaded Command: ' + command.name)
+  console.log('Loaded: ' + command.name)
 }
 
 for (const file of client.eventFiles) {
   const event = require(`${file}`);
   client.events.set(event.name, event)
   event.run(client);
-  console.log('Loaded Event: ' + event.name)
 }
 
 for (const file of client.featureFiles) {
   const feature = require(`${file}`);
   client.features.set(feature.name, feature)
   feature.run(client);
-  console.log('Loaded Feature: ' + feature.name)
 }
 
 for (const file of client.prerequisiteFiles) {
   const prerequisite = require(`${file}`);
   client.prerequisites.set(prerequisite.name, prerequisite)
   prerequisite.run(client);
-  console.log('Loaded Prerequisite: ' + prerequisite.name)
 }
 
 client.login(token);
+
+console.log(client.api.applications(process.env.CLIENTID).commands)
+
+client.api.applications(process.env.CLIENTID).commands.post({data: {
+    name: 'ping',
+    description: 'ping pong!'
+}})

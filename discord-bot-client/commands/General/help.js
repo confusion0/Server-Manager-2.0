@@ -26,6 +26,8 @@ module.exports = {
       
       client.commands.forEach(command => {
         const filepath = client.commandFiles.find(filepath => filepath.includes(command.name))
+        if(!filepath) return
+        
         const module = getModuleFromPath(filepath)
         
         if(module == "Secret") return

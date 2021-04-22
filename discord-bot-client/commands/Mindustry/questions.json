@@ -1,0 +1,128 @@
+{
+  "authors": {
+    "0": {
+      "lastKnownTag": "!!NoobMan13!!#6972",
+      "id": "564177349990416484",
+      "questions_added": 1
+    },
+    "1": {
+      "lastKnownTag": "Meatsim009#1885",
+      "id": "216702242135212032",
+      "questions_added": 3
+    },
+    "2": {
+      "lastKnownTag": "That_Guy977#8187",
+      "id": "628241756235890708",
+      "questions_added": 1
+    }
+    ,
+    "3": {
+      "lastKnownTag": "MARTIN G#3146",
+      "id": "266398456514347009",
+      "questions_added": 1
+    }
+  },
+  "questions": [
+    { "authorID": "1",
+      "question": "When using plast conveyors should you ever break them with routers, overflows or underflows?",
+      "image": "https://cdn.discordapp.com/attachments/783419924449591347/788794175386419207/unknown.png",
+      "answer": {
+        "type": "true false"
+      }
+    },
+    { "authorID": "1",
+      "question": "Which is most best way to cross conduits and conveyors?",
+      "image": "https://cdn.discordapp.com/attachments/783419924449591347/788795055015067708/unknown.png",
+      "answer": {
+        "type": "multiple choice",
+        "choices": [
+          { "text": "Bridge a conveyor over liquid pipes", "correct": true },
+          { "text": "Bridge a liquid pipe over a conveyor", "correct": false }
+        ]
+      }
+    },
+    { "authorID": "1",
+      "question": "Which is the best option?",
+      "image": "https://cdn.discordapp.com/attachments/671594903116972032/788819564275957831/unknown.png",
+      "answer": {
+        "type": "multiple choice",
+        "choices": [
+          { "text": "The one on the left",  "correct": false },
+          { "text": "The one in the middle", "correct": false},
+          { "text": "The one on the left", "correct": true}
+        ]
+      }
+    },
+    { "authorID": "0",
+      "question": "What is the ratio of water extractors to steam generators at 100% efficiency?",
+      "image": "https://cdn.discordapp.com/attachments/671594903116972032/788827776538509312/unknown.png",
+      "answer": {
+        "type": "multiple choice",
+        "choices": [
+          { "text": "2 water extractors to 1 steam generator",  "correct": false },
+          { "text": "1 water extractor to 1 steam generator", "correct": true},
+          { "text": "1 water extractor to 2 steam generators", "correct": false}
+        ]
+      }
+    },
+    { "authorID": "2",
+      "question": "How much copper, lead, silicon, and titanium is needed to manufacture 1 surge alloy?",
+      "image": "",
+      "answer": {
+        "type": "multiple choice",
+        "choices": [
+          { "text": "2 copper, 3 silicon, 4 titanium and 4 lead",  "correct": false },
+          { "text": "4 lead, 2 titanium, 3 silicon and 3 copper", "correct": true},
+          { "text": "4 lead, 2 silicone, 3 titanium and 3 copper", "correct": false},
+          { "text": "4 lead, 3 silicone, 2 titanium and 1 copper", "correct": false}
+        ]
+      }
+    },
+    { "authorID": "3",
+      "question": "Which factory placement is most ideal?",
+      "image": "https://cdn.discordapp.com/attachments/671594903116972032/789180854776627240/placement_Q.png",
+      "answer": {
+        "type": "multiple choice",
+        "choices": [
+          { "text": "Top placement",  "correct": false },
+          { "text": "Middle placement", "correct": true},
+          { "text": "Bottom placement", "correct": false}
+        ]
+      }
+    },
+    { "authorID": "0",
+      "question": "Which setup is best for a full copper belt of coal?",
+      "image": "https://cdn.discordapp.com/attachments/671594903116972032/789518497050132520/unknown.png",
+      "answer": {
+        "type": "multiple choice",
+        "choices": [
+          { "text": "4 graph press setup",  "correct": true },
+          { "text": "6 graph press setup", "correct": false}
+        ]
+      }
+    },
+    { "authorID": "0",
+      "question": "Which setup is best for a full titanium belt of coal?",
+      "image": "https://cdn.discordapp.com/attachments/671594903116972032/789517963085742090/unknown.png",
+      "answer": {
+        "type": "multiple choice",
+        "choices": [
+          { "text": "4 graph press setup",  "correct": false },
+          { "text": "6 graph press setup", "correct": true}
+        ]
+      }
+    },
+    { "authorID": "0",
+      "question": "What is the number 1 thing to not do on PVP?",
+      "image": "https://cdn.discordapp.com/attachments/768514296719736842/791346767470919700/unknown.png",
+      "answer": {
+        "type": "multiple choice",
+        "choices": [
+          { "text": "Unload resources from core.",  "correct": false },
+          { "text": "Vault the core.", "correct": true},
+          { "text": "Do nothing the entire game, and make teamates do everything.", "correct": false}
+        ]
+      }
+    }
+  ]
+}

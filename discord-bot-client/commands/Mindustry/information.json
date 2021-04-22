@@ -1,0 +1,15 @@
+[
+  {
+    "triggers": [
+      "valuts",
+      "vaulting",
+      "containers"
+    ]
+    "response": {
+      "embed": {
+        "title": "Valuts and Containers",
+        "descrption": "Vaults and containers are great for storing resouces and adding more core storage. Valuts and containers can be used as buffers the smooth out "
+      }
+    }
+  }
+]

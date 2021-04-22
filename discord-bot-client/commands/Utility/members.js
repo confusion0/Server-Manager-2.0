@@ -27,6 +27,7 @@ module.exports = {
   desc: "Shows a chart with member joins data.",
   example: [],
   run: async(client, message, args) => {
+    return message.channel.send('Disabled due to database issues.')
     const canvas = new CanvasRenderService(width, height, chartCallback)
 
     const membersData = await client.gData.get(`${message.guild.id}:members`)
@@ -46,7 +47,6 @@ module.exports = {
       bots.push(item.bots)
       dates.push(item.date)
     }
-    
 
     const configuration = {
       type: 'line',
