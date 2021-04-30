@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose')
 
-const guildSchema = new Schema({
+const prefixSchema = new Schema({
   _id: {
     type: String,
     required: true,
@@ -9,9 +9,8 @@ const guildSchema = new Schema({
   prefix: {
     type: String,
     required: true,
-    default: process.env.PREFIX
   }
 })
 
-module.exports = mongoose.model('Guilds', guildSchema)
+module.exports = mongoose.model('Prefixes', prefixSchema)
 
