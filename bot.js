@@ -54,4 +54,7 @@ for (const file of client.eventFiles) {
   console.log(`Started: ${event.name}`)
 }
 
+const mongo = require('./mongo.js')
+mongo()
+
 client.login(process.env.TOKEN);

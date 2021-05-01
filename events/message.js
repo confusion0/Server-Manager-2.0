@@ -17,7 +17,7 @@ module.exports = {
     //if(client.chatFilters.get('antiad').run(client, message)) return;
     
     console.log('dfsd')
-    const prefixSchema = undefined//await PrefixSchema.findOne({ _id: message.guild.id })
+    const prefixSchema = undefined // await PrefixSchema.findOne({ _id: message.guild.id })
     console.log("hello")
     let serverprefix = "??"//prefixSchema ? prefixSchema.prefix : client.config.PREFIX;
 
