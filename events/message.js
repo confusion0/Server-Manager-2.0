@@ -13,15 +13,12 @@ module.exports = {
   run: async(client, message) => {
     if (!message.guild) return;
     if (message.author.bot) return;
-    console.log('dfsfsy')
-    //if(client.chatFilters.get('antiad').run(client, message)) return;
-    
-    console.log('dfsd')
-    const prefixSchema = undefined // await PrefixSchema.findOne({ _id: message.guild.id })
-    console.log("hello")
-    let serverprefix = "??"//prefixSchema ? prefixSchema.prefix : client.config.PREFIX;
 
-    console.log('Hello')
+    if(await client.chatFilters.get('antiad').run(client, message)) return;
+    if(await client.chatFilters.get('schematic').run(client, message)) return;
+    
+    const prefix = await PrefixSchema.get(message.guild.id)
+    let serverprefix = prefix || client.config.PREFIX;
 
     if(message.content.startsWith('<@') && message.mentions.users.first() && message.mentions.users.first().id === client.user.id) return message.channel.send(`Server prefix is \`${serverprefix}\``)
 

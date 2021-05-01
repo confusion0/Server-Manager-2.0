@@ -12,5 +12,28 @@ const PrefixSchema = new mongoose.Schema({
   }
 })
 
-module.exports = mongoose.model('Prefixes', PrefixSchema)
+const PrefixModel = mongoose.model('Prefixes', PrefixSchema)
 
+async function get(_id){
+  const schema = await PrefixModel.findOne({
+    _id
+  })
+  return schema ? schema.prefix : null
+}
+
+async function set(_id, prefix){
+  await PrefixModel.updateOne({
+    _id,
+  }, {
+    _id,
+    prefix
+  }, {
+    upsert: true
+  })
+}
+
+module.exports = {
+  PrefixModel,
+  get,
+  set,
+}

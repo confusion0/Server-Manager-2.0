@@ -7,6 +7,8 @@ const addInfo = `
 [Website](https://servermanager20.herokuapp.com/)
 `
 
+const PrefixSchema = require('../../schemas/Prefix.js')
+
 module.exports = {
   name: 'help',
   aliases: ['h'],
@@ -17,7 +19,7 @@ module.exports = {
   example: ['', 'ping', 'snipe'],
   run: async(client, message, args) => {
     const embed = new MessageEmbed();
-    const serverprefix = client.config.PREFIX//(await client.gData.get(`${message.guild.id}:prefix`)) || process.env.PREFIX
+    const serverprefix = await PrefixSchema.get(message.guild.id) || client.config.PREFIX
     if(!args[0]){
       let modules = []
       embed.setTitle("📚 Help")
@@ -54,7 +56,6 @@ module.exports = {
     embed.setDescription("<> means required, and [] means optional")
     embed.addField("Description: ", command.desc)
     embed.addField("Usage: ", serverprefix + command.name + " " + command.args)
-    console.log(command)
     if(command.aliases.length > 0) embed.addField("Aliases: ", command.aliases.join(" "))
     if(command.reqPerm != "NONE") embed.addField("Required Permissions: ", command.reqPerm)
     if(command.example.length > 0) {

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const AntiAdSchema = new mongoose.Schema({
+const MindustrySchematicParsingSchema = new mongoose.Schema({
   _id: {
     type: String,
     required: true,
@@ -12,17 +12,17 @@ const AntiAdSchema = new mongoose.Schema({
   }
 })
 
-const AntiAdModel = mongoose.model('AntiAd', AntiAdSchema)
+const MindustrySchematicParsingModel = mongoose.model('MindustrySchematicParsing', MindustrySchematicParsingSchema)
 
 async function get(_id){
-  const schema = await AntiAdModel.findOne({
+  const schema = await MindustrySchematicParsingModel.findOne({
     _id
   })
   return schema ? schema.enabled : false;
 }
 
 async function set(_id, enabled){
-  await AntiAdModel.updateOne({
+  await MindustrySchematicParsingModel.updateOne({
     _id,
   }, {
     _id,
@@ -33,7 +33,7 @@ async function set(_id, enabled){
 }
 
 module.exports = {
-  AntiAdModel,
+  MindustrySchematicParsingModel,
   get,
   set
 }

@@ -46,7 +46,7 @@ module.exports = {
       message.channel.send(`Reloaded the \`${event.name}\` event.`)
     } else if(type == "chatfilter" || type == "cf"){
       const name = args[1].toLowerCase();
-      const chatFilter = client.chatFilers.get(name)
+      const chatFilter = client.chatFilters.get(name)
       
       if(!chatFilter) return message.channel.send(`\`${name}\` isn't a valid command!`)
       
@@ -54,11 +54,17 @@ module.exports = {
       
       const _chatFilter = require(`${chatFilter.path}`)
       _chatFilter.path = chatFilter.path;  
-      client.commands.set(_chatFilter.name, _chatFilter);
+      client.chatFilters.set(_chatFilter.name, _chatFilter);
       console.log(`Reloaded: ${_chatFilter.name}`)
       
       message.channel.send(`Reloaded the \`${chatFilter.name}\` command.`)
-    }else {
+    } else if(type == "config"){
+      delete require.cache[require.resolve('../../config.json')];
+      const config = require('../../config.json')
+      client.config = config
+      console.log(`Reloaded: Config File`)
+      message.channel.send(`Reloaded the \`config file\`.`)
+    } else {
       message.channel.send(`Please specify a valid type of thing to reload. i.e event or command`)
     }
   }
