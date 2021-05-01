@@ -1,6 +1,6 @@
 const { Schema } = require('mongoose')
 
-const prefixSchema = new Schema({
+const PrefixSchema = new Schema({
   _id: {
     type: String,
     required: true,
@@ -12,5 +12,5 @@ const prefixSchema = new Schema({
   }
 })
 
-module.exports = mongoose.model('Prefixes', prefixSchema)
+module.exports = mongoose.model('Prefixes', PrefixSchema)
 

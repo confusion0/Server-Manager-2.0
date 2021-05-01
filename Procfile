@@ -1,1 +1,1 @@
-web: node discord-bot-client/index.js
+web: npm start
