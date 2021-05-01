@@ -24,6 +24,7 @@
     "covidtracker": "^2.0.1",
     "create-react-app": "^3.4.1",
     "dblapi.js": "^2.4.1",
+    "discord-backup": "^2.5.0",
     "discord.js": "^12.5.3",
     "express": "^4.17.1",
     "express-session": "^1.17.1",

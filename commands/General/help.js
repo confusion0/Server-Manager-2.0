@@ -20,6 +20,7 @@ module.exports = {
   run: async(client, message, args) => {
     const embed = new MessageEmbed();
     const serverprefix = await PrefixSchema.get(message.guild.id) || client.config.PREFIX
+    const isBotAdmin = client.config.ADMINS.find(admin => admin.id=== message.author.id)
     if(!args[0]){
       let modules = []
       embed.setTitle("📚 Help")
@@ -31,7 +32,7 @@ module.exports = {
         
         const module = getModuleFromPath(filepath)
         
-        if(module == "Secret") return
+        if(module == "Secret" && !isBotAdmin) return
         
         var field = embed.fields.find(field => field.name == module)
         

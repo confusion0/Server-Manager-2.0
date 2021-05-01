@@ -16,11 +16,11 @@ module.exports = {
 
     if(await client.chatFilters.get('antiad').run(client, message)) return;
     if(await client.chatFilters.get('schematic').run(client, message)) return;
-    
+
     const prefix = await PrefixSchema.get(message.guild.id)
     let serverprefix = prefix || client.config.PREFIX;
 
-    if(message.content.startsWith('<@') && message.mentions.users.first() && message.mentions.users.first().id === client.user.id) return message.channel.send(`Server prefix is \`${serverprefix}\``)
+    if(await client.chatFilters.get('botmention').run(client, message, serverprefix)) return;
 
     if (!message.content.startsWith(serverprefix)) return;
 
