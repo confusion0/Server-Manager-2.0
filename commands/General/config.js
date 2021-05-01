@@ -1,4 +1,6 @@
 const { MessageEmbed } = require('discord.js')
+const PrefixSchema = require('../../schemas/Prefix.js')
+const AntiAdSchema = require('../../schemas/AntiAd.js')
 
 var configs = [
   { title: 'Bot Nickname',
@@ -19,13 +21,21 @@ var configs = [
     name: 'prefix',
     args: '[Prefix]',
     current: async (client, guild) => {
-      return await client.gData.get(`${guild.id}:prefix`) || process.env.PREFIX
+      const schema = await PrefixSchema.findOne({ _id: guild.id });
+      return schema ? schema.prefix : client.config.PREFIX
     },
     run: async (client, message, args) => {
       const { channel } = message
       if(!args[0]) return message.channel.send('You need to enter a prefix.')
 
-      client.gData.set(`${message.guild.id}:prefix`, args.join(' '))
+      await PrefixSchema.updateOne({
+        _id: guild.id
+      }, {
+        _id: guild.id,
+        prefix: args.join(' ')
+      }, {
+        upsert: true
+      })
       channel.send(`The bot prefix is now \`${args[0]}\``)
     }
   },
@@ -33,21 +43,35 @@ var configs = [
     name: 'antiad',
     args: '[on | off]',
     current: async (client, guild) => {
-      const antiad = await client.gData.get(`${guild.id}:antiad`)
-      if(!antiad) return 'off'
-      if(antiad === true) return 'on'
+      const schema = await AntiAdSchema.findOne({ _id: guild.id });
+      return schema ? schema.enabled : false
     },
     run: async (client, message, args) => {
       if(!args[0]) return message.channel.send('Please enter on or off')
       if(args[0].toLowerCase() == 'on'){
-        await client.gData.set(`${message.guild.id}:antiad`, true)
-        return message.channel.send('Anti-Ad is turned on')
+        await AntiAdSchema.updateOne({
+          _id: guild.id
+        }, {
+          _id: guild.id,
+          enabled: true
+        }, {
+          upsert: true
+        })
+        message.channel.send('Anti Ad turned on.')
       }
       if(args[0].toLowerCase() == 'off'){
-        await client.gData.set(`${message.guild.id}:antiad`, undefined)
-        return message.channel.send('Anti-Ad is turned off')
+        await AntiAdSchema.updateOne({
+          _id: guild.id
+        }, {
+          _id: guild.id,
+          enabled: false
+        }, {
+          upsert: true
+        })
+        message.channel.send('Anti Ad turned off.')
+      } else {
+        message.channel.send('Please make sure to enter a valid input')
       }
-      message.channel.send('Please make sure to enter a valid input')
     }
   }
 ]

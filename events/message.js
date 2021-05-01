@@ -6,25 +6,22 @@ const command_cooldowns = new Map()
 
 const Discord = require('discord.js')
 
+const PrefixSchema = require('../schemas/Prefix.js')
+
 module.exports = {
   name: 'message',
   run: async(client, message) => {
     if (!message.guild) return;
     if (message.author.bot) return;
+    console.log('dfsfsy')
+    //if(client.chatFilters.get('antiad').run(client, message)) return;
     
-    let chatFilterTriggered = false;
-    client.chatFilters.forEach(filter => {
-      const triggered = await filter.run(client, message)
-      if(triggered){
-        chatFilterTriggered = true;
-        break;
-      }
-    })
-    if(chatFilterTriggered) return;
-    
-    var serverprefix = client.config.PREFIX
-    // await client.gData.get(`${message.guild.id}:prefix`)
-    //   .then(data => serverprefix = data || serverprefix)
+    console.log('dfsd')
+    const prefixSchema = undefined//await PrefixSchema.findOne({ _id: message.guild.id })
+    console.log("hello")
+    let serverprefix = "??"//prefixSchema ? prefixSchema.prefix : client.config.PREFIX;
+
+    console.log('Hello')
 
     if(message.content.startsWith('<@') && message.mentions.users.first() && message.mentions.users.first().id === client.user.id) return message.channel.send(`Server prefix is \`${serverprefix}\``)
 

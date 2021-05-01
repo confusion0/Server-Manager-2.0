@@ -8,7 +8,7 @@ client.config = require('./config.json')
 
 client.commandFiles = walkSync(path.join(__dirname, '/commands'))
 client.eventFiles = walkSync(path.join(__dirname, '/events'))
-client.chatFilterFiles = walkSync(path.join(__dirname, '/filter'))
+client.chatFilterFiles = walkSync(path.join(__dirname, '/filters'))
 
 client.commands = new Collection();
 client.events = new Collection()
@@ -36,7 +36,7 @@ for (const file of client.commandFiles) {
 for (const file of client.chatFilterFiles) {
   let chatFilter = require(file);
   chatFilter.path = file;
-  client.filters.set(chatFilter.name, chatFilter);
+  client.chatFilters.set(chatFilter.name, chatFilter);
   console.log('Loaded: ' + chatFilter.name)
 }
 

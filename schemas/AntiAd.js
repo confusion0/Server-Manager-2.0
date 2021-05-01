@@ -1,12 +1,12 @@
-const { Schema } = require('mongoose')
+const mongoose = require('mongoose')
 
-const AntiAdSchema = new Schema({
+const AntiAdSchema = new mongoose.Schema({
   _id: {
     type: String,
     required: true,
     unique: true
   },
-  activated: {
+  enabled: {
     type: Boolean,
     required: true,
   }

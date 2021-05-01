@@ -1,6 +1,6 @@
-const { Schema } = require('mongoose')
+const mongoose = require('mongoose')
 
-const PrefixSchema = new Schema({
+const PrefixSchema = new mongoose.Schema({
   _id: {
     type: String,
     required: true,
