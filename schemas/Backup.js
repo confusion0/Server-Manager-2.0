@@ -9,12 +9,12 @@ const BackupSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  size: {
-    type: Number,
-    required: true,
-  },
   data: {
     type: Object,
+    required: true,
+  },
+  saveTimestamp: {
+    type: String,
     required: true,
   }
 })
@@ -42,26 +42,28 @@ async function get(_id){
 }
 
 async function add(gid, uid, backup){
-  const { _id } = await BackupModel.save({
+  const current = (new Date()).toISOString()
+  const schema = new BackupModel({
     gid,
     uid,
-    size: backup.size,
-    data: backup.data
+    data: backup,
+    saveTimestamp: current,
   })
+  const { _id } = await schema.save()
   return _id;
 }
 
-async function delete(_id){
+async function deleteOne(_id){
   await BackupModel.deleteOne({
     _id
   })
 }
 
 module.exports = {
-  PrefixModel,
+  BackupModel,
   getGuild,
   getUser,
   get,
   add,
-  delete
+  "delete": deleteOne
 }

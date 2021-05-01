@@ -18,7 +18,12 @@ module.exports = {
       
       delete require.cache[require.resolve(command.path)];
       
-      const _command = require(`${command.path}`)
+      let _command = null
+      try {
+        _command = require(`${command.path}`)
+      } catch (e){
+        return message.channel.send('An error has occured while reloading the command. Please check the console for more details')
+      }
       _command.path = command.path;  
       client.commands.set(_command.name, _command);
       console.log(`Reloaded: ${_command.name}`)
