@@ -13,10 +13,10 @@ var configs = [
     run: async (client, message, args) => {
       const { channel, guild } = message
       if(args[0].toLowerCase() == "reset"){
-        guild.members.cache.get(client.user.id).setNickname(client.user.username)
+        await guild.members.cache.get(client.user.id).setNickname(client.user.username)
         channel.send(`My nickname has been reset to \`${client.user.username}\``)
       } else {
-        guild.members.cache.get(client.user.id).setNickname(args.join(" "))
+        await guild.members.cache.get(client.user.id).setNickname(args.join(" "))
         channel.send(`My nickname has been changed to \`${guild.member(client.user).displayName}\``)
       }
     }

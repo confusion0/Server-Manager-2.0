@@ -1,6 +1,11 @@
 const mongoose = require('mongoose')
 
 const BackupSchema = new mongoose.Schema({
+  _id: {
+    type: String,
+    required: true,
+    unique: true
+  },
   gid: {
     type: String,
     required: true,
@@ -36,14 +41,14 @@ async function getUser(uid){
 }
 
 async function get(_id){
-  const schema = await BackupModel.findOne({
-    _id,
-  })
+  const schema = await BackupModel.findById(_id)
+  return schema || false
 }
 
 async function add(gid, uid, backup){
   const current = (new Date()).toISOString()
   const schema = new BackupModel({
+    _id: makeid(20),
     gid,
     uid,
     data: backup,
@@ -66,4 +71,15 @@ module.exports = {
   get,
   add,
   "delete": deleteOne
+}
+
+function makeid(length) {
+    var result = [];
+    var characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+      result.push(characters.charAt(Math.floor(Math.random() * 
+ charactersLength)));
+   }
+   return result.join('');
 }
