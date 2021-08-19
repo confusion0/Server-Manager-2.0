@@ -56,7 +56,7 @@ module.exports = {
     embed.addField("Description: ", command.desc)
     embed.addField("Usage: ", serverprefix + command.name + " " + command.args)
     console.log(command)
-    if(command.aliases.length > 0) embed.addField("Aliases: ", command.aliases.join(" "))
+    if(command.aliases.length > 0) embed.addField("Aliases: ", command.aliases.join(", "))
     if(command.reqPerm != "NONE") embed.addField("Required Permissions: ", command.reqPerm)
     if(command.example.length > 0) {
       var examples = ""
