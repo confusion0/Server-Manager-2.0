@@ -153,7 +153,7 @@ module.exports = {
       const embed1 = new MessageEmbed()
       .setTitle(title)
       .setDescription(description)
-      .setColor(color)
+      .setColor(color.toUpperCase())
 
       if(channel.toLowerCase() === "current") message.channel.send(embed1)
       else getChannelFromMention(client, message, channel).send(embed1)
